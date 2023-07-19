@@ -1,0 +1,87 @@
+@use '../abstracts';
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: abstracts.$spacer-xs;
+  padding-inline: abstracts.$spacer-md;
+  background: abstracts.$header-bg;
+}
+
+.page-header img {
+  display: inline-block;
+}
+
+.page-header .logo {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.link-container {
+  display: flex;
+  gap: abstracts.$spacer-md;
+}
+
+.link-container a {
+  color: abstracts.$white;
+}
+
+.link-container a:hover {
+  // TODO fix this color
+  color: abstracts.color(green, 00);
+}
+
+.page-content {
+  max-width: 80ch;
+  margin-inline: auto;
+  padding-inline: 1em;
+}
+
+.list-container {
+  display: block;
+}
+
+.list {
+  margin: 0;
+}
+
+.list li {
+  margin-block-end: .5em;
+}
+
+.list details {
+  margin-inline-start: .5em;
+  color: abstracts.color(black, 900);
+  font-weight: 500;
+  background-color: abstracts.color(red, 100);
+  border-radius: abstracts.$border-radius;
+  cursor: pointer;
+}
+
+.list summary {
+  padding-block: abstracts.$spacer-sm;
+  padding-inline-start: 1em;
+  background-color: abstracts.$primary;
+  background-image: linear-gradient(100deg, rgba(255 255 255 /.25), rgba(255 255 255 / 0));
+  border-top-left-radius: abstracts.$border-radius;
+  border-top-right-radius: abstracts.$border-radius;
+}
+
+.contents {
+  font-size: smaller;
+  padding-block: abstracts.$spacer-xs;
+  padding-inline: abstracts.$spacer-md;
+}
+
+.contents ol {
+  padding-inline: inherit;
+}
+
+.code {
+  display: block;
+  padding: abstracts.$spacer-xs;
+  color: abstracts.$secondary;
+  background-color: abstracts.$black;
+  border-radius: abstracts.$border-radius;
+}
