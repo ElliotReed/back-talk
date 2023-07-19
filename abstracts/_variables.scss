@@ -1,16 +1,16 @@
 @use "colors";
 @use "functions";
 
-$body-fg: colors.color(black, 500);
-$body-bg: colors.color(white, 500);
+$body-fg: colors.color(dark, 500);
+$body-bg: colors.color(light, 500);
 $header-bg: colors.$primary;
 // --link: var(--primary);
 // --link-hover: var(--primary-accent);
 
 // colors
-$scrollbar-track-background: colors.color(red, 300);
-$scrollbar-thumb-background: colors.color(red, 500);
-$scrollbar-thumb-background-hover: colors.color(red, 600);
+$scrollbar-track-background: colors.color(gm-medium, 300);
+$scrollbar-thumb-background: colors.color(gm-medium, 500);
+$scrollbar-thumb-background-hover: colors.color(gm-medium, 600);
 
 /* sizes */
 $margin: 1rem;
@@ -47,7 +47,7 @@ $ease: ease-in-out;
 
 /* box model */
 // $border: 1px solid transparentize(colors.color(brown, 900), functions.scale(500));
-$border: 1px solid colors.color(brown, 100);
+$border: 1px solid colors.color(gm-medium, 100);
 $border-radius: 5px;
 $fontStackSans: 'Open Sans', sans-serif;
 $fontStackSerif: 'Georgia', serif;

@@ -1,8 +1,8 @@
 @use '../abstracts';
 @use '../base';
 
-$button-background-color-default: abstracts.color(green, 500);
-$button-text-color-default: abstracts.color(brown, 100);
+$button-background-color-default: abstracts.color(gm-light, 500);
+$button-text-color-default: abstracts.color(gm-medium, 100);
 
 @mixin button-link-common($size, $text-color, $bg-color, $shape) {
   display: inline-flex;
@@ -117,7 +117,7 @@ $button-text-color-default: abstracts.color(brown, 100);
 }
 
 
-@mixin btnPill($bg-color: get-color("neutral"), $text-color: $text_light) {
+@mixin btnPill($bg-color: $button-background-color-default, $text-color: $button-text-color-default) {
   flex-grow: 0.25;
   // background-color: get-color("neutral");
   // @include boxShadow(get-color(base, dark));

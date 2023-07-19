@@ -1,0 +1,7 @@
+@use "../abstracts" as abs;
+
+@for $i from 1 through 9 {
+  .color-list.monochrome li:nth-child(#{$i}) {
+    background: abs.color(sass-mono, $i * 100);
+  }
+}
