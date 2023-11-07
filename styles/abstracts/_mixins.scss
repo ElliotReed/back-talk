@@ -68,7 +68,7 @@
   }
 }
 
-@mixin focus($color: colors.color(brown, 100)) {
+@mixin focus($color: colors.color(gm-medium, 100)) {
   outline: thin dotted $color;
   outline-offset: 0.12em;
 }

@@ -4,7 +4,7 @@
 footer {
   position: relative;
   // margin-top: calc(abstracts.$spacer-md * -2);
-  background: transparentize(abstracts.color(min), .12);
+  background: abstracts.color(light, 300);
   z-index: 1;
 
   @include abstracts.respondTo(tablet) {

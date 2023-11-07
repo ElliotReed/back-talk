@@ -26,7 +26,7 @@ $letter-spacing-list: (
 
   h#{$i},
   .heading-#{$i} {
-    color: abstracts.color(red, 500);
+    color: abstracts.color(gm-medium, 500);
     font-family: base.$fontStackSans;
     font-size: abstracts.rem-scale($font-size);
     font-weight: abstracts.$fw-lg;

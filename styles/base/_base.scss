@@ -36,7 +36,7 @@ body {
 }
 
 a {
-  color: abstracts.color(green, 300);
+  color: abstracts.color(gm-light, 300);
   text-decoration: underline;
 }
 
@@ -102,7 +102,7 @@ figcaption {
 
 /* Blockquotes */
 .blockquote {
-  border-left: 3px solid abstracts.color(brown, 300);
+  border-left: 3px solid abstracts.color(gm-dark, 300);
 
   blockquote {
     padding-left: abstracts.$spacer-md;
@@ -121,7 +121,7 @@ figcaption {
     font-size: abstracts.size(400);
     font-style: italic;
     line-height: abstracts.size(600);
-    color: abstracts.color(brown, 500);
+    color: abstracts.color(gm-medium, 500);
     margin-top: abstracts.size(400);
     padding-left: abstracts.$spacer-md;
 
