@@ -1,0 +1,65 @@
+@use "sass:map";
+
+@function tint($color, $percentage) {
+  $tintWhite: scale-color($color, $lightness: 76%);
+  @return mix($tintWhite, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  $tintBlack: scale-color($color, $lightness: -76%);
+  @return mix($tintBlack, $color, $percentage);
+}
+
+// Look to pass in scale
+@function create_color_map($color) {
+  $map: (
+    100: tint($color, 80%),
+    200: tint($color, 60%),
+    300: tint($color, 40%),
+    400: tint($color, 20%),
+    500: $color,
+    600: shade($color, 20%),
+    700: shade($color, 40%),
+    800: shade($color, 60%),
+    900: shade($color, 80%),
+  );
+@return $map;
+}
+
+@function create_base_color_map($color) {
+  $map: (
+    100: rgba($color, 0%),
+    200: rgba($color, 18%),
+    300: rgba($color, 29%),
+    400: rgba($color, 47%),
+    500: rgba($color, 76%),
+    600: rgba($color, 84%),
+    700: rgba($color, 94%),
+    800: rgba($color, 98%),
+    900: rgba($color, 100%),
+  );
+@return $map;
+}
+
+// ***** Output *****
+// Return values from the built map
+
+// "get-color", not "color" to avoid clashes
+@function get-color($keys...) {
+  $value: $colors-map;
+
+  // Loops through each supplied key, recursively setting $value to the next key for nested values.
+  @each $key in $keys {
+    @if length($keys)==1 {
+      // 1 key, get it's value then get 500 as default
+      $value: map-get($value, $key);
+      $value: map-get($value, 500);
+    }
+
+    @else {
+      $value: map-get($value, $key);
+    }
+  }
+
+  @return $value;
+}

@@ -1,0 +1,20 @@
+@use '../scale-functions' as *;
+@use "sass:map";
+
+// mixins
+
+$box-sizes: (
+  "xs": ("block":em-scale(100), "inline":em-scale(300)),
+  "sm": ("block":em-scale(200), "inline":em-scale(500)),
+  "md": ("block":em-scale(300), "inline":em-scale(600)),
+  "lg": ("block":em-scale(400), "inline":em-scale(700)),
+  "xl": ("block":em-scale(500), "inline":em-scale(800)),
+  "xxl": ("block":em-scale(600), "inline":em-scale(900)),
+);
+
+@mixin padding-box($size: "md") {
+  padding-block: map.get($box-sizes,
+      $size, "block");
+  padding-inline: map.get($box-sizes,
+      $size, "inline");
+}

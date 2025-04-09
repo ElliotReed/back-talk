@@ -1,0 +1,74 @@
+@use '../variables';
+@use '../color';
+@use '../scale-functions' as factors;
+
+$blur-factor: 3;
+$box-shadow-inset: inset 0 0 factors.px-to-rem(3px) transparentize(color.get-color("black", 900), .76);
+
+/**
+ * Computes a top-shadow
+ *
+ * @param {Number} $depth - depth level
+ *
+ * @return {List}
+ */
+$top-shadow-offset-list: 2 4 6 8 10;
+$top-shadow-blur-values: 2 3 4 5 6;
+$top-shadow-transparency: .16 .14 .12 .07 .04;
+
+//  $top-shadow-offset-list: 1.5 3 10 14 19;
+//  $top-shadow-blur-values: 1.5 3 10 14 19;
+//  $top-shadow-transparency: .12 .16 .19 .25 .30;
+@function top-shadow($depth) {
+  $primary-offset: nth($top-shadow-offset-list, $depth) * 1px;
+  $blur: nth($top-shadow-blur-values, $depth) * $blur-factor + px;
+  $color: rgba(black, nth($top-shadow-transparency, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/**
+ * Computes a bottom-shadow.
+ *
+ * @param {Number} $depth - depth level
+ *
+ * @return {List}
+ */
+$bottom-shadow-offset-list: 1 2 3 4 5;
+$bottom-shadow-blur-values: 1 2 3 4 5;
+$bottom-shadow-transparency: .18 .16 .14 .12 .07;
+
+//  $offset-list: 1.5 3 6 10 15;
+// $blur-values: 1 3 3 5 6;
+// $transparency: .18 .23 .23 .22 .22;
+@function bottom-shadow($depth) {
+  $primary-offset: nth($bottom-shadow-offset-list, $depth) * 1px;
+  $blur: nth($bottom-shadow-blur-values, $depth) * $blur-factor + px;
+  $color: rgba(black, nth($bottom-shadow-transparency, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/**
+ * Box Shadow.
+ *
+ * @param {Number} $depth - depth level (between 1 and 5)
+ *
+ * @link https://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+ *
+ * @requires {function} top-shadow
+ * @requires {function} bottom-shadow
+ */
+@mixin shadow($depth) {
+  @if $depth < 1 {
+    box-shadow: none;
+  }
+
+  @else if $depth >5 {
+    @warn "Invalid $depth `#{$depth}`.";
+  }
+
+  @else {
+    box-shadow: top-shadow($depth), bottom-shadow($depth);
+  }
+}

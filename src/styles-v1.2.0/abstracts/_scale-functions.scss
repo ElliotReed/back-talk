@@ -1,0 +1,76 @@
+@use 'sass:math';
+@use 'sass:string';
+// 1 * or / sqr root of 1.618
+$scale: (
+  000: 0.30,
+  100: 0.38,
+  200: 0.49,
+  300: 0.62,
+  400: 0.77,
+  500: 1,
+  600: 1.27,
+  700: 1.62,
+  800: 2.1,
+  900: 2.62,
+);
+
+@function get-scale($keys...) {
+  $value: $scale;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value;
+}
+
+@function em-scale($keys...) {
+  $value: $scale;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return #{$value}em;
+}
+
+@function rem-scale($keys...) {
+  $value: $scale;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return #{$value}rem;
+}
+
+@function percent-scale($keys...) {
+  $value: $scale;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value * 100%;
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number)=='number' and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function px-to-rem($pixels) {
+  $value: strip-unit($pixels);
+  @return math.div($value, 16)+rem;
+}
+
+@function px-to-em($pixels) {
+  $value: strip-unit($pixels);
+  @return math.div($value, 16)+em;
+}

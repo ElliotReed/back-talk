@@ -1,0 +1,154 @@
+@use "sass:map";
+$prefix: "sass";
+
+/* colors, sass */
+// --white: #C1CAD2;
+// --black: #0e1117;
+//     --primary: #44B78B;
+//     --primary-accent: #93D7B7;
+// original colors
+$primary: #bf4080;
+$secondary: #887354;
+$tertiary: #552222;
+
+$min: #000;
+$max: #fff;
+$black: #222222;
+// $white: invert($black);
+$white: #fff;
+$base: mix($black, $white, 29%);
+$gray: #f0f0e8;
+
+$brown: hsl(50, 15%, 30%);
+$green: #455841;
+$gold: hsl(45, 89%, 82%);
+$red: hsl(0, 15%, 30%);
+
+
+// This variable must be outside of the colors map so the properties can reference it.
+@function tint($color, $percentage) {
+  $tintWhite: scale-color($color, $lightness: 76%);
+  @return mix($tintWhite, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  $tintBlack: scale-color($color, $lightness: -76%);
+  @return mix($tintBlack, $color, $percentage);
+}
+
+$sass-colors: (
+  #{$prefix}-mono: $primary,
+);
+
+$transparencies: (
+  light: #fff,
+  dark: #000,
+);
+
+$gm-colors: (
+  gm-light: #fff,
+  gm-medium: #cdc7b7,
+  gm-dark: #090806,
+);
+
+$state-colors: (
+  error: #884455,
+  info: #e9f1f9,
+  success: #448855,
+  warning: #888800,
+);
+
+$colors-map: (
+);
+
+// Look to pass in scale
+@function create_color_map($color) {
+  $map: (
+    100: tint($color, 76%),
+    200: tint($color, 47%),
+    300: tint($color, 29%),
+    400: tint($color, 18%),
+    500: $color,
+    600: shade($color, 18%),
+    700: shade($color, 29%),
+    800: shade($color, 47%),
+    900: shade($color, 76%),
+  );
+@return $map;
+}
+
+@function create_base_color_map($color) {
+  $map: (
+    100: rgba($color, 0%),
+    200: rgba($color, 18%),
+    300: rgba($color, 29%),
+    400: rgba($color, 47%),
+    500: rgba($color, 76%),
+    600: rgba($color, 84%),
+    700: rgba($color, 94%),
+    800: rgba($color, 98%),
+    900: rgba($color, 100%),
+  );
+@return $map;
+}
+
+@each $key,
+$value in $gm-colors {
+  $map: (
+  );
+$map: map-merge($map, ($key: create_color_map($value)));
+$colors-map: map-merge($colors-map, $map);
+}
+
+@each $key,
+$value in $sass-colors {
+  $map: (
+  );
+$map: map-merge($map, ($key: create_color_map($value)));
+$colors-map: map-merge($colors-map, $map);
+}
+
+$state-map: (
+);
+
+@each $key,
+$value in $state-colors {
+  $map: (
+  );
+$map: map-merge($map, ($key: create_color_map($value)));
+$state-map: map-merge($state-map, $map);
+}
+
+// Add $state-map to $color-map
+$colors-map: map-merge($colors-map , $state-map);
+
+@each $key,
+$value in $transparencies {
+  $map: (
+  );
+$map: map-merge($map, ($key: create_base_color_map($value)));
+$colors-map: map-merge($colors-map, $map);
+}
+
+// ***** Output *****
+// Return values from the built map
+
+// "get-color", not "color" to avoid clashes
+@function get-color($keys...) {
+  $value: $colors-map;
+
+  // Loops through each supplied key, recursively setting $value to the next key for nested values.
+  @each $key in $keys {
+    @if length($keys)==1 {
+      // 1 key, get it's value then get 500 as default
+      $value: map-get($value, $key);
+      $value: map-get($value, 500);
+    }
+
+    @else {
+      $value: map-get($value, $key);
+    }
+  }
+
+  @return $value;
+}

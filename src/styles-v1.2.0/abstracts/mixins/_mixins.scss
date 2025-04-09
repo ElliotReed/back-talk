@@ -1,0 +1,117 @@
+@use "../variables";
+@use "../color";
+@use "../scale-functions";
+@use "./shadow" as shadow;
+@use "./respond-to" as mq;
+
+// mixins
+@mixin anchor {
+  color: color.get-color("mainBrand", 400);
+  font-weight: variables.$fw-lg;
+
+  @include mq.respond-to("lg") {
+    text-decoration: none;
+  }
+
+  &:focus,
+  &:hover {
+    color: color.get-color("mainBrand", 600);
+    text-decoration: underline;
+  }
+
+  &:visited {
+    font-weight: variables.$fw-md;
+    color: color.get-color("mainBrand", 300);
+  }
+}
+
+@mixin border($color: transparent, $width: 1px, $style: solid) {
+  border-width: $width;
+  border-color: $color;
+  border-style: $style;
+  border-radius: variables.$border-radius;
+}
+
+@mixin borderTest() {
+  border: 1px solid color.$error Color;
+}
+
+@mixin flow {
+  &>*+* {
+    margin-block-start: variables.$space-md;
+  }
+}
+
+@mixin focus($color: color.get-color("mainBrand", 100)) {
+  outline-offset: 2px;
+  outline-color: $color;
+  outline-style: dotted;
+  outline-width: thin;
+}
+
+@mixin gradient($color) {
+  background-image: linear-gradient(173deg,
+      scale-color($color, $lightness: 10%) 0%,
+      scale-color($color, $lightness: 15%) 10%,
+      $color 62%,
+      scale-color($color, $lightness: -15%) 90%,
+      scale-color($color, $lightness: -10%) 100%);
+}
+
+/*
+* @include triangle within a pseudo element and add positioning properties (ie. top, left)
+* $direction: up, down, left, right
+*/
+@mixin triangle($direction, $size: 6px, $color: #222) {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 0;
+  width: 0;
+
+  @if ($direction =="up") {
+    border-bottom: $size solid $color;
+    border-left: 1/2 * $size solid transparent;
+    border-right: 1/2 * $size solid transparent;
+  }
+
+  @else if ($direction =="down") {
+    border-top: $size solid $color;
+    border-left: 1/2 * $size solid transparent;
+    border-right: 1/2 * $size solid transparent;
+  }
+
+  @else if ($direction =="left") {
+    border-top: 1/2 * $size solid transparent;
+    border-bottom: 1/2 * $size solid transparent;
+    border-right: $size solid $color;
+  }
+
+  @else if ($direction =="right") {
+    border-top: 1/2 * $size solid transparent;
+    border-bottom: 1/2 * $size solid transparent;
+    border-left: $size solid $color;
+  }
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: scale-functions.rem-scale(400);
+    border: variables.$border;
+    /* Mostly for vertical scrollbars */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: variables.$border-radius;
+    background: variables.$scrollbar-thumb-background;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: variables.$scrollbar-thumb-background-hover;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: shadow.$box-shadow-inset;
+    background: variables.$scrollbar-track-background;
+  }
+}

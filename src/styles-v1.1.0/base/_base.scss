@@ -1,0 +1,132 @@
+@use "../abstracts";
+@use "../themes";
+@use "typography";
+
+html {
+  box-sizing: border-box;
+  font-size: calc(.9375rem + 0.390625vw);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  min-block-size: 100vh;
+  font-family: typography.$fontStackSans;
+  font-size: 100%;
+  line-height: 1.47;
+  color: abstracts.$body-fg;
+  background-color: abstracts.$body-bg;
+  // @include abstracts.appFixedContainer;
+  // min-height: 0;
+  /* NEW */
+  // min-width: 0;
+  /* NEW; needed for Firefox */
+}
+
+a {
+  color: abstracts.color(gm-light, 300);
+  text-decoration: underline;
+}
+
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  // width: 100%; this or max-inline-size ?
+  max-inline-size: 100%;
+}
+
+cite {
+  font-size: 0.76em;
+}
+
+// newline ideas to test
+body,
+// h1,
+// h2,
+// h3,
+// h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+blockquote,
+figcaption {
+  max-width: 60ch;
+}
+
+:focus {
+  @include abstracts.focus;
+}
+
+/* Blockquotes */
+.blockquote {
+  border-left: 3px solid abstracts.color(gm-dark, 300);
+
+  blockquote {
+    padding-left: abstracts.$space-md;
+
+    &::before {
+      content: '\201C';
+    }
+
+    &::after {
+      content: '\201D';
+    }
+  }
+
+  cite {
+    display: block;
+    font-size: abstracts.size(400);
+    font-style: italic;
+    line-height: abstracts.size(600);
+    color: abstracts.color(gm-medium, 500);
+    margin-top: abstracts.size(400);
+    padding-left: abstracts.$space-md;
+
+    &:before {
+      content: "\2014 \0020";
+    }
+  }
+}

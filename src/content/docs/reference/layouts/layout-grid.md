@@ -1,0 +1,31 @@
+---
+title: Layout Grid
+description: A reference page in my new Starlight docs site.
+---
+
+A reference guide to using colors.
+
+## Layout  
+
+```scss
+@mixin layout-grid {
+    display: grid;
+    grid-template-columns:
+        [start] em-scale(500) [gutter-start] 1fr [center] 1fr [gutter-end] em-scale(500) [end];
+    grid-auto-rows: min-content;
+
+    &>* {
+        grid-column: gutter-start / gutter-end;
+    }
+
+    .layout-grid__centered {
+        grid-column: gutter-start / gutter-end;
+        justify-self: center;
+        max-width: var(--max-width);
+    }
+
+    .layout-grid__full-width {
+        grid-column: start / end;
+    }
+}
+```

@@ -1,0 +1,28 @@
+{
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/_demo-pages/assets/css",
+    },
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "/_demo-pages/assets/css/min",
+    },
+  ],
+  "liveSassCompile.settings.autoprefix": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "workbench.colorCustomizations": {
+    "statusBar.foreground": "#fff",
+    "statusBar.background": "#222222",
+    "statusBarItem.remoteBackground": "#bf4080",
+    "titleBar.activeForeground": "#fff",
+    "titleBar.activeBackground": "#bf4080",
+    "titleBar.inactiveForeground": "#dadada",
+    "titleBar.inactiveBackground": "#6e2449",
+  },
+  "workbench.colorTheme": "Dracula Theme"
+}

@@ -1,0 +1,31 @@
+@use '../scale-functions' as *;
+
+@mixin respond-to($size, $min-or-max: "min") {
+  /* Example usage div {
+    -- regular styles here --
+    @include respondTo("lg") {
+      &:hover {
+        background: blue;
+      } // only add the hover effect on desktop browsers
+    }
+  }
+  */
+
+  /*
+    breakpoints for each query
+    based on bootstrap
+    https://github.com/twbs/bootstrap/blob/main/scss/mixins/_breakpoints.scss
+  */
+  $breakpoints: (
+    "xs": px-to-em(360px),
+    "sm": px-to-em(576px),
+    "md": px-to-em(768px),
+    "lg": px-to-em(992px),
+    "xl": px-to-em(1200px),
+    "xxl": px-to-em(1400px),
+  );
+
+@media only screen and (#{$min-or-max}-width: map-get($breakpoints, $size)) {
+  @content;
+}
+}

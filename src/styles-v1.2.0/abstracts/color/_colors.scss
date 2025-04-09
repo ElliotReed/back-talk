@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "color-functions" as utility;
+@use "color-map";
+
+
+// ***** Output *****
+// Return values from the built map
+
+// "get-color", not "color" to avoid clashes
+@function get-color($keys...) {
+  $value: color-map.$color-map;
+
+  // Loops through each supplied key, recursively setting $value to the next key for nested values.
+  @each $key in $keys {
+    @if length($keys)==1 {
+      // 1 key, get it's value then get 500 as default
+      $value: map-get($value, $key);
+      $value: map-get($value, 500);
+    }
+
+    @else {
+      $value: map-get($value, $key);
+    }
+  }
+
+  @return $value;
+}

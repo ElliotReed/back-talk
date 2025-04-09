@@ -1,0 +1,20 @@
+// add mixin to root to make fonts available
+@mixin fonts() {
+  @font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-VariableFont_wght.ttf") format('truetype');
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Poller';
+    src: url("../fonts/PollerOne-Regular.ttf") format('truetype');
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Permanent Marker';
+    src: url("../fonts/PermanentMarker-Regular.ttf") format('truetype');
+    font-style: normal;
+  }
+}

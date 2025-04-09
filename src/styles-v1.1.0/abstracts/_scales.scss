@@ -1,0 +1,85 @@
+@use 'sass:math';
+@use 'sass:string';
+
+$pureGoldenRatioScale: (
+  1: 1,
+  2: 1,
+  4: previous * 1.618 (rounded),
+  7: previous * 1.618 (rounded),
+  11: previous * 1.618 (rounded),
+  18: previous * 1.618 (rounded),
+  29: previous * 1.618 (rounded),
+  47: previous * 1.618 (rounded),
+  76: previous * 1.618 (rounded),
+  123: previous * 1.618 (rounded),
+  199: previous * 1.618 (rounded),
+  322: previous * 1.618 (rounded),
+  521: previous * 1.618 (rounded),
+);
+
+// modified from $pureGoldenRatioScale
+$scale: (
+  000: 0.12,
+  100: 0.18,
+  200: 0.29,
+  300: 0.47,
+  400: 0.76,
+  500: 1,
+  600: 1.38,
+  700: 1.62,
+  800: 2,
+  900: 2.62,
+);
+
+
+// legacy
+$sizes: (
+  000: 0.12,
+  100: 0.18,
+  200: 0.29,
+  300: 0.47,
+  400: 0.76,
+  500: 1,
+  600: 1.38,
+  700: 1.62,
+  800: 2,
+  900: 2.62,
+  1000: 4.24,
+);
+
+@function size($keys...) {
+  @warn 'This function is deprecated';
+  $value: $sizes;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return #{$value + 'em'};
+}
+
+
+
+$fibonacci: (
+  step0: 1,
+  step1: 2,
+  step2: 3,
+  step3: 5,
+  step4: 8,
+  step5: 13,
+  step6: 21,
+  step7: 34,
+  step8: 55,
+  step9: 89,
+  step10: 144,
+);
+
+@function fibonacci($keys...) {
+  $value: $fibonacci;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value;
+}

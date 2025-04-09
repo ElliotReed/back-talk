@@ -1,0 +1,70 @@
+@use "sass:map";
+@use "color-functions" as clrfunc;
+
+/* colors, sass */
+$black: #222222;
+$white: invert($black);
+$neutral: mix($black, $white, 25%);
+$mainBrand: #2e3832;
+$darkShades: #382e31;
+$lightShades: #e4ddcd;
+
+$transparencies: (
+  "light": #fff,
+  "dark": #000,
+);
+
+$er-colors: (
+  "black": #222222,
+  "white": invert($black),
+  "neutral": mix($black, $white, 25%),
+  "mainBrand": #2e3832,
+  "darkShades": #382e31,
+  "lightShades": #e4ddcd,
+);
+
+$errorColor: hsl(0, 20%, 40%);
+$warningColor: hsl(60, 20%, 40%);
+$successColor: hsl(135, 20%, 40%);
+$infoColor: hsl(235, 20%, 40%);
+
+$state-colors: (
+  "error": $errorColor,
+  "info": $infoColor,
+  "success": $successColor,
+  "warning":$warningColor,
+);
+
+$color-map: (
+);
+
+
+@each $key,
+$value in $er-colors {
+  $map: (
+  );
+$map: map-merge($map, ($key: clrfunc.create_color_map($value)));
+$color-map: map-merge($color-map, $map);
+}
+
+@each $key,
+$value in $transparencies {
+  $map: (
+  );
+$map: map-merge($map, ($key: clrfunc.create_base_color_map($value)));
+$color-map: map-merge($color-map, $map);
+}
+
+$state-map: (
+);
+
+@each $key,
+$value in $state-colors {
+  $map: (
+  );
+$map: map-merge($map, ($key: clrfunc.create_color_map($value)));
+$state-map: map-merge($state-map, $map);
+}
+
+// Add $state-map to $color-map
+$color-map: map-merge($color-map , $state-map);
