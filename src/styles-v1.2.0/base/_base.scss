@@ -2,6 +2,7 @@
 @use './typography';
 @use '../layouts';
 @use "../config";
+@use "./elements/table";
 
 /* #region Variables */
 :root {

@@ -1,0 +1,30 @@
+@use "@/styles/abstracts" as *;
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        border: 1px solid get-color("neutral");
+        @include padding-box("sm");
+        text-align: left;
+    }
+
+    th {
+        background-color: get-color("darkShades");
+        color: get-color("lightShades", 500);
+    }
+
+    tr:nth-child(even) {
+        background-color: get-color("white", 300);
+    }
+
+    tr:nth-child(odd) {
+        background-color: get-color("lightShades");
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+}
