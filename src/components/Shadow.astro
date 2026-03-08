@@ -1,0 +1,29 @@
+---
+import { Card } from "@astrojs/starlight/components";
+---
+
+<Card title="Shadow">
+    <div class="shadowed">An element with a shadow</div>
+</Card>
+
+<style lang="scss">
+    @use "abstracts" as *;
+
+    .container {
+        display: grid;
+        place-content: center;
+        height: 10rem;
+        background-color: get-color("light", 900);
+    }
+
+    .shadowed {
+        color: light-dark(get-color("dark", 900), get-color("light", 900));
+        background-color: light-dark(
+            get-color("lightShades", 500),
+            get-color("darkShades", 500)
+        );
+        @include padding-box;
+        // color: black;
+        @include shadow(1);
+    }
+</style>

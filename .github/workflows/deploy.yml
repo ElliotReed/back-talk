@@ -3,7 +3,7 @@ name: Deploy to Hosting
 on:
   push:
     branches:
-      - main  # You can adjust this to your default branch
+   #   - main  # You can adjust this to your default branch
 
 jobs:
   deploy:
