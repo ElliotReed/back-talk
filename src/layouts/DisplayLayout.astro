@@ -1,0 +1,21 @@
+---
+import SiteHeader from "../components/demoPages/SiteHeader.astro";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{title}</title>
+    </head>
+    <SiteHeader />
+    <body>
+        <slot />
+    </body>
+
+
+    <style lang="scss" is:global>
+        @use "index.scss" as *;
+    </style>
+</html>

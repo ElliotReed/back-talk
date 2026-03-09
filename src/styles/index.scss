@@ -2,3 +2,5 @@
 // in index.js
 @use 'vendor';
 @use "base";
+
+@layer reset, tokens, base, components, utilities;

@@ -24,6 +24,12 @@ export default defineConfig({
                     ]
                     ,
                 },
+                {
+                    label: "Display Pages",
+                    items: [
+                        { label: "Home", link: "/display/home" },
+                    ],
+                },
             ],
             // customCss: ["./src/styles/index.scss"],
         }),
