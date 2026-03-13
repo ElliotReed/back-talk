@@ -7,21 +7,18 @@ import { Card } from "@astrojs/starlight/components";
 </Card>
 
 <style lang="scss">
-    @use "abstracts" as *;
+    @use "mixins" as *;
 
     .container {
         display: grid;
         place-content: center;
         height: 10rem;
-        background-color: get-color("light", 900);
+        background-color: var(--color-background);
     }
 
     .shadowed {
-        color: light-dark(get-color("dark", 900), get-color("light", 900));
-        background-color: light-dark(
-            get-color("lightShades", 500),
-            get-color("darkShades", 500)
-        );
+        color: var(--color-text);
+        background-color: var(--color-background);
         @include padding-box;
         // color: black;
         @include shadow(1);
