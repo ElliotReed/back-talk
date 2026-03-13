@@ -2,10 +2,12 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import path from "node:path";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
     integrations: [
+        icon(),
         starlight({
             title: "Backtalk",
             social: [{ icon: "github", label: "GitHub", href: "https://github.com/withastro/starlight" }],
@@ -16,22 +18,20 @@ export default defineConfig({
                 },
                 {
                     label: "Reference",
-                    items: [
-                        {
-                            label: "abstracts",
-                            autogenerate: { directory: "reference/abstracts" }
-                        }
-                    ]
-                    ,
+                    autogenerate: { directory: "reference" },
+                },
+                {
+                    label: "Development",
+                    autogenerate: { directory: "development" },
                 },
                 {
                     label: "Display Pages",
                     items: [
                         { label: "Home", link: "/display/home" },
+                        { label: "Colors", link: "/display/colors" },
                     ],
                 },
             ],
-            // customCss: ["./src/styles/index.scss"],
         }),
     ],
     site: "https://docs.backtalk.elliotreed.dev",

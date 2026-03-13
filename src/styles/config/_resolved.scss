@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "sass:meta";
+@use "defaults";
+@use "config";
+
+@function resolve($override, $default) {
+    @if $override !=null {
+        @return $override;
+    }
+
+    @return $default;
+}
+
+$fonts: map.merge(defaults.$fonts, config.$font-overrides);
+$type-base: resolve(config.$type-base-override, defaults.$type-base);
+$type-ratio: resolve(config.$type-ratio-override, defaults.$type-ratio);
+
+$colors: map.merge(defaults.$colors, config.$color-overrides);
+$color-scheme: resolve(config.$color-scheme-override, defaults.$color-scheme);
+
+$box-ratio: resolve(config.$box-ratio-override, defaults.$box-ratio);
+$radius-base: resolve(config.$radius-base-override, defaults.$radius-base);
+$space-unit: resolve(config.$space-unit-override, defaults.$space-unit);

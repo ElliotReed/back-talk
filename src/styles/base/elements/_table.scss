@@ -1,4 +1,10 @@
-@use "abstracts" as *;
+//   _table.scss ← table,
+//   thead,
+//   tbody,
+//   tr,
+//   th,
+//   td
+@use "mixins" as *;
 
 table {
     width: 100%;
@@ -6,25 +12,25 @@ table {
 
     th,
     td {
-        border: 1px solid get-color("neutral");
+        border: 1px solid var(--color-border);
         @include padding-box("sm");
         text-align: left;
     }
 
     th {
-        background-color: get-color("darkShades");
-        color: get-color("lightShades", 500);
+        background-color: var(--color-surface);
+        color: var(--color-text);
     }
 
     tr:nth-child(even) {
-        background-color: get-color("white", 300);
+        background-color: var(--color-accent);
     }
 
     tr:nth-child(odd) {
-        background-color: get-color("lightShades");
+        background-color: var(--color-primary-500);
     }
 
     tr:hover {
-        background-color: #f1f1f1;
+        background-color: var(--color-surface-raised);
     }
 }

@@ -1,0 +1,10 @@
+@layer base {
+
+    img,
+    figure,
+    figcaption,
+    video,
+    audio {
+        font-family: var(--font-ui);
+    }
+}

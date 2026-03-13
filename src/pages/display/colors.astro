@@ -1,0 +1,275 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+
+const scales = [
+    "primary",
+    "accent",
+    "neutral",
+    "success",
+    "warning",
+    "error",
+    "info",
+];
+
+const steps = [
+    "50",
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+    "950",
+];
+
+const semantic = [
+    // surfaces
+    { token: "--color-background", label: "Background" },
+    { token: "--color-surface", label: "Surface" },
+    { token: "--color-surface-raised", label: "Surface Raised" },
+    { token: "--color-overlay", label: "Overlay" },
+
+    // borders
+    { token: "--color-border", label: "Border" },
+    { token: "--color-border-strong", label: "Border Strong" },
+
+    // text
+    { token: "--color-text", label: "Text" },
+    { token: "--color-text-muted", label: "Text Muted" },
+    { token: "--color-text-subtle", label: "Text Subtle" },
+    { token: "--color-text-inverse", label: "Text Inverse" },
+
+    // interactive
+    { token: "--color-interactive", label: "Interactive" },
+    { token: "--color-interactive-hover", label: "Interactive Hover" },
+    { token: "--color-interactive-active", label: "Interactive Active" },
+    { token: "--color-interactive-muted", label: "Interactive Muted" },
+    { token: "--color-focus", label: "Focus" },
+
+    // accent
+    { token: "--color-accent", label: "Accent" },
+    { token: "--color-accent-hover", label: "Accent Hover" },
+    { token: "--color-accent-muted", label: "Accent Muted" },
+
+    // feedback
+    { token: "--color-success", label: "Success" },
+    { token: "--color-success-surface", label: "Success Surface" },
+    { token: "--color-success-text", label: "Success Text" },
+
+    { token: "--color-warning", label: "Warning" },
+    { token: "--color-warning-surface", label: "Warning Surface" },
+    { token: "--color-warning-text", label: "Warning Text" },
+
+    { token: "--color-error", label: "Error" },
+    { token: "--color-error-surface", label: "Error Surface" },
+    { token: "--color-error-text", label: "Error Text" },
+
+    { token: "--color-info", label: "Info" },
+    { token: "--color-info-surface", label: "Info Surface" },
+    { token: "--color-info-text", label: "Info Text" },
+
+    // header
+    { token: "--color-header-background", label: "Header Background" },
+    { token: "--color-header-text", label: "Header Text" },
+    { token: "--color-header-border", label: "Header Border" },
+];
+
+const semanticGroups = [
+    { label: "Surfaces", tokens: semantic.slice(0, 4) },
+    { label: "Borders", tokens: semantic.slice(4, 6) },
+    { label: "Text", tokens: semantic.slice(6, 10) },
+    { label: "Interactive", tokens: semantic.slice(10, 15) },
+    { label: "Accent", tokens: semantic.slice(15, 18) },
+    { label: "Success", tokens: semantic.slice(18, 21) },
+    { label: "Warning", tokens: semantic.slice(21, 24) },
+    { label: "Error", tokens: semantic.slice(24, 27) },
+    { label: "Info", tokens: semantic.slice(27, 30) },
+    { label: "Header", tokens: semantic.slice(30, 33) },
+];
+---
+
+<DisplayLayout title="Color Display">
+    <main>
+        <h1>Color System</h1>
+
+        <!-- ── SCALES ── -->
+        <section>
+            <h2>Scales</h2>
+            {
+                scales.map((scale) => (
+                    <div class="scale">
+                        <h3>{scale}</h3>
+                        <div class="swatches">
+                            {steps.map((step) => (
+                                <div class="swatch">
+                                    <div
+                                        class="swatch-color"
+                                        style={`background: var(--color-${scale}-${step})`}
+                                    />
+                                    <span class="swatch-step">{step}</span>
+                                    <span class="swatch-token">
+                                        --color-{scale}-{step}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </section>
+
+        <!-- ── SEMANTIC ── -->
+        <section>
+            <h2>Semantic Tokens</h2>
+            {
+                semanticGroups.map((group) => (
+                    <div class="semantic-group">
+                        <h3>{group.label}</h3>
+                        <div class="semantic-swatches">
+                            {group.tokens.map(({ token, label }) => (
+                                <div class="semantic-swatch">
+                                    <div
+                                        class="semantic-color"
+                                        style={`background: var(${token})`}
+                                    />
+                                    <div class="semantic-info">
+                                        <span class="semantic-label">
+                                            {label}
+                                        </span>
+                                        <span class="semantic-token">
+                                            {token}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </section>
+    </main>
+</DisplayLayout>
+
+<style lang="scss">
+    main {
+        font-family: var(--font-ui);
+        background: var(--color-background);
+        color: var(--color-text);
+        padding: var(--space-8);
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-8);
+    }
+
+    h2 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-6);
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    h3 {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-3);
+    }
+
+    // ── scales ──
+    .scale {
+        margin-bottom: var(--space-8);
+    }
+
+    .swatches {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+        gap: var(--space-2);
+    }
+
+    .swatch {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .swatch-color {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+    }
+
+    .swatch-step {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--color-text);
+    }
+
+    .swatch-token {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        font-family: var(--font-mono);
+        word-break: break-all;
+    }
+
+    // ── semantic ──
+    section {
+        margin-bottom: var(--space-16);
+    }
+
+    .semantic-group {
+        margin-bottom: var(--space-6);
+    }
+
+    .semantic-swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--space-3);
+    }
+
+    .semantic-swatch {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-2);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+    }
+
+    .semantic-color {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-border);
+        flex-shrink: 0;
+    }
+
+    .semantic-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+        min-width: 0;
+    }
+
+    .semantic-label {
+        font-size: var(--text-sm);
+        font-weight: 600;
+    }
+
+    .semantic-token {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        font-family: var(--font-mono);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

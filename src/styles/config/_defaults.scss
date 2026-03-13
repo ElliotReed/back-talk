@@ -1,0 +1,43 @@
+// the colors — each generates its own scale
+$colors: (
+    "primary": #1A73FF,
+    // accent is generated from scheme unless overridden
+    // "accent": #FF4B8B,  ← uncomment to override
+    // "tertiary": #FF0000 ← add any extra, generates its own scale
+    ) !default;
+
+// scheme drives accent generation only
+// if accent is in $colors, this is ignored
+$color-scheme: "complementary" !default;
+// "monochromatic"
+// "analogous"
+// "complementary"
+// "split-complementary"
+
+
+// Typography defaults
+// body    — long form reading, paragraphs
+// heading — h1-h6, readable at all sizes
+// display — decorative, hero text, large headings
+// ui      — buttons, labels, form elements, navigation
+// mono    — code, pre, kbd, samp
+
+$fonts: (
+    "body": (Georgia, "Times New Roman", serif),
+    "heading": (system-ui, sans-serif),
+    "display": (Impact, "Arial Narrow", sans-serif),
+    "ui": (system-ui, sans-serif),
+    "mono": ("Courier New", Courier, monospace),
+    ) !default;
+
+// Type scale
+$type-base: 1rem !default;
+$type-ratio: 1.25 !default; // Major Third
+
+// Spacing
+$space-unit: 0.25rem !default; // 4px base unit
+
+// Radius
+$radius-base: 6px !default;
+
+$box-ratio: 2 !default;

@@ -1,0 +1,12 @@
+@layer base {
+
+    hr,
+    blockquote,
+    pre,
+    address,
+    time,
+    cite {
+        font-family: var(--font-mono);
+        font-size: 0.618rem;
+    }
+}

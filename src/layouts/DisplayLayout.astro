@@ -8,14 +8,21 @@ const { title } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <SiteHeader />
     <body>
         <slot />
     </body>
 
-
     <style lang="scss" is:global>
-        @use "index.scss" as *;
+        @use "index.scss";
     </style>
+
+
 </html>

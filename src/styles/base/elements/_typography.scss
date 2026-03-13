@@ -1,0 +1,31 @@
+//  _typography.scss ← p,
+//  h1-h6,
+
+@layer base {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-heading);
+    }
+
+    p {
+        // font-family: var(--font-body);
+
+    }
+
+
+
+
+    small {
+        font-size: small;
+    }
+
+    // temp
+    .hero {
+        font-family: var(--font-display);
+    }
+}

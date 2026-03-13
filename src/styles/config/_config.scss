@@ -1,12 +1,58 @@
-@use "../abstracts/variables" as *;
+// ── Colors ────────────────────────────────────────────────────────────────────
+// add "primary" to set the base color — everything else is generated
+// add "accent" to override the generated accent
+// add any extra color ("tertiary" etc) — each gets a full scale
+$color-overrides: (
+    "primary": #2c76ca,
+    // "accent":   #FF4B8B,  ← override generated accent
+    // "tertiary": #FF0000,  ← extra color, gets full scale
+    ) !default;
 
-$line-height: $goldenRatio;
-$heading-font-family: "Montserrat";
-$body-font-family: "Montserrat";
-$display-font-family: "Poller";
-$display-font-family-marker: "Permanent Marker";
+// drives accent generation only
+// ignored if "accent" is set in $color-overrides
+$color-scheme-override: "complementary" !default;
+// "monochromatic"      → same hue, lighter and less saturated
+// "analogous"          → adjacent on color wheel ± 30°
+// "complementary"      → opposite on color wheel + 180°
+// "split-complementary"→ either side of complement + 150°
 
-$color-maker-scheme: "monochrome";
-$base-color: #a19e75;
+// ── Typography ────────────────────────────────────────────────────────────────
+// font stacks — add any role to override, unset roles use system defaults
+// roles: "body", "heading", "display", "ui", "mono"
+$font-overrides: (
+    "body": (Inter, system-ui, sans-serif),
+    "mono": ('Fira Mono', 'Courier New', monospace),
+    ) !default;
 
-$reset: "modern";
+// base font size — default 1rem (16px)
+// affects the entire type scale
+$type-base-override: null !default;
+
+// modular scale ratio — default 1.25 (Major Third)
+// "1.067" Minor Second  → very tight, dense
+// "1.125" Major Second  → subtle, body-heavy UIs
+// "1.200" Minor Third   → balanced
+// "1.250" Major Third   → default
+// "1.333" Perfect Fourth → noticeable jumps, editorial
+// "1.618" Golden Ratio  → dramatic, display/marketing
+$type-ratio-override: null !default;
+
+// ── Spacing ───────────────────────────────────────────────────────────────────
+// base spacing unit — default 0.25rem (4px)
+// all spacing tokens are multiples of this value
+$space-unit-override: null !default;
+
+// padding block/inline ratio — default null (uses handcrafted scale)
+// set a number to override e.g. 1.5, 2, 3
+// "1.5" → tight, dense UI
+// "2"   → balanced (matches handcrafted default)
+// "3"   → wide, pill-like
+$box-ratio-override: null !default;
+
+// ── Radius ────────────────────────────────────────────────────────────────────
+// base border radius in px — default 6px
+// drives the entire radius scale
+// "2px"  → subtle, enterprise
+// "6px"  → balanced, default
+// "12px" → friendly, consumer
+$radius-base-override: null !default;

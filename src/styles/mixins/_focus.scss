@@ -1,0 +1,6 @@
+@mixin focus($color: var(--color-interactive)) {
+    outline-offset: 2px;
+    outline-color: $color;
+    outline-style: dotted;
+    outline-width: thin;
+}

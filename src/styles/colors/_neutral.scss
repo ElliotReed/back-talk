@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "sass:color";
+
+// derive neutral light and dark endpoints from primary hue
+// low chroma keeps them feeling neutral while carrying a whisper of brand
+// returns map with "neutral-light" and "neutral-dark" keys
+@function generate($colors) {
+    $primary: map.get($colors, "primary");
+
+    // extract hue only — we define our own lightness and chroma
+    $hue: color.channel($primary, "hue", $space: oklch);
+
+    // light endpoint — very high lightness, near zero chroma
+    // slight chroma keeps it from feeling clinical/flat
+    $neutral-light: oklch(97% 0.008 $hue);
+
+    // dark endpoint — very low lightness, slightly more chroma
+    // a touch more chroma in darks adds richness without obvious colour
+    $neutral-dark: oklch(12% 0.02 $hue);
+
+    @return ("neutral-light": $neutral-light,
+        "neutral-dark": $neutral-dark,
+    );
+}

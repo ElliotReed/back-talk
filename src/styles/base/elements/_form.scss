@@ -1,0 +1,31 @@
+@use "../../mixins" as *;
+
+@layer base {
+
+    form,
+    input,
+    button,
+    select,
+    textarea,
+    optgroup,
+    label,
+    fieldset {
+        // line-height: config.$line-height;
+        font-family: var(--font-ui);
+
+        &:focus {
+            @include focus();
+        }
+    }
+
+    input,
+    textarea,
+    select,
+    option {
+        @include box-input;
+    }
+
+    button {
+        @include box-button;
+    }
+}

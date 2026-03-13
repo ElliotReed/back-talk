@@ -2,7 +2,7 @@
     "name": "back-talk",
     "description": "A library of SCSS components",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.2.0",
     "scripts": {
         "dev": "astro dev --host backtalk.local --port 5001",
         "start": "astro dev",
@@ -12,6 +12,8 @@
     },
     "dependencies": {
         "@astrojs/starlight": "^0.37.7",
+        "@fontsource/inter": "^5.2.8",
+        "@iconify-json/lucide": "^1.2.96",
         "astro": "^5.18.0",
         "sharp": "^0.34.5"
     },

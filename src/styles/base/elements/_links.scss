@@ -1,0 +1,18 @@
+@use "../../mixins" as *;
+
+a {
+    color: var(--color-interactive);
+
+    &:visited {
+        color: inherit;
+    }
+
+    &:hover {
+        background-color: var(--color-surface);
+    }
+
+    &:focus {
+        @include focus();
+        outline-offset: 3px;
+    }
+}

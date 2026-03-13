@@ -1,6 +1,9 @@
-// This file is imported once globally
-// in index.js
-@use 'vendor';
+// This file is imported once globally in project root
+
+@use "reset";
+@use "tokens";
 @use "base";
+// @use "abstracts";
+@use "mixins";
 
 @layer reset, tokens, base, components, utilities;

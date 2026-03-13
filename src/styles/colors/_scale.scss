@@ -1,0 +1,60 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
+
+// each step defines lightness and chroma multiplier
+// chroma scales with lightness — lighter steps are less saturated
+// this matches how colour actually behaves in the real world
+$steps: (
+    "50": (lightness: 97%, chroma: 0.35),
+    "100": (lightness: 93%, chroma: 0.45),
+    "200": (lightness: 85%, chroma: 0.60),
+    "300": (lightness: 75%, chroma: 0.75),
+    "400": (lightness: 63%, chroma: 0.90),
+    "500": (lightness: 53%, chroma: 1.00),
+    // ← closest to base
+    "600": (lightness: 44%, chroma: 0.95),
+    "700": (lightness: 36%, chroma: 0.85),
+    "800": (lightness: 27%, chroma: 0.70),
+    "900": (lightness: 18%, chroma: 0.55),
+    "950": (lightness: 12%, chroma: 0.40),
+    ) !default;
+
+// generate full scale for a single color
+// outputs --color-{name}-{step} custom properties
+@mixin generate($name, $base) {
+    $hue: color.channel($base, "hue", $space: oklch
+    );
+$base-chroma: color.channel($base, "chroma", $space: oklch);
+
+@each $step, $values in $steps {
+    $lightness: map.get($values, "lightness");
+    $chroma-multiplier: map.get($values, "chroma");
+
+    // scale chroma relative to base — preserves colour personality
+    $chroma: $base-chroma * $chroma-multiplier;
+
+    --color-#{$name}-#{$step}: oklch(#{$lightness} #{$chroma} #{$hue});
+}
+}
+
+@mixin generate-neutral($light, $dark) {
+    $steps: (
+        "50": 98%,
+        "100": 93%,
+        "200": 85%,
+        "300": 74%,
+        "400": 62%,
+        "500": 50%,
+        "600": 38%,
+        "700": 27%,
+        "800": 18%,
+        "900": 10%,
+        "950": 5%,
+    );
+
+@each $step, $weight in $steps {
+    --color-neutral-#{$step}: #{color.mix($light, $dark, $weight, $method: oklch)};
+}
+}

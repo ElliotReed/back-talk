@@ -1,0 +1,10 @@
+@layer base {
+
+    ul,
+    ol,
+    dl,
+    dt,
+    dd {
+        font-family: var(--font-ui);
+    }
+}
