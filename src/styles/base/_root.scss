@@ -6,23 +6,19 @@
         // --softIn: softIn 0.33s ease-in;
     }
 
-    html,
+    html {
+        font-size: clamp(14px, calc(0.875rem + 0.5vw), 20px);
+    }
+
     body {
         margin: 0;
         padding: 0;
-    }
-
-    html {
-        font-size: calc(15px + 0.390625vw);
-    }
-
-    body {
         font-family: var(--font-body);
         position: relative;
         display: flex;
         flex-direction: column;
         width: 100%;
-        // line-height: config.$line-height;
+        line-height: var(--leading-normal);
         min-height: 100vh;
         min-height: 100svh;
         color: var(--color-text);

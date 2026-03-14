@@ -1,13 +1,25 @@
 ---
 import SiteHeader from "../components/demoPages/SiteHeader.astro";
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
+
+        <!-- description for if these pages ever get indexed -->
+        <meta name="description" content={description} />
+
+        <!-- prevent indexing — these are dev/demo pages not public content -->
+        <meta name="robots" content="noindex, nofollow" />
+
+        <!-- colour scheme — tells browser before CSS loads, prevents flash -->
+        <meta name="color-scheme" content="light dark" />
+
+        <!-- fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
