@@ -1,0 +1,26 @@
+@use "./shadow" as shadow;
+@use "./respond-to" as mq;
+
+
+
+@mixin scrollbar {
+    &::-webkit-scrollbar {
+        width: scale-functions.rem-scale(400);
+        border: variables.$border;
+        /* Mostly for vertical scrollbars */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: variables.$border-radius;
+        background: variables.$scrollbar-thumb-background;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: variables.$scrollbar-thumb-background-hover;
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: shadow.$box-shadow-inset;
+        background: variables.$scrollbar-track-background;
+    }
+}

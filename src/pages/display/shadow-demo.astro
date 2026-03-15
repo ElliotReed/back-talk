@@ -1,0 +1,376 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+const depths = [1, 2, 3, 4, 5];
+const hardness = 5;
+const direction = "none";
+---
+
+<DisplayLayout title="Shadows" description="Shadow system display">
+    <main>
+        <h1>Shadow System</h1>
+        <p class="subtitle">Hardness: {hardness} · Direction: {direction}</p>
+
+        <section>
+            <h2>Depth Scale</h2>
+            <div class="shadow-grid">
+                {
+                    depths.map((depth) => (
+                        <div class={`shadow-card shadow-card--${depth}`}>
+                            <span class="shadow-label">depth {depth}</span>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section>
+            <h2>Inset</h2>
+            <div class="inset-grid">
+                {
+                    depths.map((depth) => (
+                        <div class="inset-example">
+                            <input
+                                class={`demo-input demo-input--${depth}`}
+                                type="text"
+                                placeholder={`depth ${depth}`}
+                            />
+                            <span class="shadow-label">depth {depth}</span>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section>
+            <h2>In Context</h2>
+            <div class="context-grid">
+                <div class="context-example">
+                    <h3>Card</h3>
+                    <div class="demo-card demo-card--2">
+                        <p>Standard card at depth 2.</p>
+                    </div>
+                </div>
+
+                <div class="context-example">
+                    <h3>Raised Card</h3>
+                    <div class="demo-card demo-card--3">
+                        <p>Featured content at depth 3.</p>
+                    </div>
+                </div>
+
+                <div class="context-example">
+                    <h3>Dropdown</h3>
+                    <div class="demo-dropdown">
+                        <div class="demo-dropdown-item">Option one</div>
+                        <div class="demo-dropdown-item">Option two</div>
+                        <div class="demo-dropdown-item">Option three</div>
+                    </div>
+                </div>
+
+                <div class="context-example">
+                    <h3>Modal</h3>
+                    <div class="demo-modal">
+                        <p class="demo-modal-title">Dialog Title</p>
+                        <p>Highest elevation at depth 5.</p>
+                    </div>
+                </div>
+
+                <div class="context-example">
+                    <h3>Input Focus</h3>
+                    <div class="inset-example">
+                        <input
+                            class="demo-input demo-input--focus"
+                            type="text"
+                            placeholder="Focus me..."
+                        />
+                        <span class="shadow-label">focus state</span>
+                    </div>
+                </div>
+
+                <div class="context-example">
+                    <h3>Button Depths</h3>
+                    <div class="demo-buttons">
+                        {
+                            depths.map((depth) => (
+                                <button
+                                    class={`demo-button demo-button--${depth}`}
+                                >
+                                    depth {depth}
+                                </button>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Comparison</h2>
+            <div class="comparison-grid">
+                {
+                    depths.map((depth) => (
+                        <div class="comparison-item">
+                            <div
+                                class={`comparison-card comparison-card--${depth}`}
+                            />
+                            <span class="comparison-label">{depth}</span>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+    </main>
+</DisplayLayout>
+
+<style lang="scss">
+    @use "mixins" as *;
+
+    main {
+        padding: var(--space-8);
+        background: var(--color-background);
+        color: var(--color-text);
+        font-family: var(--font-ui);
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-2);
+    }
+
+    .subtitle {
+        color: var(--color-text-muted);
+        font-family: var(--font-mono);
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-12);
+    }
+
+    h2 {
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-6);
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    h3 {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: var(--tracking-wide);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-3);
+    }
+
+    section {
+        margin-bottom: var(--space-16);
+    }
+
+    // ── depth scale ──
+    .shadow-grid {
+        display: flex;
+        gap: var(--space-8);
+        flex-wrap: wrap;
+        padding: var(--space-8) 0;
+    }
+
+    .shadow-card {
+        width: 120px;
+        height: 120px;
+        @include radius-card;
+        @include border(var(--color-border));
+        background: var(--color-surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                @include shadow($i);
+            }
+        }
+
+        &--inset {
+            @include shadow-inset;
+        }
+    }
+
+    .shadow-label {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+    }
+
+    // ── context ──
+    .context-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--space-8);
+    }
+
+    .context-example {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .demo-card {
+        background: var(--color-surface);
+        @include radius-card;
+        @include border(var(--color-border));
+        @include box-card;
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: var(--leading-relaxed);
+
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                @include shadow($i);
+            }
+        }
+    }
+
+    .demo-dropdown {
+        background: var(--color-surface);
+        @include radius-card;
+        @include border(var(--color-border));
+        overflow: hidden;
+        width: fit-content;
+        @include shadow(4);
+    }
+
+    .demo-dropdown-item {
+        @include padding-box;
+        font-size: var(--text-sm);
+        border-bottom: 1px solid var(--color-border);
+        cursor: pointer;
+
+        &:last-child {
+            border-bottom: none;
+        }
+        &:hover {
+            background: var(--color-surface-raised);
+        }
+    }
+
+    .demo-modal {
+        background: var(--color-surface);
+        @include radius-modal;
+        @include border(var(--color-border));
+        @include box-modal;
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        @include shadow(5);
+    }
+
+    .demo-modal-title {
+        font-weight: 600;
+        color: var(--color-text);
+        font-size: var(--text-md);
+        margin-bottom: var(--space-2);
+    }
+
+    .inset-grid {
+        display: flex;
+        gap: var(--space-6);
+        flex-wrap: wrap;
+        padding: var(--space-8) 0;
+        align-items: center;
+    }
+
+    .inset-example {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .demo-input {
+        font-family: var(--font-ui);
+        font-size: var(--text-sm);
+        @include radius-input;
+        @include border(var(--color-border));
+        @include box-input;
+        background: var(--color-surface);
+        color: var(--color-text);
+        outline: none;
+        width: 160px;
+
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                @include shadow-inset($i);
+            }
+        }
+
+        &--focus {
+            &:focus {
+                @include shadow-inset(2);
+                border-color: var(--color-interactive);
+            }
+        }
+    }
+
+    .shadow-label {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        text-align: center;
+    }
+
+    .demo-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .demo-button {
+        font-family: var(--font-ui);
+        font-size: var(--text-sm);
+        @include radius-button;
+        @include border(var(--color-border));
+        @include box-button;
+        border: none;
+        background: var(--color-surface);
+        color: var(--color-text);
+        cursor: pointer;
+
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                @include shadow($i);
+            }
+        }
+    }
+
+    // ── comparison ──
+    .comparison-grid {
+        display: flex;
+        gap: var(--space-12);
+        align-items: center;
+        padding: var(--space-12) var(--space-8);
+        flex-wrap: wrap;
+    }
+
+    .comparison-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-4);
+    }
+
+    .comparison-card {
+        width: 80px;
+        height: 80px;
+        @include radius-card;
+        @include border(var(--color-border));
+        @include box-card;
+        background: var(--color-surface);
+
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                @include shadow($i);
+            }
+        }
+    }
+
+    .comparison-label {
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+    }
+</style>

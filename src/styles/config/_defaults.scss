@@ -41,3 +41,8 @@ $space-unit: 0.25rem !default; // 4px base unit
 $radius-base: 6px !default;
 
 $box-ratio: 2 !default;
+
+// Shadow
+$shadow-offset-base: 2px !default;
+$shadow-direction: "none" !default; // "left", "right", "none"
+$shadow-hardness: 5 !default; // 1 - 10

@@ -3,7 +3,7 @@
 // add "accent" to override the generated accent
 // add any extra color ("tertiary" etc) — each gets a full scale
 $color-overrides: (
-    "primary": #2c76ca,
+    "primary": #4ea07a,
     // "accent":   #FF4B8B,  ← override generated accent
     // "tertiary": #FF0000,  ← extra color, gets full scale
     ) !default;
@@ -56,3 +56,8 @@ $box-ratio-override: null !default;
 // "6px"  → balanced, default
 // "12px" → friendly, consumer
 $radius-base-override: null !default;
+
+// ── Shadow ────────────────────────────────────────────────────────────────────
+$shadow-offset-base-override: 2px !default; // 2px
+$shadow-direction-override: "left" !default; // "left", "right", "none"
+$shadow-hardness-override: 3 !default; // 1 - 10

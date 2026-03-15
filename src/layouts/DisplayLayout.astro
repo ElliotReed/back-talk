@@ -27,14 +27,13 @@ const { title, description } = Astro.props;
             rel="stylesheet"
         />
     </head>
-    <SiteHeader />
     <body>
+        <SiteHeader />
         <slot />
+        <footer>backtalk demo page</footer>
     </body>
 
     <style lang="scss" is:global>
         @use "index.scss";
     </style>
-
-
 </html>

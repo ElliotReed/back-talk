@@ -21,3 +21,7 @@ $color-scheme: resolve(config.$color-scheme-override, defaults.$color-scheme);
 $box-ratio: resolve(config.$box-ratio-override, defaults.$box-ratio);
 $radius-base: resolve(config.$radius-base-override, defaults.$radius-base);
 $space-unit: resolve(config.$space-unit-override, defaults.$space-unit);
+
+$shadow-offset-base: resolve(config.$shadow-offset-base-override, defaults.$shadow-offset-base);
+$shadow-hardness: resolve(config.$shadow-hardness-override, defaults.$shadow-hardness);
+$shadow-direction: resolve(config.$shadow-direction-override, defaults.$shadow-direction );

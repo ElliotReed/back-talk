@@ -149,7 +149,7 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
         <section>
             <h2>Resources</h2>
 
-            <ul>
+            <ul class="shadowed">
                 <li><a href="#">Documentation</a></li>
                 <li><a href="#">Tutorials</a></li>
                 <li><a href="#">Community</a></li>
@@ -183,8 +183,16 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
         margin-inline: var(--space-gutter);
     }
 
+    .hero {
+        @include box-input;
+        @include shadow(1);
+    }
+
     button {
         background-color: var(--color-accent);
         @include padding-box;
+    }
+    .shadowed {
+        @include shadow(3);
     }
 </style>

@@ -8,29 +8,25 @@
 
     html {
         font-size: clamp(14px, calc(0.875rem + 0.5vw), 20px);
+        tab-size: 4; // or 2 — matches most code editors
     }
 
     body {
-        margin: 0;
-        padding: 0;
-        font-family: var(--font-body);
-        position: relative;
+        // position: relative; // optional?
         display: flex;
         flex-direction: column;
-        width: 100%;
-        line-height: var(--leading-normal);
-        min-height: 100vh;
-        min-height: 100svh;
+        margin: 0;
+        padding: 0;
         color: var(--color-text);
+        font-family: var(--font-body);
+        line-height: var(--leading-normal);
         background-color: var(--color-background);
+        min-height: 100svh;
         // @include scrollbar;
     }
 
-
-    button:focus,
-    optgroup:focus {
-        // @include focus();
-        outline-offset: 3px;
+    main {
+        flex: 1; // pushes footer to bottom
     }
 
     *::selection {

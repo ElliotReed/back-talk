@@ -29,6 +29,7 @@ export default defineConfig({
                     items: [
                         { label: "Home", link: "/display/home" },
                         { label: "Colors", link: "/display/colors" },
+                        { label: "Shadows", link: "/display/shadow-demo" },
                     ],
                 },
             ],
