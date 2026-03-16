@@ -25,3 +25,5 @@ $space-unit: resolve(config.$space-unit-override, defaults.$space-unit);
 $shadow-offset-base: resolve(config.$shadow-offset-base-override, defaults.$shadow-offset-base);
 $shadow-hardness: resolve(config.$shadow-hardness-override, defaults.$shadow-hardness);
 $shadow-direction: resolve(config.$shadow-direction-override, defaults.$shadow-direction );
+
+$breakpoints: map.merge(defaults.$breakpoints, config.$breakpoint-overrides);

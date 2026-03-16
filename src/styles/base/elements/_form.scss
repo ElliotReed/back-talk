@@ -12,15 +12,7 @@
     fieldset {
         line-height: var(--leading-normal);
         font-family: var(--font-ui);
-
-        &:focus {
-            @include focus();
-        }
-    }
-
-    button:focus,
-    optgroup:focus {
-        outline-offset: 3px;
+        @include focus();
     }
 
     input,

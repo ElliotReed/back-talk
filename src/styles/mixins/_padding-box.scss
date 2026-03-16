@@ -15,12 +15,12 @@ $radius-scale: (
 
 // default — handcrafted ratios landing on clean space tokens
 $box-sizes-default: (
-    "xs": ("block": var(--space-1), "inline": var(--space-3)),
-    "sm": ("block": var(--space-2), "inline": var(--space-5)),
-    "md": ("block": var(--space-3), "inline": var(--space-6)),
-    "lg": ("block": var(--space-4), "inline": var(--space-8)),
-    "xl": ("block": var(--space-5), "inline": var(--space-10)),
-    "2xl": ("block": var(--space-6), "inline": var(--space-12)),
+    "xs": ("block": var(--space-1), "inline": var(--space-2)),
+    "sm": ("block": var(--space-2), "inline": var(--space-3)),
+    "md": ("block": var(--space-3), "inline": var(--space-5)),
+    "lg": ("block": var(--space-4), "inline": var(--space-6)),
+    "xl": ("block": var(--space-5), "inline": var(--space-7)),
+    "2xl": ("block": var(--space-6), "inline": var(--space-8)),
     ) !default;
 
 // use handcrafted when:    
@@ -38,8 +38,8 @@ $box-sizes: null;
         "sm": ("block": var(--space-2), "inline": calc(var(--space-2) * #{resolved.$box-ratio})),
         "md": ("block": var(--space-3), "inline": calc(var(--space-3) * #{resolved.$box-ratio})),
         "lg": ("block": var(--space-4), "inline": calc(var(--space-4) * #{resolved.$box-ratio})),
-        "xl": ("block": var(--space-5), "inline": calc(var(--space-5) * #{resolved.$box-ratio})),
-        "2xl": ("block": var(--space-6), "inline": calc(var(--space-6) * #{resolved.$box-ratio})),
+        "xl": ("block": var(--space-4), "inline": calc(var(--space-5) * #{resolved.$box-ratio})),
+        "2xl": ("block": var(--space-4), "inline": calc(var(--space-6) * #{resolved.$box-ratio})),
     );
 }
 

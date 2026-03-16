@@ -58,6 +58,19 @@ $box-ratio-override: null !default;
 $radius-base-override: null !default;
 
 // ── Shadow ────────────────────────────────────────────────────────────────────
-$shadow-offset-base-override: 2px !default; // 2px
-$shadow-direction-override: "left" !default; // "left", "right", "none"
-$shadow-hardness-override: 3 !default; // 1 - 10
+$shadow-offset-base-override: null !default; // 2px
+$shadow-direction-override: null !default; // "left", "right", "none"
+$shadow-hardness-override: null !default; // 1 - 10
+
+// ── breakpoints ───────────────────────────────────────────
+// breakpoint values are in em — respects user font size preferences
+// em values can be set directly or converted from px using px-to-em()
+//
+// override or add breakpoints in _config.scss:
+// $breakpoint-overrides: (
+//   "lg":   62em,              // em directly
+//   "menu": px-to-em(860px),   // or convert from px
+// );
+
+$breakpoint-overrides: (
+    ) !default;

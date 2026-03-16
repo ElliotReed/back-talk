@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
         <ul>
             <li><a href="/display/colors">Colors</a></li>
             <li><a href="/display/shadow-demo">Shadows</a></li>
-            <li><a href="#">Pricing</a></li>
+            <li><a href="/display/space-demo">Spaces</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
         <a href="/reference">Reference</a>
@@ -108,9 +108,10 @@ import { Icon } from "astro-icon/components";
 
     header {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        background-color: var(--color-header-background);
+        @include gradient(var(--color-header-background));
         color: var(--color-header-text);
 
         .logo {

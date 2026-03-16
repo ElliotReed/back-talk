@@ -1,0 +1,13 @@
+@mixin gradient($color, $angle: 173deg, $intensity: 15) {
+    // fallback — flat color for unsupported browsers
+    background: #{$color};
+
+    @supports (background: oklch(from red l c h)) {
+        background-image: linear-gradient($angle,
+            oklch(from #{$color} calc(l + #{$intensity * 0.01}) c h) 0%,
+            oklch(from #{$color} calc(l + #{$intensity * 0.0067}) c h) 10%,
+            #{$color} 62%,
+            oklch(from #{$color} calc(l - #{$intensity * 0.0067}) c h) 90%,
+            oklch(from #{$color} calc(l - #{$intensity * 0.01}) c h) 100%);
+    }
+}

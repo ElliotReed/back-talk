@@ -179,6 +179,7 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
 
 <style lang="scss">
     @use "mixins" as *;
+
     main {
         margin-inline: var(--space-gutter);
     }
@@ -186,11 +187,12 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
     .hero {
         @include box-input;
         @include shadow(1);
+        @include border;
     }
 
     button {
         background-color: var(--color-accent);
-        @include padding-box;
+        @include box-button;
     }
     .shadowed {
         @include shadow(3);

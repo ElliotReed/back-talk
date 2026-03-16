@@ -1,3 +1,5 @@
+@use "functions" as *;
+
 // the colors — each generates its own scale
 $colors: (
     "primary": #1A73FF,
@@ -46,3 +48,22 @@ $box-ratio: 2 !default;
 $shadow-offset-base: 2px !default;
 $shadow-direction: "none" !default; // "left", "right", "none"
 $shadow-hardness: 5 !default; // 1 - 10
+
+// ── breakpoints ───────────────────────────────────────────
+// breakpoint values are in em — respects user font size preferences
+// em values can be set directly or converted from px using px-to-em()
+//
+// override or add breakpoints in _config.scss:
+// $breakpoint-overrides: (
+//   "lg":   62em,              // em directly
+//   "menu": px-to-em(860px),   // or convert from px
+// );
+
+$breakpoints: (
+    "xs": px-to-em(360px),
+    "sm": px-to-em(576px),
+    "md": px-to-em(768px),
+    "lg": px-to-em(992px),
+    "xl": px-to-em(1200px),
+    "2xl": px-to-em(1400px),
+    ) !default;

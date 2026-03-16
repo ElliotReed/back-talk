@@ -1,5 +1,26 @@
 @use "../../mixins" as *;
 
+// junked ideas for redo
+@mixin anchor {
+    color: color.get-color("mainBrand", 400);
+    font-weight: variables.$fw-lg;
+
+    @include mq.respond-to("lg") {
+        text-decoration: none;
+    }
+
+    &:focus,
+    &:hover {
+        color: color.get-color("mainBrand", 600);
+        text-decoration: underline;
+    }
+
+    &:visited {
+        font-weight: variables.$fw-md;
+        color: color.get-color("mainBrand", 300);
+    }
+}
+
 a {
     color: var(--color-interactive);
 
@@ -11,8 +32,25 @@ a {
         background-color: var(--color-surface);
     }
 
-    &:focus {
-        @include focus();
-        outline-offset: 3px;
-    }
+    @include focus;
+
+
+    // useful for _links.scss
+    color: var(--color-interactive);
+    text-decoration-color: var(--color-interactive-muted);
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast) var(--ease-out);
+
+    // hover
+    color: var(--color-interactive-hover);
+    text-decoration-color: var(--color-interactive);
+
+    // visited — opacity approach is cleaner than a separate color
+    opacity: 0.75;
+
+    // focus
+    @include focus;
+
+    // respond-from-lg — hide underline on desktop, show on hover
+    // debatable, discuss when we get there
 }

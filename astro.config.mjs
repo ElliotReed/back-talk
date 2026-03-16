@@ -30,6 +30,7 @@ export default defineConfig({
                         { label: "Home", link: "/display/home" },
                         { label: "Colors", link: "/display/colors" },
                         { label: "Shadows", link: "/display/shadow-demo" },
+                        { label: "Spaces", link: "/display/space-demo" },
                     ],
                 },
             ],
