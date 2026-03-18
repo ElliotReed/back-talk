@@ -37,5 +37,9 @@
         --tracking-normal: 0em;
         --tracking-wide: 0.05em;
         --tracking-wider: 0.1em;
+
+        @each $name, $value in config.$font-weights {
+            --font-weight-#{$name}: #{$value};
+        }
     }
 }

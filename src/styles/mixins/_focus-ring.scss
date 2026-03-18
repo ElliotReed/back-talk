@@ -1,4 +1,8 @@
-@mixin focus($color: var(--color-interactive)) {
+// apply to the element, not to :focus-visible
+// ✅ .button { @include focus; }
+// ❌ .button:focus-visible { @include focus; }
+
+@mixin focus-ring($color: var(--color-interactive)) {
     &:focus {
         outline: none;
     }
@@ -9,7 +13,7 @@
     }
 }
 
-@mixin focus-inset($color: var(--color-interactive)) {
+@mixin focus-ring-inset($color: var(--color-interactive)) {
     &:focus {
         outline: none;
     }

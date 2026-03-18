@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 @use "defaults";
@@ -27,3 +28,11 @@ $shadow-hardness: resolve(config.$shadow-hardness-override, defaults.$shadow-har
 $shadow-direction: resolve(config.$shadow-direction-override, defaults.$shadow-direction );
 
 $breakpoints: map.merge(defaults.$breakpoints, config.$breakpoint-overrides);
+
+// if project has set any weights, use theirs entirely
+// otherwise fall back to defaults
+$font-weights: defaults.$font-weights;
+
+@if map.keys(config.$font-weight-overrides) !=() {
+    $font-weights: config.$font-weight-overrides;
+}

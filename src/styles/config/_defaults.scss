@@ -67,3 +67,8 @@ $breakpoints: (
     "xl": px-to-em(1200px),
     "2xl": px-to-em(1400px),
     ) !default;
+
+$font-weights: (
+    "regular": 400,
+    "bold": 700,
+    ) !default;

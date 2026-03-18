@@ -1,0 +1,105 @@
+---
+const { handleSelect } = Astro.props;
+---
+
+<div class="select" data-select>
+    <button class="select-button" aria-haspopup="listbox" aria-expanded="false">
+        <span class="label">Auto</span>
+    </button>
+
+    <ul class="select-dropdown" role="listbox">
+        <li role="option" data-value="auto">Auto</li>
+        <li role="option" data-value="light">Light</li>
+        <li role="option" data-value="dark">Dark</li>
+    </ul>
+</div>
+
+<script>
+    function initSelect(): void {
+        const select = document.querySelector<HTMLElement>("[data-select]");
+        if (!select) return;
+
+        const button =
+            select.querySelector<HTMLButtonElement>(".select-button");
+        if (!button) return;
+
+        const dropdown =
+            select.querySelector<HTMLUListElement>(".select-dropdown");
+        if (!dropdown) return;
+
+        const label = select.querySelector<HTMLElement>(".label");
+        if (!label) return;
+
+        button.addEventListener("click", () => {
+            select.classList.toggle("open");
+        });
+
+        dropdown.addEventListener("click", (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.matches("[role=option]")) return;
+
+            label.textContent = target.textContent ?? "";
+            select.classList.remove("open");
+
+            const value = target.dataset.value;
+            console.log("selected:", value);
+
+            // handleSelect();
+        });
+
+        document.addEventListener("click", (e: MouseEvent) => {
+            const target = e.target as Node;
+            if (!select.contains(target)) {
+                select.classList.remove("open");
+            }
+        });
+    }
+
+    initSelect();
+</script>
+
+<style lang="scss">
+    @use "mixins" as *;
+
+    .select {
+        position: relative;
+        width: 140px;
+    }
+
+    .select-button {
+        width: 100%;
+        @include padding-box("sm");
+        @include border;
+        @include radius;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .select-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        @include padding-box("xs");
+        list-style: none;
+        @include border;
+        @include radius;
+        background: var(--color-interactive);
+
+        display: none;
+    }
+
+    .select-dropdown li {
+        padding: 6px 10px;
+        cursor: pointer;
+    }
+
+    .select-dropdown li:hover {
+        background: #f0f0f0;
+    }
+
+    .select.open .select-dropdown {
+        display: block;
+    }
+</style>

@@ -1,146 +1,147 @@
 ---
-import { Icon } from "astro-icon/components";
+import ThemeSelect from "../ThemeSelect.astro";
+
+interface Props {
+    mode?: "system" | "demo";
+}
+
+const { mode = "demo" } = Astro.props;
+
+const systemLinks = [
+    { href: "/system/colors", label: "Colors" },
+    { href: "/system/shadows", label: "Shadows" },
+    { href: "/system/spacing", label: "Spacing" },
+    { href: "/system/typography", label: "Typography" },
+];
+
+const demoLinks = [
+    { href: "/demo", label: "Home" },
+    { href: "/demo/article", label: "Repair Guides" },
+    { href: "/demo/contact", label: "Contact" },
+];
+
+const links = mode === "system" ? systemLinks : demoLinks;
+const crossLink =
+    mode === "system"
+        ? { href: "/demo", label: "View Demo Site" }
+        : { href: "/system/colors", label: "View System" };
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header>
-    <a href="/display/home" class="logo">
-        <h1>Example Company</h1>
-        <p>A simple platform for modern teams and individuals.</p>
+    <a href={mode === "system" ? "/system/colors" : "/demo"} class="logo">
+        <span class="logo-name">Wireless Wonder</span>
+        <span class="logo-tagline">Vintage Radio Repair &amp; Restoration</span>
     </a>
 
-    <nav>
-        <ul>
-            <li><a href="/display/colors">Colors</a></li>
-            <li><a href="/display/shadow-demo">Shadows</a></li>
-            <li><a href="/display/space-demo">Spaces</a></li>
-            <li><a href="#">Contact</a></li>
+    <nav aria-label="primary">
+        <ul role="list">
+            {
+                links.map(({ href, label }) => (
+                    <li>
+                        <a
+                            href={href}
+                            aria-current={
+                                currentPath === href ? "page" : undefined
+                            }
+                        >
+                            {label}
+                        </a>
+                    </li>
+                ))
+            }
         </ul>
-        <a href="/reference">Reference</a>
+
+        <a href={crossLink.href} class="cross-link">
+            {crossLink.label}
+        </a>
+        <a href="/reference" class="cross-link">Docs</a>
     </nav>
-    <div class="theme-selector">
-        <span class="theme-icon" data-icon="auto"
-            ><Icon name="lucide:computer" /></span
-        >
-        <span class="theme-icon" data-icon="light"
-            ><Icon name="lucide:sun" /></span
-        >
-        <span class="theme-icon" data-icon="dark"
-            ><Icon name="lucide:moon" /></span
-        >
-        <select id="theme-selector">
-            <option value="auto">Auto</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-        </select>
-    </div>
+
+    <ThemeSelect />
 </header>
-
-<script>
-    type Theme = "auto" | "dark" | "light";
-
-    const html = document.documentElement;
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const select = document.getElementById(
-        "theme-selector",
-    )! as HTMLSelectElement;
-
-    function updateIcon(theme: Theme) {
-        document.querySelectorAll(".theme-icon").forEach((icon) => {
-            const el = icon as HTMLElement;
-            el.style.display = el.dataset.icon === theme ? "inline" : "none";
-        });
-    }
-
-    function getStoredTheme() {
-        return localStorage.getItem("theme") as Theme | null;
-    }
-
-    function storeTheme(theme: Theme) {
-        localStorage.setItem("theme", theme);
-    }
-
-    function clearStoredTheme() {
-        localStorage.removeItem("theme");
-    }
-
-    function getInitialTheme(): Theme {
-        return getStoredTheme() ?? "auto";
-    }
-
-    function applyTheme(theme: Theme) {
-        if (theme === "auto") {
-            html.setAttribute("data-theme", media.matches ? "dark" : "light");
-        } else {
-            html.setAttribute("data-theme", theme);
-        }
-        updateIcon(theme);
-    }
-
-    function init() {
-        const theme = getInitialTheme();
-        applyTheme(theme);
-        select.value = theme;
-    }
-
-    init();
-
-    document.addEventListener("astro:after-swap", init);
-
-    media.addEventListener("change", (e) => {
-        if (!getStoredTheme()) {
-            html.setAttribute("data-theme", e.matches ? "dark" : "light");
-        }
-    });
-
-    select.addEventListener("change", function () {
-        const value = this.value as Theme;
-        if (value === "auto") {
-            clearStoredTheme();
-        } else {
-            storeTheme(value);
-        }
-        applyTheme(value);
-    });
-</script>
 
 <style lang="scss">
     @use "mixins" as *;
 
-    header {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        @include gradient(var(--color-header-background));
-        color: var(--color-header-text);
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: smaller;
-            text-decoration: none;
-
-            > :not(p) {
-                color: var(--color-primary-500);
-            }
+    @layer components {
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            @include padding-box("sm");
+            color: var(--color-header-text);
+            @include gradient(var(--color-header-background), 180deg);
+            border-bottom: 1px solid var(--color-header-border);
         }
 
-        @include padding-box("sm");
+        .logo {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            font-family: var(--font-heading);
+            text-decoration: none;
+        }
+
+        .logo-name {
+            color: var(--color-primary-400);
+            font-size: var(--text-lg);
+            font-weight: 700;
+        }
+
+        .logo-tagline {
+            color: var(--color-header-text);
+            font-size: var(--text-xs);
+            opacity: 0.75;
+        }
+
         nav {
             display: flex;
             align-items: center;
+            gap: var(--space-6);
+
             ul {
                 display: flex;
+                margin: 0;
+                padding: 0;
+                gap: var(--space-1);
                 list-style: none;
+            }
 
-                a {
-                    @include padding-box("sm");
-                    text-decoration: none;
+            a {
+                @include padding-box("xs");
+                text-decoration: none;
+                color: var(--color-header-text);
+                border-radius: var(--radius-sm);
+                transition: background var(--transition-fast);
+
+                @include focus-ring;
+
+                &:hover {
+                    color: var(--color-interactive);
+                    background-color: var(--color-interactive-muted);
+                }
+
+                &[aria-current="page"] {
+                    font-weight: 600;
+                    color: var(--color-interactive);
+                    background-color: var(--color-interactive-muted);
                 }
             }
         }
-    }
 
-    #theme-selector {
-        width: 1rem;
+        .cross-link {
+            font-size: var(--text-sm);
+            border: 1px solid var(--color-header-border);
+            border-radius: var(--radius-sm);
+            opacity: 0.75;
+
+            &:hover {
+                border-color: var(--color-interactive);
+                opacity: 1;
+            }
+        }
     }
 </style>

@@ -1,0 +1,121 @@
+---
+function handleSelect(): void {
+    console.log("selected");
+}
+
+import { Icon } from "astro-icon/components";
+import Select from "./common/Select.astro";
+---
+
+<div class="theme-selector">
+    <span class="theme-icon" data-icon="auto">
+        <Icon name="lucide:computer" />
+        <span>Auto</span>
+    </span>
+    <span class="theme-icon" data-icon="light">
+        <Icon name="lucide:sun" />
+        <span>Light</span>
+    </span>
+    <span class="theme-icon" data-icon="dark">
+        <Icon name="lucide:moon" />
+        <span>Dark</span>
+    </span>
+
+    <select id="theme-select">
+        <option value="auto">Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+    <!-- <Select clicked={handleSelect()} /> -->
+</div>
+
+<script>
+    type Theme = "auto" | "dark" | "light";
+
+    const html = document.documentElement;
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const select = document.getElementById(
+        "theme-select",
+    )! as HTMLSelectElement;
+
+    function updateIcon(theme: Theme) {
+        document.querySelectorAll(".theme-icon").forEach((icon) => {
+            const el = icon as HTMLElement;
+            el.style.display = el.dataset.icon === theme ? "inline" : "none";
+        });
+    }
+
+    function getStoredTheme() {
+        return localStorage.getItem("theme") as Theme | null;
+    }
+
+    function storeTheme(theme: Theme) {
+        localStorage.setItem("theme", theme);
+    }
+
+    function clearStoredTheme() {
+        localStorage.removeItem("theme");
+    }
+
+    function getInitialTheme(): Theme {
+        return getStoredTheme() ?? "auto";
+    }
+
+    function applyTheme(theme: Theme) {
+        if (theme === "auto") {
+            html.setAttribute("data-theme", media.matches ? "dark" : "light");
+        } else {
+            html.setAttribute("data-theme", theme);
+        }
+        updateIcon(theme);
+    }
+
+    function init() {
+        const theme = getInitialTheme();
+        applyTheme(theme);
+        select.value = theme;
+    }
+
+    init();
+
+    document.addEventListener("astro:after-swap", init);
+
+    media.addEventListener("change", (e) => {
+        if (!getStoredTheme()) {
+            html.setAttribute("data-theme", e.matches ? "dark" : "light");
+        }
+    });
+
+    select.addEventListener("change", function () {
+        const value = this.value as Theme;
+        if (value === "auto") {
+            clearStoredTheme();
+        } else {
+            storeTheme(value);
+        }
+        applyTheme(value);
+    });
+</script>
+
+<style lang="scss">
+    @use "mixins" as *;
+
+    .theme-selector {
+        display: flex;
+        align-items: center;
+        gap: var(--space-inline);
+
+        .theme-icon {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        #theme-select {
+            width: 1rem;
+
+            option {
+                padding-inline: 3rem;
+            }
+        }
+    }
+</style>

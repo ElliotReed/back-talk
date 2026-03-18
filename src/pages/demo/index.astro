@@ -1,0 +1,243 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+---
+
+<DisplayLayout
+    title="Home"
+    description="Wireless Wonder — Vintage Radio Repair & Restoration"
+    headerMode="demo"
+>
+    <!-- hero -->
+    <section class="hero">
+        <h1>Bringing Dead Radios Back to Life</h1>
+        <p class="lead">
+            We restore, repair, and preserve vintage radios from the 1920s
+            through the 1970s. Every set that leaves our bench plays the way its
+            maker intended.
+        </p>
+        <div class="hero-actions">
+            <a href="/demo/contact" class="button-primary">Book a Repair</a>
+            <a href="/demo/article" class="button-ghost">Read the Guides</a>
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- intro -->
+    <section class="intro">
+        <h2>Why Wireless Wonder?</h2>
+        <p>
+            Since 1987, we have been the <strong>go-to workshop</strong> for collectors,
+            hobbyists, and museums across the country. Our approach is simple — <em
+                >restore to original specification wherever possible</em
+            >, and document everything we touch.
+        </p>
+        <p>
+            We work on <mark>all major manufacturers</mark> including Zenith, Philco,
+            RCA, Emerson, and Motorola. If it has valves, we can fix it.
+        </p>
+    </section>
+
+    <hr />
+
+    <!-- services -->
+    <section class="services">
+        <h2>What We Do</h2>
+
+        <h3>Full Restoration</h3>
+        <p>
+            A complete restoration covers every system in the set. We recap the
+            power supply, align the tuner, replace worn components, and refinish
+            the cabinet where needed. The result is a radio that looks and
+            sounds as it did when new.
+        </p>
+
+        <h3>Bench Repair</h3>
+        <p>
+            Not every set needs a full restoration. Sometimes a single failed
+            component — a cracked resistor, a shorted capacitor, a broken dial
+            cord — is all that stands between silence and music. We diagnose and
+            fix the fault, nothing more.
+        </p>
+
+        <h3>Alignment &amp; Calibration</h3>
+        <p>
+            Tuners drift over decades. A proper alignment restores sensitivity
+            and selectivity to factory specification. We use <abbr
+                title="Signal Generator">SG</abbr
+            > and <abbr title="Vacuum Tube Voltmeter">VTVM</abbr> equipment of the
+            period wherever authenticity matters.
+        </p>
+
+        <h3>Cabinet Work</h3>
+        <p>
+            Bakelite cracks, veneer lifts, and lacquer crazes with age. We
+            repair cabinets using period-appropriate materials and techniques.
+            We <del>use modern lacquers as a shortcut</del> always match the original
+            finish specification.
+        </p>
+    </section>
+
+    <hr />
+
+    <!-- facts -->
+    <section class="facts">
+        <h2>By the Numbers</h2>
+        <dl>
+            <dt>Years in business</dt>
+            <dd>37</dd>
+            <dt>Sets restored</dt>
+            <dd>Over 4,200</dd>
+            <dt>Manufacturers covered</dt>
+            <dd>68 and counting</dd>
+            <dt>Turnaround time</dt>
+            <dd>4 to 8 weeks depending on parts availability</dd>
+        </dl>
+    </section>
+
+    <hr />
+
+    <!-- testimonial -->
+    <section class="testimonial">
+        <h2>From Our Customers</h2>
+        <blockquote>
+            <p>
+                I brought in my grandfather's 1939 Zenith console expecting bad
+                news. It left the bench playing better than I have ever heard
+                it. The attention to detail is extraordinary.
+            </p>
+            <cite>— Margaret T., Edinburgh</cite>
+        </blockquote>
+
+        <blockquote>
+            <p>
+                The only workshop I trust with my collection. They have restored
+                eleven sets for me over the years and every single one has been <em
+                    >perfect</em
+                >.
+            </p>
+            <cite>— Robert K., Bristol</cite>
+        </blockquote>
+    </section>
+
+    <hr />
+
+    <!-- parts note -->
+    <section class="parts-note">
+        <h2>A Note on Parts</h2>
+        <p>
+            Original components are always preferred. When a period part cannot
+            be sourced, we use the closest modern equivalent and document the
+            substitution. We never fit a component rated below the original
+            specification.
+        </p>
+        <p>
+            Common substitutions are noted in our <a href="/demo/article"
+                >repair guides</a
+            >. If you have questions about a specific set, <a
+                href="/demo/contact">get in touch</a
+            >.
+        </p>
+
+        <h3>What We Stock</h3>
+        <ul>
+            <li>Electrolytic and paper capacitors, all common values</li>
+            <li>Carbon composition resistors, 1920s through 1960s values</li>
+            <li>Receiving valves — over 400 types in stock</li>
+            <li>Dial lamps, dial cords, and pointer assemblies</li>
+            <li>Speaker field coil and voice coil repair materials</li>
+        </ul>
+
+        <h3>What We Source</h3>
+        <ol>
+            <li>Unusual output transformers and power transformers</li>
+            <li>Pre-war IF transformers to original specification</li>
+            <li>Reproduction dial glass and escutcheons</li>
+            <li>Period-correct knobs and hardware</li>
+        </ol>
+    </section>
+
+    <hr />
+
+    <!-- small print -->
+    <section class="small-print">
+        <h2>Estimates &amp; Liability</h2>
+        <p>
+            All work is quoted before we begin. We will not proceed without
+            written approval. Sets are held for collection for <time
+                datetime="P90D">90 days</time
+            > after completion.
+        </p>
+        <small
+            >Wireless Wonder accepts no liability for sets damaged in transit.
+            We recommend specialist courier services for valuable pieces. Full
+            terms available on request.</small
+        >
+    </section>
+</DisplayLayout>
+
+<style lang="scss">
+    @use "mixins" as *;
+
+    .hero {
+        padding-block: var(--space-16);
+        padding-inline: var(--space-8);
+        text-align: center;
+        background-color: var(--color-surface);
+    }
+
+    .lead {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        max-width: 60ch;
+        margin-inline: auto;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: var(--space-4);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    // minimal button styles just for layout — not the component system
+    .button-primary {
+        @include padding-box("md");
+        background-color: var(--color-interactive);
+        color: var(--color-neutral-50);
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-bold);
+
+        &:hover {
+            background-color: var(--color-interactive-hover);
+        }
+        @include focus-ring;
+    }
+
+    .button-ghost {
+        @include padding-box("md");
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        text-decoration: none;
+        border-radius: var(--radius-md);
+
+        @include focus-ring;
+
+        &:hover {
+            background-color: var(--color-surface-raised);
+        }
+    }
+
+    section {
+        max-width: 72ch;
+        margin-inline: auto;
+        padding-block: var(--space-10);
+        padding-inline: var(--space-6);
+        @include flow;
+    }
+
+    .small-print {
+        color: var(--color-text-muted);
+    }
+</style>

@@ -3,7 +3,7 @@
 // add "accent" to override the generated accent
 // add any extra color ("tertiary" etc) — each gets a full scale
 $color-overrides: (
-    "primary": #4ea07a,
+    "primary": #beb499,
     // "accent":   #FF4B8B,  ← override generated accent
     // "tertiary": #FF0000,  ← extra color, gets full scale
     ) !default;
@@ -21,7 +21,10 @@ $color-scheme-override: "complementary" !default;
 // roles: "body", "heading", "display", "ui", "mono"
 $font-overrides: (
     "body": (Inter, system-ui, sans-serif),
-    "mono": ('Fira Mono', 'Courier New', monospace),
+    "heading": (Georgia, "Times New Roman", serif),
+    "display": (Georgia, "Times New Roman", serif),
+    "ui": (Inter, system-ui, sans-serif),
+    "mono": ("Fira Mono", "Courier New", monospace),
     ) !default;
 
 // base font size — default 1rem (16px)
@@ -73,4 +76,11 @@ $shadow-hardness-override: null !default; // 1 - 10
 // );
 
 $breakpoint-overrides: (
+    ) !default;
+
+$font-weight-overrides: (
+    "medium": 500,
+    "regular": 400,
+    "semibold": 600,
+    "bold": 700,
     ) !default;

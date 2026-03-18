@@ -35,7 +35,7 @@ Components theme automatically because they reference meaning, not values.
 
 ## Mixins
 
-For structural and behavioural patterns — focus rings, layout, visibility.
+For structural and behavioural patterns — focus-ring rings, layout, visibility.
 Values inside mixins must reference tokens, not hardcoded values or Sass variables.
 
 ## Rule of Thumb

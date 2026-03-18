@@ -27,10 +27,10 @@ export default defineConfig({
                 {
                     label: "Display Pages",
                     items: [
-                        { label: "Home", link: "/display/home" },
-                        { label: "Colors", link: "/display/colors" },
-                        { label: "Shadows", link: "/display/shadow-demo" },
-                        { label: "Spaces", link: "/display/space-demo" },
+                        { label: "Home", link: "/demo/" },
+                        { label: "Colors", link: "/system/colors" },
+                        { label: "Shadows", link: "/system/shadow" },
+                        { label: "Spaces", link: "/system/space-demo" },
                     ],
                 },
             ],

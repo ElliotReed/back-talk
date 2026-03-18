@@ -1,10 +1,59 @@
 @layer base {
 
     ul,
-    ol,
-    dl,
-    dt,
+    ol {
+        padding-inline-start: var(--space-6);
+    }
+
+    ul {
+        list-style-type: disc;
+    }
+
+    ol {
+        list-style-type: decimal;
+    }
+
+    li {
+        margin-block-start: var(--space-1);
+    }
+
+    li+li {
+        margin-block-start: var(--space-1);
+    }
+
+    // nested lists — tighter spacing, different marker
+    ul ul,
+    ol ul {
+        list-style-type: circle;
+        margin-block-start: var(--space-1);
+    }
+
+    ul ul ul {
+        list-style-type: square;
+    }
+
+    ol ol {
+        list-style-type: lower-alpha;
+    }
+
+    ol ol ol {
+        list-style-type: lower-roman;
+    }
+
+    // description list
+    dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--space-1) var(--space-6);
+        align-items: baseline;
+    }
+
+    dt {
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text);
+    }
+
     dd {
-        font-family: var(--font-ui);
+        color: var(--color-text-muted);
     }
 }

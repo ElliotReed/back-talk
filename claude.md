@@ -21,11 +21,11 @@ styles/
     _defaults.scss      ← system defaults, never edited by projects
     _config.scss        ← project edits this only
     _resolved.scss      ← resolves overrides vs defaults, resolve() function
-    _generated.scss     ← builds complete $colors map via color generators
     _functions.scss     ← px-to-em() function
-    index.scss          ← forwards generated
+    index.scss          ← forwards _resolved
   colors/
     _accent.scss        ← derives accent from scheme, returns map
+    _generated.scss     ← builds complete $colors map via color generators
     _neutral.scss       ← derives neutral endpoints from primary hue, returns map
     _feedback.scss      ← derives feedback colors with primary hue nudge, returns map
     _scale.scss         ← generate() mixin outputs --color-{name}-{step}, generate-neutral() mixin
@@ -62,8 +62,8 @@ depth)shadow−inset(depth), hardness/direction/offset-base from config
 width, $float)
     _border.scss        ← border(color, $width, $style), border-ghost(
 width)
-    _focus.scss         ← focus(color),focus−inset(color), focus-inset(
-color),focus−inset(color) — handles :focus/:focus-visible internally
+    _focus-ring-ring-ring-ring-ring.scss         ← focus-ring(color),focus-ring−inset(color), focus-ring-inset(
+color),focus-ring−inset(color) — handles :focus-ring/:focus-ring-visible internally
     _respond-to.scss    ← respond-to($size, $min-or-max), respond-from-*, respond-until-*, respond-mobile/tablet/desktop/wide
     _debug.scss         ← debug($color)
     _gradient.scss      ← gradient($color, $angle, $intensity) — @supports relative color syntax
@@ -116,7 +116,7 @@ Base elements strategy (STARTING NOW)
 @layer base wrapping everything
 Semantic tokens only, no hardcoded values
 Minimal margins — containers own spacing via flow mixin
-Mixins where appropriate (@include focus, @include border etc)
+Mixins where appropriate (@include focus-ring, @include border etc)
 No classes — raw elements only
 html: font-size clamp, color-scheme
 body: font-family, line-height, color, background, display flex column
