@@ -3,479 +3,516 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
 ---
 
 <DisplayLayout
-  title="Contact & Enquiries"
-  description="Get in touch with Wireless Wonder"
-  headerMode="demo"
+    title="Contact & Enquiries"
+    description="Get in touch with Wireless Wonder"
+    headerMode="demo"
 >
-  <div class="page">
-    <section class="intro">
-      <h1>Get in Touch</h1>
-      <p class="lead">
-        Whether you have a set that needs attention, a question about a
-        restoration, or just want to talk valves — we are happy to hear from
-        you.
-      </p>
-    </section>
+    <div class="page">
+        <section class="intro">
+            <h1>Get in Touch</h1>
+            <p class="lead">
+                Whether you have a set that needs attention, a question about a
+                restoration, or just want to talk valves — we are happy to hear
+                from you.
+            </p>
+        </section>
 
-    <hr />
+        <hr />
 
-    <section class="form-section">
-      <h2>Repair Enquiry</h2>
-      <p>
-        Fill in as much detail as you can. The more we know about the set
-        upfront, the more useful our response will be.
-      </p>
+        <section class="form-section">
+            <h2>Repair Enquiry</h2>
+            <p>
+                Fill in as much detail as you can. The more we know about the
+                set upfront, the more useful our response will be.
+            </p>
 
-      <form>
-        <fieldset>
-          <legend>Your Details</legend>
+            <form>
+                <fieldset>
+                    <legend>Your Details</legend>
 
-          <div class="field">
-            <label for="name">Full name <abbr title="required">*</abbr></label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              autocomplete="name"
-              placeholder="Margaret Thomson"
-              required
-            />
-          </div>
+                    <div class="field">
+                        <label for="name">
+                            Full name <abbr title="required">*</abbr>
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            autocomplete="name"
+                            placeholder="Margaret Thomson"
+                            required
+                        />
+                    </div>
 
-          <div class="field">
-            <label for="email"
-              >Email address <abbr title="required">*</abbr></label
-            >
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autocomplete="email"
-              placeholder="margaret@example.com"
-              required
-            />
-          </div>
+                    <div class="field">
+                        <label for="email">
+                            Email address <abbr title="required">*</abbr>
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="margaret@example.com"
+                            required
+                        />
+                    </div>
 
-          <div class="field">
-            <label for="phone">Phone number <small>(optional)</small></label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              autocomplete="tel"
-              placeholder="+44 131 600 1234"
-            />
-          </div>
+                    <div class="field">
+                        <label for="phone">
+                            Phone number <small>(optional)</small>
+                        </label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            autocomplete="tel"
+                            placeholder="+44 131 600 1234"
+                        />
+                    </div>
 
-          <div class="field">
-            <label for="location"
-              >Your location <abbr title="required">*</abbr></label
-            >
-            <select id="location" name="location" required>
-              <option value="" disabled selected>Select a region</option>
-              <optgroup label="Scotland">
-                <option value="edinburgh">Edinburgh</option>
-                <option value="glasgow">Glasgow</option>
-                <option value="dundee">Dundee</option>
-              </optgroup>
-              <optgroup label="England">
-                <option value="london">London</option>
-                <option value="manchester">Manchester</option>
-              </optgroup>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </fieldset>
+                    <div class="field">
+                        <label for="location">
+                            Your location <abbr title="required">*</abbr>
+                        </label>
+                        <select id="location" name="location" required>
+                            <option value="" disabled selected>
+                                Select a region
+                            </option>
+                            <optgroup label="Scotland">
+                                <option value="edinburgh">Edinburgh</option>
+                                <option value="glasgow">Glasgow</option>
+                                <option value="dundee">Dundee</option>
+                            </optgroup>
+                            <optgroup label="England">
+                                <option value="london">London</option>
+                                <option value="manchester">Manchester</option>
+                            </optgroup>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </fieldset>
 
-        <fieldset>
-          <legend>About the Set</legend>
+                <fieldset>
+                    <legend>About the Set</legend>
 
-          <div class="field">
-            <label for="manufacturer"
-              >Manufacturer <abbr title="required">*</abbr></label
-            >
-            <input
-              type="text"
-              id="manufacturer"
-              name="manufacturer"
-              list="manufacturers"
-              placeholder="Philco, Zenith, RCA…"
-              required
-            />
-            <datalist id="manufacturers">
-              <option value="Philco"></option>
-              <option value="Zenith"></option>
-              <option value="RCA"></option>
-              <option value="Emerson"></option>
-              <option value="Motorola"></option>
-              <option value="Ekco"></option>
-              <option value="Murphy"></option>
-              <option value="Bush"></option>
-              <option value="Marconi"></option>
+                    <div class="field">
+                        <label for="manufacturer">
+                            Manufacturer <abbr title="required">*</abbr>
+                        </label>
+                        <input
+                            type="text"
+                            id="manufacturer"
+                            name="manufacturer"
+                            list="manufacturers"
+                            placeholder="Philco, Zenith, RCA…"
+                            required
+                        />
+                        <datalist id="manufacturers">
+                            <option value="Philco"></option>
+                            <option value="Zenith"></option>
+                            <option value="RCA"></option>
+                            <option value="Emerson"></option>
+                            <option value="Motorola"></option>
+                            <option value="Ekco"></option>
+                            <option value="Murphy"></option>
+                            <option value="Bush"></option>
+                            <option value="Marconi"></option>
+                        </datalist>
+                    </div>
 
-              <div class="field">
-                <label for="model">Model or chassis number</label>
-                <input
-                  type="text"
-                  id="model"
-                  name="model"
-                  placeholder="39-25, Model 500…"
-                />
-              </div>
+                    <div class="field">
+                        <label for="model">Model or chassis number</label>
+                        <input
+                            type="text"
+                            id="model"
+                            name="model"
+                            placeholder="39-25, Model 500…"
+                        />
+                    </div>
 
-              <div class="field">
-                <label for="year">Approximate year</label>
-                <input
-                  type="number"
-                  id="year"
-                  name="year"
-                  min="1920"
-                  max="1975"
-                  placeholder="1939"
-                />
-              </div>
+                    <div class="field">
+                        <label for="year">Approximate year</label>
+                        <input
+                            type="number"
+                            id="year"
+                            name="year"
+                            min="1920"
+                            max="1975"
+                            placeholder="1939"
+                        />
+                    </div>
 
-              <div class="field">
-                <label for="set-type"
-                  >Set type <abbr title="required">*</abbr></label
-                >
-                <select id="set-type" name="set-type" required>
-                  <option value="" disabled selected>Select a type</option>
-                  <option value="tombstone">Tombstone</option>
-                  <option value="console">Console</option>
-                  <option value="table">Table top</option>
-                  <option value="cathedral">Cathedral</option>
-                  <option value="portable">Portable</option>
-                  <option value="car">Car radio</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+                    <div class="field">
+                        <label for="set-type"
+                            >Set type <abbr title="required">*</abbr></label
+                        >
+                        <select id="set-type" name="set-type" required>
+                            <option value="" disabled selected>
+                                Select a type
+                            </option>
+                            <option value="tombstone">Tombstone</option>
+                            <option value="console">Console</option>
+                            <option value="table">Table top</option>
+                            <option value="cathedral">Cathedral</option>
+                            <option value="portable">Portable</option>
+                            <option value="car">Car radio</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
 
-              <fieldset class="nested-fieldset">
-                <legend
-                  >Current condition <small>(check all that apply)</small
-                  ></legend
-                >
-                <div class="checkbox-group">
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="condition" value="powers-on" /> Powers
-                    on
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="condition" value="receives" /> Receives
-                    stations
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="condition" value="hum" /> Hum on
-                    audio
-                  </label>
-                  <label class="checkbox-label">
-                    <input
-                      type="checkbox"
-                      name="condition"
-                      value="intermittent"
-                    /> Intermittent
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="condition" value="dead" /> Completely
-                    dead
-                  </label>
-                  <label class="checkbox-label">
-                    <input
-                      type="checkbox"
-                      name="condition"
-                      value="cabinet-damage"
-                    /> Cabinet damage
-                  </label>
+                    <fieldset class="nested-fieldset">
+                        <legend>
+                            Current condition <small>
+                                (check all that apply)
+                            </small>
+                        </legend>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value="powers-on"
+                                /> Powers on
+                            </label>
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value="receives"
+                                /> Receives stations
+                            </label>
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value="hum"
+                                /> Hum on audio
+                            </label>
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value="intermittent"
+                                /> Intermittent
+                            </label>
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value="dead"
+                                /> Completely dead
+                            </label>
+                            <label class="checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value="cabinet-damage"
+                                /> Cabinet damage
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="nested-fieldset">
+                        <legend>
+                            Service required <abbr title="required">*</abbr>
+                        </legend>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="full-restoration"
+                                    required
+                                /> Full restoration
+                            </label>
+                            <label class="radio-label">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="bench-repair"
+                                /> Bench repair only
+                            </label>
+                            <label class="radio-label">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="recap"
+                                /> Recap only
+                            </label>
+                            <label class="radio-label">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="alignment"
+                                /> Alignment and calibration
+                            </label>
+                            <label class="radio-label">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="valuation"
+                                /> Valuation only
+                            </label>
+                            <label class="radio-label">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="unsure"
+                                /> Not sure — please advise
+                            </label>
+                        </div>
+                    </fieldset>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Budget &amp; Timeline</legend>
+
+                    <div class="field">
+                        <label for="budget">Budget range</label>
+                        <select id="budget" name="budget">
+                            <option value="" disabled selected>
+                                Select a range
+                            </option>
+                            <option value="under-100">Under £100</option>
+                            <option value="100-250">£100 — £250</option>
+                            <option value="250-500">£250 — £500</option>
+                            <option value="500-1000">£500 — £1,000</option>
+                            <option value="over-1000">Over £1,000</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="urgency">How urgent is this?</label>
+                        <input
+                            type="range"
+                            id="urgency"
+                            name="urgency"
+                            min="1"
+                            max="5"
+                            value="3"
+                        />
+                        <div class="range-labels">
+                            <small>No rush</small>
+                            <small>Fairly urgent</small>
+                            <small>Very urgent</small>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="deadline">
+                            Required by date <small>(if applicable)</small>
+                        </label>
+                        <input type="date" id="deadline" name="deadline" />
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Additional Information</legend>
+
+                    <div class="field">
+                        <label for="message">
+                            Tell us more about the set and the fault
+                        </label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            placeholder="Any additional details about the set, its history, known faults, previous repair attempts…"
+                        ></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="how-heard">
+                            How did you hear about us? <small>(optional)</small>
+                        </label>
+                        <input
+                            type="text"
+                            id="how-heard"
+                            name="how-heard"
+                            placeholder="Word of mouth, Antique Radio Forum…"
+                        />
+                    </div>
+
+                    <div class="field">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="consent" required />
+                            I agree to Wireless Wonder contacting me about this enquiry.
+                            <abbr title="required">*</abbr>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-footer">
+                    <p>
+                        <small>
+                            Fields marked <abbr title="required">*</abbr> are required.
+                            We aim to respond within two working days.
+                        </small>
+                    </p>
+                    <div class="form-actions">
+                        <button type="reset">Clear form</button>
+                        <button type="submit">Send Enquiry</button>
+                    </div>
                 </div>
-              </fieldset>
-
-              <fieldset class="nested-fieldset">
-                <legend>Service required <abbr title="required">*</abbr></legend
-                >
-                <div class="radio-group">
-                  <label class="radio-label">
-                    <input
-                      type="radio"
-                      name="service"
-                      value="full-restoration"
-                      required
-                    /> Full restoration
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="service" value="bench-repair" /> Bench
-                    repair only
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="service" value="recap" /> Recap only
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="service" value="alignment" /> Alignment
-                    and calibration
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="service" value="valuation" /> Valuation
-                    only
-                  </label>
-                  <label class="radio-label">
-                    <input type="radio" name="service" value="unsure" /> Not sure
-                    — please advise
-                  </label>
-                </div>
-              </fieldset>
-            </datalist>
-
-            <fieldset>
-              <legend>Budget &amp; Timeline</legend>
-
-              <div class="field">
-                <label for="budget">Budget range</label>
-                <select id="budget" name="budget">
-                  <option value="" disabled selected>Select a range</option>
-                  <option value="under-100">Under £100</option>
-                  <option value="100-250">£100 — £250</option>
-                  <option value="250-500">£250 — £500</option>
-                  <option value="500-1000">£500 — £1,000</option>
-                  <option value="over-1000">Over £1,000</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="urgency">How urgent is this?</label>
-                <input
-                  type="range"
-                  id="urgency"
-                  name="urgency"
-                  min="1"
-                  max="5"
-                  value="3"
-                />
-                <div class="range-labels">
-                  <small>No rush</small>
-                  <small>Fairly urgent</small>
-                  <small>Very urgent</small>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="deadline"
-                  >Required by date <small>(if applicable)</small></label
-                >
-                <input type="date" id="deadline" name="deadline" />
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Additional Information</legend>
-
-              <div class="field">
-                <label for="message"
-                  >Tell us more about the set and the fault</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="6"
-                  placeholder="Any additional details about the set, its history, known faults, previous repair attempts…"
-                ></textarea>
-              </div>
-
-              <div class="field">
-                <label for="how-heard"
-                  >How did you hear about us? <small>(optional)</small></label
-                >
-                <input
-                  type="text"
-                  id="how-heard"
-                  name="how-heard"
-                  placeholder="Word of mouth, Antique Radio Forum…"
-                />
-              </div>
-
-              <div class="field">
-                <label class="checkbox-label">
-                  <input type="checkbox" name="consent" required />
-                  I agree to Wireless Wonder contacting me about this enquiry.
-                  <abbr title="required">*</abbr>
-                </label>
-              </div>
-            </fieldset>
-
-            <div class="form-footer">
-              <p>
-                <small
-                  >Fields marked <abbr title="required">*</abbr> are required. We
-                  aim to respond within two working days.</small
-                >
-              </p>
-              <div class="form-actions">
-                <button type="reset">Clear form</button>
-                <button type="submit">Send Enquiry</button>
-              </div>
-            </div>
-          </div>
-        </fieldset>
+            </form>
+        </section>
 
         <hr />
 
         <section class="shop-info">
-          <h2>Find Us</h2>
+            <h2>Find Us</h2>
 
-          <address>
-            <strong>Wireless Wonder</strong><br />
-            14 Valve Street<br />
-            Edinburgh, EH1 2RF<br /><br />
-            <a href="tel:+441316001234">0131 600 1234</a><br />
-            <a href="mailto:bench@wirelesswonder.co.uk"
-              >bench@wirelesswonder.co.uk</a
-            >
-          </address>
+            <address>
+                <strong>Wireless Wonder</strong><br />
+                14 Valve Street<br />
+                Edinburgh, EH1 2RF<br /><br />
+                <a href="tel:+441316001234">0131 600 1234</a><br />
+                <a href="mailto:bench@wirelesswonder.co.uk"
+                    >bench@wirelesswonder.co.uk</a
+                >
+            </address>
 
-          <h3>Workshop Hours</h3>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Day</th>
-                <th scope="col">Hours</th>
-                <th scope="col">Collections</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Monday — Friday</td>
-                <td>09:00 — 17:30</td>
-                <td>Yes</td>
-              </tr>
-              <tr>
-                <td>Friday</td>
-                <td>09:00 — 16:00</td>
-                <td>Yes</td>
-              </tr>
-              <tr>
-                <td>Saturday</td>
-                <td>10:00 — 14:00</td>
-                <td><strong>By appointment only</strong></td>
-              </tr>
-              <tr>
-                <td>Sunday</td>
-                <td colspan="2">Closed</td>
-              </tr>
-            </tbody>
-          </table>
+            <h3>Workshop Hours</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Hours</th>
+                        <th scope="col">Collections</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monday — Thursday</td>
+                        <td>09:00 — 17:30</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>09:00 — 16:00</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>10:00 — 14:00</td>
+                        <td><strong>By appointment only</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td colspan="2">Closed</td>
+                    </tr>
+                </tbody>
+            </table>
 
-          <details>
-            <summary>Courier and postal instructions</summary>
-            <p>
-              We accept sets by courier provided they are adequately packed.
-              Valves must be removed and wrapped separately.
-            </p>
-            <p>
-              Mark outer packaging clearly: <strong
-                >FRAGILE — VINTAGE ELECTRONICS</strong
-              >. Double-box where possible with at least 75mm of bubble wrap on
-              all sides.
-            </p>
-          </details>
+            <details>
+                <summary>Courier and postal instructions</summary>
+                <p>
+                    We accept sets by courier provided they are adequately
+                    packed. Valves must be removed and wrapped separately.
+                </p>
+                <p>
+                    Mark outer packaging clearly: <strong>
+                        FRAGILE — VINTAGE ELECTRONICS
+                    </strong>
+                    . Double-box where possible with at least 75mm of bubble wrap
+                    on all sides.
+                </p>
+            </details>
 
-          <details>
-            <summary>Payment and estimates</summary>
-            <p>
-              All work is quoted in writing before we begin. We require a 25%
-              deposit on acceptance of the estimate.
-            </p>
-            <p>
-              We accept <abbr title="British Pounds Sterling">GBP</abbr> bank transfer,
-              cash, and most major debit cards.
-            </p>
-            <output
-              >Current estimated wait for new enquiries: <strong
-                >3 — 5 weeks</strong
-              ></output
-            >
-          </details>
+            <details>
+                <summary>Payment and estimates</summary>
+                <p>
+                    All work is quoted in writing before we begin. We require a
+                    25% deposit on acceptance of the estimate.
+                </p>
+                <p>
+                    We accept <abbr title="British Pounds Sterling">GBP</abbr> bank
+                    transfer, cash, and most major debit cards.
+                </p>
+                <output>
+                    Current estimated wait for new enquiries:
+                    <strong>3 — 5 weeks </strong>
+                </output>
+            </details>
         </section>
-      </form>
-    </section>
-  </div>
+    </div>
 </DisplayLayout>
 
 <style lang="scss">
-  @use "mixins" as *;
+    @use "mixins" as *;
 
-  .page {
-    max-width: 80ch;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
-    padding-block: var(--space-10);
-  }
+    .page {
+        max-width: 80ch;
+        margin-inline: auto;
+        padding-inline: var(--space-5);
+        padding-block: var(--space-6);
+    }
 
-  .intro {
-    // @include flow;
-  }
+    .lead {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        line-height: var(--leading-relaxed);
+    }
 
-  .lead {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-    line-height: var(--leading-relaxed);
-  }
+    form {
+        margin-block-start: var(--space-5);
+        @include stack;
+    }
 
-  .form-section {
-  }
+    fieldset {
+        @include stack;
+    }
 
-  form {
-    margin-block-start: var(--space-6);
-  }
+    .nested-fieldset {
+        border-style: dashed;
+    }
 
-  .nested-fieldset {
-    border-style: dashed;
-    padding: var(--space-4);
-  }
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
+    .checkbox-group,
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
 
-  .checkbox-group,
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
+    .checkbox-label,
+    .radio-label {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-sm);
+        font-weight: var(--font-weight-regular);
+        cursor: pointer;
+    }
 
-  .checkbox-label,
-  .radio-label {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-regular);
-    cursor: pointer;
-  }
+    .range-labels {
+        display: flex;
+        justify-content: space-between;
+        max-width: 40ch;
+    }
 
-  .range-labels {
-    display: flex;
-    justify-content: space-between;
-    max-width: 40ch;
-  }
+    .form-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        padding-block-start: var(--space-4);
+        border-top: 1px solid var(--color-border);
+    }
 
-  .form-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    padding-block-start: var(--space-4);
-    border-top: 1px solid var(--color-border);
-  }
+    .form-actions {
+        display: flex;
+        gap: var(--space-3);
+    }
 
-  .form-actions {
-    display: flex;
-    gap: var(--space-3);
-  }
-
-  .shop-info {
-    // width: 100%;
-  }
+    .shop-info {
+        max-width: 60ch;
+    }
 </style>

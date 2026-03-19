@@ -21,8 +21,16 @@ $headings: (
         font-size: map.get($values, size);
         line-height: map.get($values, line-height);
         letter-spacing: map.get($values, tracking);
-        margin-block: map.get($values, margin);
+        margin-block-start: map.get($values, margin);
     }
+}
+
+h1+h2,
+h2+h3,
+h3+h4,
+h4+h5,
+h5+h6 {
+    margin-block-start: var(--space-2);
 }
 
 p {
@@ -30,6 +38,7 @@ p {
     font-size: var(--text-md);
     line-height: var(--leading-normal);
     hanging-punctuation: first last;
+    margin-block-start: var(--space-3);
 }
 
 pre,

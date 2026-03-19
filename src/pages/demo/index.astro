@@ -180,10 +180,15 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
     @use "mixins" as *;
 
     .hero {
-        padding-block: var(--space-16);
-        padding-inline: var(--space-8);
+        padding-block: var(--space-7);
+        padding-inline: var(--space-6);
         text-align: center;
         background-color: var(--color-surface);
+
+        h1 {
+            max-width: 20ch;
+            margin-inline: auto;
+        }
     }
 
     .lead {
@@ -198,31 +203,30 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
         gap: var(--space-4);
         justify-content: center;
         flex-wrap: wrap;
+        margin-block-start: var(--space-5);
     }
 
-    // minimal button styles just for layout — not the component system
     .button-primary {
-        @include padding-box("md");
+        @include box-button;
+        @include radius-button;
+        @include focus-ring;
         background-color: var(--color-interactive);
         color: var(--color-neutral-50);
         text-decoration: none;
-        border-radius: var(--radius-md);
         font-weight: var(--font-weight-bold);
 
         &:hover {
             background-color: var(--color-interactive-hover);
         }
-        @include focus-ring;
     }
 
     .button-ghost {
-        @include padding-box("md");
-        border: 1px solid var(--color-border);
+        @include box-button;
+        @include radius-button;
+        @include focus-ring;
+        @include border;
         color: var(--color-text);
         text-decoration: none;
-        border-radius: var(--radius-md);
-
-        @include focus-ring;
 
         &:hover {
             background-color: var(--color-surface-raised);
@@ -232,9 +236,8 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
     section {
         max-width: 72ch;
         margin-inline: auto;
-        padding-block: var(--space-10);
-        padding-inline: var(--space-6);
-        @include flow;
+        padding-block: var(--space-6);
+        padding-inline: var(--space-5);
     }
 
     .small-print {

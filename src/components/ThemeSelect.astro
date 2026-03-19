@@ -1,32 +1,26 @@
 ---
-function handleSelect(): void {
-    console.log("selected");
-}
-
 import { Icon } from "astro-icon/components";
 import Select from "./common/Select.astro";
+
+const themeOptions = [
+    { value: "auto", label: "Auto" },
+    { value: "light", label: "Light" },
+    { value: "dark", label: "Dark" },
+];
 ---
 
 <div class="theme-selector">
     <span class="theme-icon" data-icon="auto">
         <Icon name="lucide:computer" />
-        <span>Auto</span>
     </span>
     <span class="theme-icon" data-icon="light">
         <Icon name="lucide:sun" />
-        <span>Light</span>
     </span>
     <span class="theme-icon" data-icon="dark">
         <Icon name="lucide:moon" />
-        <span>Dark</span>
     </span>
 
-    <select id="theme-select">
-        <option value="auto">Auto</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-    </select>
-    <!-- <Select clicked={handleSelect()} /> -->
+    <Select id="theme-select" options={themeOptions} initialValue="Auto" />
 </div>
 
 <script>
@@ -34,14 +28,12 @@ import Select from "./common/Select.astro";
 
     const html = document.documentElement;
     const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const select = document.getElementById(
-        "theme-select",
-    )! as HTMLSelectElement;
 
     function updateIcon(theme: Theme) {
         document.querySelectorAll(".theme-icon").forEach((icon) => {
             const el = icon as HTMLElement;
-            el.style.display = el.dataset.icon === theme ? "inline" : "none";
+            el.style.display =
+                el.dataset.icon === theme ? "inline-flex" : "none";
         });
     }
 
@@ -57,10 +49,6 @@ import Select from "./common/Select.astro";
         localStorage.removeItem("theme");
     }
 
-    function getInitialTheme(): Theme {
-        return getStoredTheme() ?? "auto";
-    }
-
     function applyTheme(theme: Theme) {
         if (theme === "auto") {
             html.setAttribute("data-theme", media.matches ? "dark" : "light");
@@ -70,30 +58,36 @@ import Select from "./common/Select.astro";
         updateIcon(theme);
     }
 
+    function getInitialTheme(): Theme {
+        return getStoredTheme() ?? "auto";
+    }
+
     function init() {
         const theme = getInitialTheme();
         applyTheme(theme);
-        select.value = theme;
     }
 
     init();
-
     document.addEventListener("astro:after-swap", init);
+
+    // listen for the custom event from Select component
+    document.addEventListener("select:change", (e: Event) => {
+        const { value, id } = (e as CustomEvent).detail;
+        if (id !== "theme-select") return; // ignore other selects
+
+        const theme = value as Theme;
+        if (theme === "auto") {
+            clearStoredTheme();
+        } else {
+            storeTheme(theme);
+        }
+        applyTheme(theme);
+    });
 
     media.addEventListener("change", (e) => {
         if (!getStoredTheme()) {
-            html.setAttribute("data-theme", e.matches ? "dark" : "light");
+            applyTheme("auto");
         }
-    });
-
-    select.addEventListener("change", function () {
-        const value = this.value as Theme;
-        if (value === "auto") {
-            clearStoredTheme();
-        } else {
-            storeTheme(value);
-        }
-        applyTheme(value);
     });
 </script>
 
@@ -103,19 +97,12 @@ import Select from "./common/Select.astro";
     .theme-selector {
         display: flex;
         align-items: center;
-        gap: var(--space-inline);
+        gap: var(--space-2);
+    }
 
-        .theme-icon {
-            display: inline-flex;
-            align-items: center;
-        }
-
-        #theme-select {
-            width: 1rem;
-
-            option {
-                padding-inline: 3rem;
-            }
-        }
+    .theme-icon {
+        display: none;
+        align-items: center;
+        color: var(--color-header-text);
     }
 </style>

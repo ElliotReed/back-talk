@@ -5,7 +5,11 @@ const hardness = 5;
 const direction = "none";
 ---
 
-<DisplayLayout title="Shadows" description="Shadow system display">
+<DisplayLayout
+    title="Shadows"
+    description="Shadow system display"
+    headerMode="system"
+>
     <main>
         <h1>Shadow System</h1>
         <p class="subtitle">Hardness: {hardness} · Direction: {direction}</p>
@@ -340,7 +344,7 @@ const direction = "none";
     // ── comparison ──
     .comparison-grid {
         display: flex;
-        gap: var(--space-12);
+        gap: var(--space-3);
         align-items: center;
         padding: var(--space-12) var(--space-8);
         flex-wrap: wrap;

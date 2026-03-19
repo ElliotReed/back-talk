@@ -3,7 +3,23 @@
 // add "accent" to override the generated accent
 // add any extra color ("tertiary" etc) — each gets a full scale
 $color-overrides: (
-    "primary": #beb499,
+    // #FF2D55 — hot pink/red 
+    //  #FF6B1A — orange 
+    //  #FFD60A — yellow 
+    //  #30D158 — green
+    //  #0A84FF — blue 
+    //  #BF5AF2 — purple
+    //  #8B4513 — saddle brown
+    //  #4A7C59 — forest green
+    //  #5B7FA6 — steel blue
+    //  #9B6B9B — dusty purple
+    //  #FF0000 — pure red
+    //  #00FF00 — pure green
+    //  #0000FF — pure blue
+    //  #FFD700 — gold
+    //  #FF69B4 — hot pink
+    //  #40E0D0 — turquoise
+    "primary": #9B6B9B,
     // "accent":   #FF4B8B,  ← override generated accent
     // "tertiary": #FF0000,  ← extra color, gets full scale
     ) !default;

@@ -1,7 +1,7 @@
 @use "sass:map";
-@use "../config/resolved";
+@use "../config";
 
-$radius-base: resolved.$radius-base;
+$radius-base: config.$radius-base;
 
 @mixin radius($size: md) {
     border-radius: #{map.get((

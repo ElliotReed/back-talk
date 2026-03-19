@@ -1,6 +1,8 @@
 ---
 import SiteHeader from "../components/demoPages/SiteHeader.astro";
 
+import "../styles/index.scss";
+
 const { title, description, headerMode } = Astro.props;
 ---
 
@@ -26,14 +28,13 @@ const { title, description, headerMode } = Astro.props;
             href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap"
             rel="stylesheet"
         />
+        <style is:inline>
+            @layer reset, tokens, base, components, utilities;
+        </style>
     </head>
     <body>
         <SiteHeader mode={headerMode} />
         <slot />
         <footer>backtalk demo page</footer>
     </body>
-
-    <style lang="scss" is:global>
-        @use "index.scss";
-    </style>
 </html>

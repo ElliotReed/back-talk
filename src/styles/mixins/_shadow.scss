@@ -30,8 +30,8 @@
 @function direction-value($direction) {
     $map: (
         "none": 0,
-        "right": 1,
-        "left": -1,
+        "right": -1,
+        "left": 1,
     );
 
 @if not map.has-key($map, $direction) {
@@ -50,6 +50,7 @@ $scaled-base: $offset-base * $hardness;
 
 // ── base alpha ────────────────────────────────────────────
 $alpha-base: 0.1;
+$verticle-offset-multiplier: 2;
 
 // ── depth ratios ──────────────────────────────────────────
 $top-offset-ratios: 0.6 1.0 1.4 1.7 2.0;
@@ -61,7 +62,7 @@ $bottom-alpha-ratios: 1.7 1.75 1.8 1.85 1.9;
 // ── shadow functions ──────────────────────────────────────
 @function top-shadow($depth) {
     $x: direction-value(config.$shadow-direction) * list.nth($top-offset-ratios, $depth) * $scaled-base;
-    $offset: list.nth($top-offset-ratios, $depth) * $scaled-base;
+    $offset: list.nth($top-offset-ratios, $depth) * $scaled-base * $verticle-offset-multiplier;
     $spread: -$offset * 0.25;
 
     $blur: null;
@@ -82,7 +83,7 @@ $bottom-alpha-ratios: 1.7 1.75 1.8 1.85 1.9;
 
 @function bottom-shadow($depth) {
     $x: direction-value(config.$shadow-direction) * list.nth($bottom-offset-ratios, $depth) * $scaled-base;
-    $offset: list.nth($bottom-offset-ratios, $depth) * $scaled-base;
+    $offset: list.nth($bottom-offset-ratios, $depth) * $scaled-base* $verticle-offset-multiplier;
 
     $blur: null;
     $alpha: null;
@@ -120,8 +121,8 @@ $bottom-alpha-ratios: 1.7 1.75 1.8 1.85 1.9;
 
     @else {
         $ratio: list.nth($top-offset-ratios, $depth);
-        $offset: $ratio * $scaled-base;
-        $x: direction-value(config.$shadow-direction) * $ratio * $scaled-base;
+        $offset: $ratio * $scaled-base* $verticle-offset-multiplier;
+        $x: direction-value(config.$shadow-direction) * $ratio * $scaled-base ;
 
         $blur: null;
         $alpha: null;

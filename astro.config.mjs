@@ -25,12 +25,23 @@ export default defineConfig({
                     autogenerate: { directory: "development" },
                 },
                 {
-                    label: "Display Pages",
+                    label: "Demo Pages",
+                    items: [
+                        { label: "Home", link: "/demo/" },
+                        { label: "Repair Guides", link: "/demo/article" },
+                        { label: "Technical Ref", link: "/demo/code" },
+                        { label: "Parts & Services", link: "demo/components" },
+                        { label: "Contact", link: "/demo/contact" },
+                    ],
+                },
+                {
+                    label: "System Display Pages",
                     items: [
                         { label: "Home", link: "/demo/" },
                         { label: "Colors", link: "/system/colors" },
-                        { label: "Shadows", link: "/system/shadow" },
-                        { label: "Spaces", link: "/system/space-demo" },
+                        { label: "Shadows", link: "/system/shadows" },
+                        { label: "Spaces", link: "/system/spacing" },
+                        { label: "Typography", link: "/system/typography" },
                     ],
                 },
             ],

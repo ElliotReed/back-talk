@@ -46,9 +46,9 @@
         --color-info-text: var(--color-info-700);
 
         // ── header ────────────────────────────────────────────
-        --color-header-background: var(--color-neutral-900);
-        --color-header-text: var(--color-neutral-50);
-        --color-header-border: var(--color-neutral-700);
+        --color-header-background: var(--color-primary-500);
+        --color-header-text: var(--color-primary-200);
+        --color-header-border: var(--color-primary-800);
     }
 
     // ── dark mode ─────────────────────────────────────────
@@ -95,7 +95,8 @@
         --color-info-text: var(--color-info-300);
 
         // header
-        --color-header-background: var(--color-neutral-950);
-        --color-header-border: var(--color-neutral-800);
+        --color-header-background: var(--color-primary-500);
+        --color-header-text: var(--color-primary-900);
+        --color-header-border: var(--color-primary-200);
     }
 }

@@ -1,9 +1,7 @@
 // This file is imported once globally in project root
-
+@use "layers";
 @use "reset";
 @use "tokens";
+@use "mixins";
 @use "base";
 // @use "abstracts";
-@use "mixins";
-
-@layer reset, tokens, base, components, utilities;

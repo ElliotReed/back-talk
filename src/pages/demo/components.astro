@@ -1,0 +1,861 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+
+const parts = [
+    {
+        ref: "CAP-E-10-500",
+        name: "Electrolytic Capacitor",
+        spec: "10µF 500V",
+        price: "£1.20",
+        stock: "in-stock",
+        stockLabel: "In Stock",
+    },
+    {
+        ref: "CAP-E-47-50",
+        name: "Electrolytic Capacitor",
+        spec: "47µF 50V",
+        price: "£0.85",
+        stock: "in-stock",
+        stockLabel: "In Stock",
+    },
+    {
+        ref: "CAP-P-01-630",
+        name: "Polyester Film Capacitor",
+        spec: "0.1µF 630V",
+        price: "£0.65",
+        stock: "low-stock",
+        stockLabel: "Low Stock",
+    },
+    {
+        ref: "RES-CC-10K",
+        name: "Carbon Composition Resistor",
+        spec: "10kΩ ±5%",
+        price: "£0.45",
+        stock: "in-stock",
+        stockLabel: "In Stock",
+    },
+    {
+        ref: "VAL-6A8",
+        name: "Receiving Valve",
+        spec: "6A8 Converter",
+        price: "£12.50",
+        stock: "low-stock",
+        stockLabel: "Low Stock",
+    },
+    {
+        ref: "VAL-25L6",
+        name: "Receiving Valve",
+        spec: "25L6 Output",
+        price: "£8.75",
+        stock: "out-of-stock",
+        stockLabel: "Out of Stock",
+    },
+    {
+        ref: "VAL-25Z6",
+        name: "Receiving Valve",
+        spec: "25Z6 Rectifier",
+        price: "£9.50",
+        stock: "out-of-stock",
+        stockLabel: "Out of Stock",
+    },
+    {
+        ref: "MIC-100P",
+        name: "Silver Mica Capacitor",
+        spec: "100pF 500V",
+        price: "£1.80",
+        stock: "in-stock",
+        stockLabel: "In Stock",
+    },
+];
+
+const services = [
+    {
+        title: "Full Restoration",
+        description:
+            "Complete recap, alignment, and cabinet refinish. Every system inspected and restored to original specification.",
+        price: "From £280",
+        badge: "Most Popular",
+        badgeType: "accent",
+    },
+    {
+        title: "Bench Repair",
+        description:
+            "Fault diagnosis and targeted repair. We fix the problem, nothing more.",
+        price: "From £65",
+        badge: "Quick Turnaround",
+        badgeType: "info",
+    },
+    {
+        title: "Recap Only",
+        description:
+            "Full capacitor replacement without alignment or cosmetic work. Essential maintenance for any vintage set.",
+        price: "From £120",
+        badge: null,
+        badgeType: null,
+    },
+    {
+        title: "Alignment",
+        description:
+            "Tuner alignment and calibration to factory specification using period test equipment.",
+        price: "From £85",
+        badge: null,
+        badgeType: null,
+    },
+];
+
+const alerts = [
+    {
+        type: "success",
+        title: "Order Confirmed",
+        message:
+            "Your parts order #WW-2024-0847 has been confirmed and will be dispatched within 2 working days.",
+    },
+    {
+        type: "info",
+        title: "Workshop Update",
+        message:
+            "Current wait time for new restoration enquiries is 3–5 weeks. Bench repairs are typically 1–2 weeks.",
+    },
+    {
+        type: "warning",
+        title: "Low Stock Warning",
+        message:
+            "Several valve types are running low. We recommend ordering sooner rather than later for restoration projects.",
+    },
+    {
+        type: "error",
+        title: "Out of Stock",
+        message:
+            "The 25L6 and 25Z6 valves are currently out of stock. We expect new stock in approximately 3 weeks.",
+    },
+];
+---
+
+<DisplayLayout
+    title="Parts & Services"
+    description="Browse Wireless Wonder parts stock and restoration services"
+    headerMode="demo"
+>
+    <div class="page">
+        <!-- hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Parts &amp; Services</h1>
+                <p class="lead">
+                    Everything you need for vintage radio restoration — from
+                    individual components to complete bench service.
+                </p>
+                <div class="hero-actions">
+                    <a href="/demo/contact" class="button-primary"
+                        >Book a Service</a
+                    >
+                    <a href="/demo/article" class="button-ghost"
+                        >Read the Guides</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- alerts -->
+        <section>
+            <h2>Notifications</h2>
+            <p>
+                Feedback colors in context — success, info, warning, and error
+                states.
+            </p>
+
+            <div class="alerts">
+                {
+                    alerts.map(({ type, title, message }) => (
+                        <div class={`alert alert--${type}`}>
+                            <p class="alert-title">{title}</p>
+                            <p class="alert-message">{message}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- services -->
+        <section>
+            <h2>Our Services</h2>
+            <p>
+                All work is quoted in writing before we begin. Prices shown are
+                starting rates — complex sets may vary.
+            </p>
+
+            <div class="service-grid">
+                {
+                    services.map(
+                        ({ title, description, price, badge, badgeType }) => (
+                            <div class="service-card">
+                                <div class="service-card-header">
+                                    <h3>{title}</h3>
+                                    {badge && (
+                                        <span
+                                            class={`badge badge--${badgeType}`}
+                                        >
+                                            {badge}
+                                        </span>
+                                    )}
+                                </div>
+                                <p class="service-description">{description}</p>
+                                <div class="service-footer">
+                                    <span class="service-price">{price}</span>
+                                    <a href="/demo/contact" class="button-sm">
+                                        Enquire
+                                    </a>
+                                </div>
+                            </div>
+                        ),
+                    )
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- parts table -->
+        <section>
+            <h2>Parts Stock</h2>
+            <p>
+                Common components held in stock for immediate dispatch. All
+                parts are new old stock or quality modern equivalents.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <caption>Current Parts Availability</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Reference</th>
+                            <th scope="col">Component</th>
+                            <th scope="col">Specification</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Availability</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            parts.map(
+                                ({
+                                    ref,
+                                    name,
+                                    spec,
+                                    price,
+                                    stock,
+                                    stockLabel,
+                                }) => (
+                                    <tr>
+                                        <td>
+                                            <code>{ref}</code>
+                                        </td>
+                                        <td>{name}</td>
+                                        <td>{spec}</td>
+                                        <td>{price}</td>
+                                        <td>
+                                            <span
+                                                class={`badge badge--${stock}`}
+                                            >
+                                                {stockLabel}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {stock !== "out-of-stock" && (
+                                                <a
+                                                    href="/demo/contact"
+                                                    class="button-xs"
+                                                >
+                                                    Order
+                                                </a>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ),
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- callouts -->
+        <section>
+            <h2>Information Callouts</h2>
+            <p>Semantic surface colors used for highlighted content blocks.</p>
+
+            <div class="callouts">
+                <div class="callout callout--info">
+                    <h3>Booking Information</h3>
+                    <p>
+                        We accept sets by appointment or courier. Please contact
+                        us before sending anything — we need to log the set on
+                        arrival and allocate bench space.
+                    </p>
+                </div>
+
+                <div class="callout callout--warning">
+                    <h3>Safety Notice</h3>
+                    <p>
+                        All AC/DC sets present a shock hazard. Never work on a
+                        live chassis without an isolation transformer. If in
+                        doubt, bring it to us.
+                    </p>
+                </div>
+
+                <div class="callout callout--success">
+                    <h3>Warranty</h3>
+                    <p>
+                        All bench work carries a 90-day warranty covering the
+                        specific fault repaired. Full restorations carry a
+                        12-month warranty on all replaced components.
+                    </p>
+                </div>
+
+                <div class="callout callout--error">
+                    <h3>Sets We Cannot Accept</h3>
+                    <p>
+                        We are unable to accept sets with known mains wiring
+                        faults, damaged transformers, or evidence of previous
+                        amateur repair using non-standard components.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- shadow showcase -->
+        <section>
+            <h2>Depth &amp; Elevation</h2>
+            <p>Shadow tokens in context — cards at different elevations.</p>
+
+            <div class="elevation-grid">
+                <div class="elevation-card elevation--flat">
+                    <h3>Flat</h3>
+                    <p>
+                        No shadow — used for inline content and flush surfaces.
+                    </p>
+                    <code>no shadow</code>
+                </div>
+                <div class="elevation-card elevation--raised">
+                    <h3>Raised</h3>
+                    <p>
+                        Subtle lift — default card elevation, table rows on
+                        hover.
+                    </p>
+                    <code>shadow(2)</code>
+                </div>
+                <div class="elevation-card elevation--floating">
+                    <h3>Floating</h3>
+                    <p>
+                        Clear separation — dropdowns, popovers, sticky elements.
+                    </p>
+                    <code>shadow(4)</code>
+                </div>
+                <div class="elevation-card elevation--overlay">
+                    <h3>Overlay</h3>
+                    <p>
+                        Maximum elevation — modals, dialogs, toast
+                        notifications.
+                    </p>
+                    <code>shadow(8)</code>
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- button states -->
+        <section>
+            <h2>Interactive States</h2>
+            <p>
+                Button variants and states using interactive and feedback
+                tokens.
+            </p>
+
+            <div class="button-showcase">
+                <div class="button-group">
+                    <h3>Primary</h3>
+                    <div class="button-row">
+                        <button type="button" class="button-primary">
+                            Default
+                        </button>
+                        <button
+                            type="button"
+                            class="button-primary button--hover"
+                        >
+                            Hover
+                        </button>
+                        <button type="button" class="button-primary" disabled>
+                            Disabled
+                        </button>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <h3>Default</h3>
+                    <div class="button-row">
+                        <button type="button" class="button-ghost">
+                            Default
+                        </button>
+                        <button
+                            type="button"
+                            class="button-ghost button--hover"
+                        >
+                            Hover
+                        </button>
+                        <button type="button" class="button-ghost" disabled>
+                            Disabled /button >
+                        </button>
+                    </div>
+
+                    <div class="button-group">
+                        <h3>Feedback</h3>
+                        <div class="button-row">
+                            <button type="button" class="button-success">
+                                Success
+                            </button>
+                            <button type="button" class="button-warning">
+                                Warning
+                            </button>
+                            <button type="button" class="button-error">
+                                Error
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <h3>Sizes</h3>
+                        <div class="button-row">
+                            <button type="button" class="button-sm">
+                                Small
+                            </button>
+                            <button type="button" class="button-xs">
+                                Extra small
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <style lang="scss">
+        @use "mixins" as *;
+
+        .page {
+            max-width: 90ch;
+            margin-inline: auto;
+            padding-inline: var(--space-5);
+            padding-block: var(--space-6);
+        }
+
+        section {
+            padding-block: var(--space-5);
+        }
+
+        // ── hero ──
+        .hero {
+            background-color: var(--color-surface);
+            // @include gradient(var(--color-header-background), 180deg, 5);
+            @include gradient(var(--color-surface));
+            @include radius-card;
+            @include border;
+            padding: var(--space-7) var(--space-8);
+            color: var(--color-surface-text);
+        }
+
+        .hero-content {
+            max-width: 55ch;
+            @include stack(var(--space-4));
+        }
+
+        .lead {
+            font-size: var(--text-lg);
+            opacity: 0.85;
+            line-height: var(--leading-relaxed);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+        }
+
+        // ── buttons ──
+        .button-primary {
+            background-color: var(--color-interactive);
+            color: var(--color-neutral-50);
+            text-decoration: none;
+            font-weight: var(--font-weight-bold);
+            display: inline-block;
+
+            &:hover,
+            &.button--hover {
+                background-color: var(--color-interactive-hover);
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+
+        .button-ghost {
+            @include border;
+
+            display: inline-block;
+
+            &:hover,
+            &.button--hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+
+        .button-sm {
+            @include padding-box("sm");
+            @include radius-button;
+            @include focus-ring;
+            background-color: var(--color-interactive);
+            color: var(--color-neutral-50);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: var(--font-weight-bold);
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+
+            &:hover {
+                background-color: var(--color-interactive-hover);
+            }
+        }
+
+        .button-xs {
+            @include padding-box("xs");
+            background-color: var(--color-interactive-muted);
+            color: var(--color-interactive);
+            text-decoration: none;
+            font-size: var(--text-xs);
+            font-weight: var(--font-weight-bold);
+            border: none;
+            display: inline-block;
+
+            &:hover {
+                background-color: var(--color-interactive);
+                color: var(--color-neutral-50);
+            }
+        }
+
+        .button-success {
+            background-color: var(--color-success);
+            color: white;
+            border: none;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .button-warning {
+            background-color: var(--color-warning);
+            color: white;
+            border: none;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .button-error {
+            background-color: var(--color-error);
+            color: white;
+            border: none;
+            font-weight: var(--font-weight-bold);
+        }
+
+        // ── alerts ──
+        .alerts {
+            @include stack(var(--space-3));
+            margin-block-start: var(--space-4);
+        }
+
+        .alert {
+            @include radius-card;
+            @include border;
+            padding: var(--space-4) var(--space-5);
+            @include stack(var(--space-1));
+
+            &--success {
+                background-color: var(--color-success-surface);
+                border-color: var(--color-success);
+                .alert-title {
+                    color: var(--color-success-text);
+                }
+            }
+
+            &--info {
+                background-color: var(--color-info-surface);
+                border-color: var(--color-info);
+                .alert-title {
+                    color: var(--color-info-text);
+                }
+            }
+
+            &--warning {
+                background-color: var(--color-warning-surface);
+                border-color: var(--color-warning);
+                .alert-title {
+                    color: var(--color-warning-text);
+                }
+            }
+
+            &--error {
+                background-color: var(--color-error-surface);
+                border-color: var(--color-error);
+                .alert-title {
+                    color: var(--color-error-text);
+                }
+            }
+        }
+
+        .alert-title {
+            font-weight: var(--font-weight-bold);
+            font-size: var(--text-sm);
+        }
+
+        .alert-message {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        // ── badges ──
+        .badge {
+            @include padding-box("xs");
+            @include radius-badge;
+            font-size: var(--text-xs);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wide);
+            display: inline-block;
+
+            &--accent {
+                background-color: var(--color-accent-muted);
+                color: var(--color-accent);
+            }
+
+            &--info {
+                background-color: var(--color-info-surface);
+                color: var(--color-info-text);
+            }
+
+            &--in-stock {
+                background-color: var(--color-success-surface);
+                color: var(--color-success-text);
+            }
+
+            &--low-stock {
+                background-color: var(--color-warning-surface);
+                color: var(--color-warning-text);
+            }
+
+            &--out-of-stock {
+                background-color: var(--color-error-surface);
+                color: var(--color-error-text);
+            }
+        }
+
+        // ── service cards ──
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: var(--space-4);
+            margin-block-start: var(--space-4);
+        }
+
+        .service-card {
+            @include border;
+            @include radius-card;
+            @include shadow(2);
+            background-color: var(--color-surface);
+            padding: var(--space-5);
+            @include stack(var(--space-3));
+            display: flex;
+            flex-direction: column;
+
+            &:hover {
+                @include shadow(4);
+            }
+        }
+
+        .service-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: var(--space-3);
+
+            h3 {
+                margin: 0;
+                font-size: var(--text-lg);
+            }
+        }
+
+        .service-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            line-height: var(--leading-relaxed);
+            flex: 1;
+        }
+
+        .service-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-block-start: var(--space-3);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .service-price {
+            font-weight: var(--font-weight-bold);
+            font-size: var(--text-lg);
+            color: var(--color-interactive);
+        }
+
+        // ── table ──
+        .table-wrapper {
+            overflow-x: auto;
+            margin-block-start: var(--space-4);
+        }
+
+        // ── callouts ──
+        .callouts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-4);
+            margin-block-start: var(--space-4);
+        }
+
+        .callout {
+            @include radius-card;
+            padding: var(--space-5);
+            @include stack(var(--space-2));
+
+            h3 {
+                font-size: var(--text-md);
+                margin: 0;
+            }
+
+            p {
+                font-size: var(--text-sm);
+                line-height: var(--leading-relaxed);
+            }
+
+            &--info {
+                background-color: var(--color-info-surface);
+                color: var(--color-info-text);
+                border-inline-start: 4px solid var(--color-info);
+            }
+
+            &--warning {
+                background-color: var(--color-warning-surface);
+                color: var(--color-warning-text);
+                border-inline-start: 4px solid var(--color-warning);
+            }
+
+            &--success {
+                background-color: var(--color-success-surface);
+                color: var(--color-success-text);
+                border-inline-start: 4px solid var(--color-success);
+            }
+
+            &--error {
+                background-color: var(--color-error-surface);
+                color: var(--color-error-text);
+                border-inline-start: 4px solid var(--color-error);
+            }
+        }
+
+        // ── elevation ──
+        .elevation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-block-start: var(--space-6);
+            padding-block: var(--space-6);
+            background-color: var(--color-surface);
+            @include radius-card;
+            padding-inline: var(--space-6);
+        }
+
+        .elevation-card {
+            background-color: var(--color-background);
+            @include radius-card;
+            padding: var(--space-4);
+            @include stack(var(--space-2));
+
+            h3 {
+                font-size: var(--text-sm);
+                font-weight: var(--font-weight-bold);
+                margin: 0;
+            }
+
+            p {
+                font-size: var(--text-xs);
+                color: var(--color-text-muted);
+                line-height: var(--leading-relaxed);
+            }
+
+            code {
+                font-size: var(--text-xs);
+                color: var(--color-interactive);
+            }
+
+            &.elevation--flat {
+                @include border;
+            }
+
+            &.elevation--raised {
+                @include shadow(2);
+            }
+
+            &.elevation--floating {
+                @include shadow(4);
+            }
+
+            &.elevation--overlay {
+                @include shadow(5);
+            }
+        }
+
+        // ── button showcase ──
+        .button-showcase {
+            @include stack(var(--space-6));
+            margin-block-start: var(--space-4);
+        }
+
+        .button-group {
+            @include stack(var(--space-3));
+
+            h3 {
+                font-size: var(--text-sm);
+                color: var(--color-text-muted);
+                text-transform: uppercase;
+                letter-spacing: var(--tracking-wide);
+                margin: 0;
+            }
+        }
+
+        .button-row {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+    </style>
+</DisplayLayout>

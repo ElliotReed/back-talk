@@ -1,0 +1,575 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+
+const fonts = [
+    {
+        token: "--font-body",
+        label: "Body",
+        usage: "Long-form reading, paragraphs",
+    },
+    {
+        token: "--font-heading",
+        label: "Heading",
+        usage: "h1–h6, readable at all sizes",
+    },
+    {
+        token: "--font-display",
+        label: "Display",
+        usage: "Hero text, decorative headings",
+    },
+    {
+        token: "--font-ui",
+        label: "UI",
+        usage: "Buttons, labels, form elements",
+    },
+    { token: "--font-mono", label: "Mono", usage: "Code, pre, kbd, samp" },
+];
+
+const scale = [
+    { token: "--text-xs", label: "xs" },
+    { token: "--text-sm", label: "sm" },
+    { token: "--text-md", label: "md" },
+    { token: "--text-lg", label: "lg" },
+    { token: "--text-xl", label: "xl" },
+    { token: "--text-2xl", label: "2xl" },
+    { token: "--text-3xl", label: "3xl" },
+    { token: "--text-4xl", label: "4xl" },
+];
+
+const weights = [
+    { token: "--font-weight-regular", label: "Regular", value: "400" },
+    { token: "--font-weight-bold", label: "Bold", value: "700" },
+];
+
+const leading = [
+    { token: "--leading-none", label: "none", value: "1" },
+    { token: "--leading-tight", label: "tight", value: "1.25" },
+    { token: "--leading-snug", label: "snug", value: "1.375" },
+    { token: "--leading-normal", label: "normal", value: "1.5" },
+    { token: "--leading-relaxed", label: "relaxed", value: "1.625" },
+    { token: "--leading-loose", label: "loose", value: "1.75" },
+];
+
+const tracking = [
+    { token: "--tracking-tight", label: "tight", value: "-0.02em" },
+    { token: "--tracking-normal", label: "normal", value: "0em" },
+    { token: "--tracking-wide", label: "wide", value: "0.05em" },
+    { token: "--tracking-wider", label: "wider", value: "0.1em" },
+];
+
+const inline = [
+    { element: "strong", demo: "Strong importance" },
+    { element: "em", demo: "Emphasis and stress" },
+    { element: "mark", demo: "Highlighted text" },
+    { element: "del", demo: "Deleted text" },
+    { element: "ins", demo: "Inserted text" },
+    { element: "small", demo: "Small print and caveats" },
+    { element: "abbr", demo: "Abbreviation", attr: 'title="Abbreviation"' },
+    { element: "cite", demo: "A cited work or source" },
+    { element: "var", demo: "Variable x" },
+    { element: "code", demo: "inline code" },
+    { element: "kbd", demo: "Ctrl+K" },
+    { element: "samp", demo: "sample output" },
+];
+---
+
+<DisplayLayout
+    title="Typography"
+    description="Type scale, font stacks, weights, leading, tracking and inline elements"
+    headerMode="system"
+>
+    <div class="page">
+        <!-- font families -->
+        <section>
+            <h2>Font Families</h2>
+            <p>
+                Five font roles, each with a semantic purpose. Override any in
+                <code> config/_config.scss </code>.
+            </p>
+
+            <div class="font-grid">
+                {
+                    fonts.map(({ token, label, usage }) => (
+                        <div class="font-card">
+                            <p
+                                class="font-sample"
+                                style={`font-family: var(${token})`}
+                            >
+                                The quick brown fox
+                            </p>
+                            <div class="font-meta">
+                                <span class="font-label">{label}</span>
+                                <code class="font-token">{token}</code>
+                                <span class="font-usage">{usage}</span>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- type scale -->
+        <section>
+            <h2>Type Scale</h2>
+            <p>
+                Generated from <code>$type-base</code> and
+                <code>$type-ratio </code> using a modular scale. Default ratio: Major
+                Third (1.25).
+            </p>
+
+            <div class="scale-list">
+                {
+                    scale.map(({ token, label }) => (
+                        <div class="scale-row">
+                            <div
+                                class="scale-sample"
+                                style={`font-size: var(${token})`}
+                            >
+                                Wireless Wonder
+                            </div>
+                            <div class="scale-meta">
+                                <code class="scale-token">{token}</code>
+                                <span class="scale-label">{label}</span>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- font weights -->
+        <section>
+            <h2>Font Weights</h2>
+            <p>
+                Weights are generated from config. Only weights loaded via <code
+                    >@font-face</code
+                > or external link should be listed.
+            </p>
+
+            <div class="weight-grid">
+                {
+                    weights.map(({ token, label, value }) => (
+                        <div class="weight-card">
+                            <p
+                                class="weight-sample"
+                                style={`font-weight: var(${token})`}
+                            >
+                                Wireless Wonder
+                            </p>
+                            <code class="weight-token">{token}</code>
+                            <span class="weight-label">
+                                {label} — {value}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- line heights -->
+        <section>
+            <h2>Line Heights</h2>
+            <p>
+                Leading tokens for controlling vertical rhythm. Use tighter
+                values for headings, looser for body copy.
+            </p>
+
+            <div class="leading-grid">
+                {
+                    leading.map(({ token, label, value }) => (
+                        <div class="leading-card">
+                            <p
+                                class="leading-sample"
+                                style={`line-height: var(${token})`}
+                            >
+                                Tuners drift over decades. A proper alignment
+                                restores sensitivity and selectivity to factory
+                                specification.
+                            </p>
+                            <code class="leading-token">{token}</code>
+                            <span class="leading-value">
+                                {label} — {value}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- letter spacing -->
+        <section>
+            <h2>Letter Spacing</h2>
+            <p>
+                Tracking tokens. Negative values suit large display text, wider
+                values suit uppercase labels.
+            </p>
+
+            <div class="tracking-list">
+                {
+                    tracking.map(({ token, label, value }) => (
+                        <div class="tracking-row">
+                            <p
+                                class="tracking-sample"
+                                style={`letter-spacing: var(${token})`}
+                            >
+                                WIRELESS WONDER VINTAGE RADIO
+                            </p>
+                            <div class="tracking-meta">
+                                <code class="tracking-token">{token}</code>
+                                <span class="tracking-value">
+                                    {label} — {value}
+                                </span>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- headings -->
+        <section>
+            <h2>Heading Scale</h2>
+            <p>
+                Headings use an inverse relationship — larger headings have
+                tighter line-height and smaller margins. Smaller headings have
+                looser line-height and larger margins.
+            </p>
+
+            <div class="heading-demo">
+                <h1>Heading Level One</h1>
+                <h2>Heading Level Two</h2>
+                <h3>Heading Level Three</h3>
+                <h4>Heading Level Four</h4>
+                <h5>Heading Level Five</h5>
+                <h6>Heading Level Six</h6>
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- inline elements -->
+        <section>
+            <h2>Inline Elements</h2>
+            <p>All inline text elements with their base styles applied.</p>
+
+            <div class="inline-grid">
+                {
+                    inline.map(({ element, demo, attr }) => (
+                        <div class="inline-row">
+                            <div class="inline-demo">
+                                <Fragment
+                                    set:html={`<${element}${attr ? ` ${attr}` : ""}>${demo}</${element}>`}
+                                />
+                            </div>
+                            <code class="inline-token">&lt;{element}&gt;</code>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- prose sample -->
+        <section>
+            <h2>Prose Sample</h2>
+            <p>
+                A full prose block showing how all elements work together in
+                context.
+            </p>
+
+            <div class="prose">
+                <h3>Restoring a Zenith Trans-Oceanic</h3>
+                <p>
+                    The <strong>Zenith Trans-Oceanic</strong> is widely regarded as
+                    the finest portable shortwave radio ever made. Produced from
+                    <time datetime="1942">1942 </time>
+                    through the <em>late 1970s</em>, it represents the peak of
+                    American consumer electronics craftsmanship.
+                </p>
+                <p>
+                    Each restoration begins with a full <mark>
+                        safety inspection
+                    </mark> before any power is applied. The
+                    <abbr title="High Tension">HT </abbr>
+                    supply on early models reaches <var>V<sub>max</sub></var> = 90V
+                    — well within the danger threshold. Handle with care.
+                </p>
+                <blockquote>
+                    <p>
+                        The Trans-Oceanic was not just a radio. It was a
+                        passport.
+                    </p>
+                    <cite>— Zenith collector, 2019</cite>
+                </blockquote>
+                <p>
+                    Common faults include <del
+                        >corrosion on the antenna contacts</del
+                    >
+                    <ins>oxidised antenna contacts</ins> and dried-out electrolytics.
+                    Refer to the <a href="/demo/article">recapping guide</a> for full
+                    procedure. Parts are sourced using the command <code>
+                        search --part C3 --chassis TO600
+                    </code>. Press <kbd>Enter</kbd> to execute. Expected output:
+                    <samp> 3 results found </samp>.
+                </p>
+                <small>
+                    All restoration work carries a 90-day bench warranty.
+                </small>
+            </div>
+        </section>
+    </div>
+</DisplayLayout>
+
+<style lang="scss">
+    @use "mixins" as *;
+
+    .page {
+        max-width: 90ch;
+        margin-inline: auto;
+        padding-inline: var(--space-5);
+        padding-block: var(--space-6);
+    }
+
+    section {
+        padding-block: var(--space-5);
+    }
+
+    // ── font families ──
+    .font-grid {
+        @include stack(var(--space-3));
+        margin-block-start: var(--space-4);
+    }
+
+    .font-card {
+        @include border;
+        @include radius-card;
+        padding: var(--space-4) var(--space-5);
+        background-color: var(--color-surface);
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+    }
+
+    .font-sample {
+        font-size: var(--text-2xl);
+        flex: 1;
+        margin: 0;
+    }
+
+    .font-meta {
+        @include stack(var(--space-1));
+        min-width: 200px;
+    }
+
+    .font-label {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-sm);
+    }
+
+    .font-token {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+    }
+
+    .font-usage {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+    }
+
+    // ── type scale ──
+    .scale-list {
+        @include stack(var(--space-2));
+        margin-block-start: var(--space-4);
+    }
+
+    .scale-row {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-6);
+        padding-block: var(--space-2);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .scale-sample {
+        flex: 1;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .scale-meta {
+        display: flex;
+        gap: var(--space-4);
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .scale-token {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+    }
+
+    .scale-label {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        min-width: 2ch;
+    }
+
+    // ── weights ──
+    .weight-grid {
+        display: flex;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+        margin-block-start: var(--space-4);
+    }
+
+    .weight-card {
+        @include border;
+        @include radius-card;
+        padding: var(--space-4) var(--space-5);
+        background-color: var(--color-surface);
+        @include stack(var(--space-1));
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .weight-sample {
+        font-size: var(--text-2xl);
+        margin: 0;
+    }
+
+    .weight-token {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+    }
+
+    .weight-label {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+    }
+
+    // ── leading ──
+    .leading-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: var(--space-4);
+        margin-block-start: var(--space-4);
+    }
+
+    .leading-card {
+        @include border;
+        @include radius-card;
+        padding: var(--space-4);
+        background-color: var(--color-surface);
+        @include stack(var(--space-2));
+    }
+
+    .leading-sample {
+        font-size: var(--text-sm);
+        margin: 0;
+    }
+
+    .leading-token {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+    }
+
+    .leading-value {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+    }
+
+    // ── tracking ──
+    .tracking-list {
+        @include stack(var(--space-2));
+        margin-block-start: var(--space-4);
+    }
+
+    .tracking-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        padding-block: var(--space-3);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .tracking-sample {
+        flex: 1;
+        font-size: var(--text-md);
+        margin: 0;
+        font-weight: var(--font-weight-bold);
+    }
+
+    .tracking-meta {
+        display: flex;
+        gap: var(--space-4);
+        flex-shrink: 0;
+    }
+
+    .tracking-token {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+    }
+
+    .tracking-value {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+    }
+
+    // ── headings ──
+    .heading-demo {
+        @include border;
+        @include radius-card;
+        padding: var(--space-6);
+        background-color: var(--color-surface);
+        margin-block-start: var(--space-4);
+    }
+
+    // ── inline elements ──
+    .inline-grid {
+        @include stack(0);
+        margin-block-start: var(--space-4);
+    }
+
+    .inline-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        padding-block: var(--space-3);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .inline-demo {
+        flex: 1;
+        font-size: var(--text-md);
+    }
+
+    .inline-token {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+        flex-shrink: 0;
+        min-width: 12ch;
+    }
+
+    // ── prose ──
+    .prose {
+        @include border;
+        @include radius-card;
+        padding: var(--space-6);
+        background-color: var(--color-surface);
+        margin-block-start: var(--space-4);
+        max-width: 65ch;
+    }
+</style>

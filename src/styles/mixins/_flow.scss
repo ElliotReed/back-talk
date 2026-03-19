@@ -1,37 +1,11 @@
 @mixin flow($space: var(--space-stack)) {
-
-    // reset element margins inside flow container
-    // container owns all spacing
-    // &>* {
-    //     margin-block: 0;
-    // }
-
     &>*+* {
         margin-block-start: $space;
     }
 }
 
-// variable flow — different elements get different spacing
-@mixin flow-prose {
-    &>* {
-        margin-block: 0;
-    }
-
-    &>*+* {
-        margin-block-start: var(--space-3);
-    }
-
-    &>*+h2,
-    &>*+h3 {
-        margin-block-start: var(--space-6);
-    }
-
-    // headings get more space
-
-    &>h2+*,
-    &>h3+* {
-        margin-block-start: var(--space-2);
-    }
-
-    // tight after heading
+@mixin stack($space: var(--space-stack)) {
+    display: flex;
+    flex-direction: column;
+    gap: $space;
 }

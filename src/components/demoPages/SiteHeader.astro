@@ -17,6 +17,8 @@ const systemLinks = [
 const demoLinks = [
     { href: "/demo", label: "Home" },
     { href: "/demo/article", label: "Repair Guides" },
+    { href: "/demo/code", label: "Technical Ref" },
+    { href: "/demo/components", label: "Parts & Services" },
     { href: "/demo/contact", label: "Contact" },
 ];
 
@@ -73,8 +75,10 @@ const currentPath = Astro.url.pathname;
             align-items: center;
             @include padding-box("sm");
             color: var(--color-header-text);
-            @include gradient(var(--color-header-background), 180deg);
+            // @include gradient(var(--color-primary-500));
+            background: var(--color-header-background);
             border-bottom: 1px solid var(--color-header-border);
+            @include shadow(1);
         }
 
         .logo {
@@ -86,7 +90,7 @@ const currentPath = Astro.url.pathname;
         }
 
         .logo-name {
-            color: var(--color-primary-400);
+            color: var(--color-primary-100);
             font-size: var(--text-lg);
             font-weight: 700;
         }
@@ -108,13 +112,18 @@ const currentPath = Astro.url.pathname;
                 padding: 0;
                 gap: var(--space-1);
                 list-style: none;
+
+                li {
+                    margin: 0;
+                    @include radius("sm");
+                }
             }
 
             a {
+                @include radius("sm");
                 @include padding-box("xs");
                 text-decoration: none;
                 color: var(--color-header-text);
-                border-radius: var(--radius-sm);
                 transition: background var(--transition-fast);
 
                 @include focus-ring;
@@ -134,8 +143,8 @@ const currentPath = Astro.url.pathname;
 
         .cross-link {
             font-size: var(--text-sm);
-            border: 1px solid var(--color-header-border);
-            border-radius: var(--radius-sm);
+            @include border(var(--color-header-border));
+            @include radius("sm");
             opacity: 0.75;
 
             &:hover {
