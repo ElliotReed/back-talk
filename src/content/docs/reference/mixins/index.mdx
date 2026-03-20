@@ -1,11 +1,16 @@
 ---
-title: "Mixins"
-description: "All about mixins"
+title: Mixins
+description: All Backtalk mixins — naming conventions and quick reference.
 ---
 
-## Mixin Naming
+Mixins are imported once and available everywhere:
+```scss
+@use 'mixins' as *;
+```
 
-Mixins are named after what they produce, not how you use them.
+## Naming Convention
+
+Mixins are named after what they produce, not how you use them:
 
 - `focus-ring` — produces a focus ring
 - `padding-box` — produces box padding
@@ -13,3 +18,100 @@ Mixins are named after what they produce, not how you use them.
 - `gradient` — produces a gradient
 
 Exception: `respond-to` — established convention, kept for familiarity.
+
+## Usage
+
+Apply to the element directly — most mixins generate nested pseudo-class
+or pseudo-element rules internally:
+```scss
+// ✅ correct — mixin goes on the element
+.button {
+  @include focus-ring;
+  @include shadow(2);
+  @include button-primary;
+}
+
+// ❌ wrong — focus-ring generates :focus-visible internally
+.button:focus-visible {
+  @include focus-ring;
+}
+```
+
+## All Mixins
+
+### Layout
+- [stack](/reference/mixins/layout) — flex column with gap
+- [flow](/reference/mixins/layout) — margin-based spacing for mixed content
+- [scroll-container](/reference/mixins/layout) — overflow scroll container
+
+### Shadow
+- [shadow](/reference/mixins/shadow) — depth 1–5
+- [shadow-inset](/reference/mixins/shadow) — inset depth 1–5
+
+### Focus
+- [focus-ring](/reference/mixins/focus) — standard focus ring
+- [focus-ring-inset](/reference/mixins/focus) — inset focus ring
+
+### Border
+- [border](/reference/mixins/border) — configurable border
+- [border-ghost](/reference/mixins/border) — transparent border
+
+### Padding
+- [padding-box](/reference/mixins/padding) — block/inline padding
+- [box-button](/reference/mixins/padding) — button padding
+- [box-input](/reference/mixins/padding) — input padding
+- [box-card](/reference/mixins/padding) — card padding
+- [box-badge](/reference/mixins/padding) — badge padding
+
+### Radius
+- [radius](/reference/mixins/radius) — configurable radius
+- [radius-button](/reference/mixins/radius) — button radius
+- [radius-card](/reference/mixins/radius) — card radius
+- [radius-input](/reference/mixins/radius) — input radius
+- [radius-badge](/reference/mixins/radius) — badge radius
+- [radius-modal](/reference/mixins/radius) — modal radius
+- [radius-tooltip](/reference/mixins/radius) — tooltip radius
+
+### Button
+- [button-base](/reference/mixins/button) — shared button foundation
+- [button-primary](/reference/mixins/button) — primary action
+- [button-secondary](/reference/mixins/button) — secondary action
+- [button-ghost](/reference/mixins/button) — minimal bordered
+- [button-danger](/reference/mixins/button) — destructive action
+- [button-sm](/reference/mixins/button) — small size
+- [button-lg](/reference/mixins/button) — large size
+- [button-pill](/reference/mixins/button) — pill shape
+- [button-icon](/reference/mixins/button) — icon only
+
+### Gradient
+- [gradient](/reference/mixins/gradient) — oklch surface gradient
+
+### Scrollbar
+- [scrollbar](/reference/mixins/scrollbar) — neutral scrollbar
+- [scrollbar-themed](/reference/mixins/scrollbar) — branded scrollbar
+
+### Responsive
+- [respond-to](/reference/mixins/respond-to) — min-width breakpoint
+- [respond-until](/reference/mixins/respond-to) — max-width breakpoint
+- [respond-from](/reference/mixins/respond-to) — alias for respond-to
+- [respond-mobile](/reference/mixins/respond-to) — xs breakpoint
+- [respond-tablet](/reference/mixins/respond-to) — md breakpoint
+- [respond-desktop](/reference/mixins/respond-to) — lg breakpoint
+- [respond-wide](/reference/mixins/respond-to) — xl breakpoint
+
+### Animation
+- [soft-in](/reference/mixins/animation) — opacity fade
+- [fade-up](/reference/mixins/animation) — fade from below
+- [fade-in-top](/reference/mixins/animation) — fade from above
+- [fade-in-bottom](/reference/mixins/animation) — fade from below
+- [fade-in-right](/reference/mixins/animation) — fade from right
+- [fade-left](/reference/mixins/animation) — fade from right to left
+- [fade-out-top](/reference/mixins/animation) — exit upward
+- [scale-in-center](/reference/mixins/animation) — scale from zero
+- [scale-up](/reference/mixins/animation) — scale with overshoot
+- [puff-in-center](/reference/mixins/animation) — scale with blur
+- [swing-in-top](/reference/mixins/animation) — rotate in from top
+- [jello-horizontal](/reference/mixins/animation) — elastic attention
+
+### Utility
+- [debug](/reference/mixins/debug) — outline all elements

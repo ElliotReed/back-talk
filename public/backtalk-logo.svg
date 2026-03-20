@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <style>
+      .bubble { fill: #CD6799; }
+      .bubble-dark { fill: #A84E7D; }
+      .text { fill: #ffffff; font-family: system-ui, sans-serif; font-weight: 700; }
+      .tail { fill: #CD6799; }
+    </style>
+  </defs>
+
+  <!-- speech bubble body -->
+  <rect class="bubble" x="40" y="40" width="432" height="340" rx="48" ry="48"/>
+
+  <!-- subtle inner shadow edge -->
+  <rect class="bubble-dark" x="40" y="316" width="432" height="64" rx="0" ry="0"/>
+  <rect class="bubble" x="40" y="316" width="432" height="40" rx="0" ry="0"/>
+
+  <!-- bubble tail -->
+  <polygon class="tail" points="120,368 80,460 220,368"/>
+
+  <!-- bt text -->
+  <text class="text" x="256" y="262" font-size="196" text-anchor="middle" dominant-baseline="middle" letter-spacing="-8">bt</text>
+</svg>

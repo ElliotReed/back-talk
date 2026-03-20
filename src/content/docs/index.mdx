@@ -5,8 +5,11 @@ template: splash
 hero:
   tagline: Backtalk is an impudent or insolent retort, often described as "sass" or "lip".
   image:
-    file: ../../assets/sass.svg
+     file: ../../assets/backtalk-logo.svg
   actions:
+    - text: Overview
+      link: /overview/
+      icon: right-arrow
     - text: Reference
       link: /reference/
       icon: right-arrow
@@ -16,7 +19,7 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid } from "@astrojs/starlight/components";
 
 Backtalk refers to rude, disrespectful, or argumentative replies,
 particularly from children to authority figures like parents or teachers. It often involves a negative tone, body language, or insolent language used to express frustration or challenge power. Common in children and teens, it is generally considered a form of defiance. 
@@ -24,6 +27,27 @@ particularly from children to authority figures like parents or teachers. It oft
 It is an impudent or insolent retort, often described as "sass" or "lip".
 
 <CardGrid stagger>
+  <Card title="System Pages" icon="puzzle">
+    Live token and mixin references — see the system generating real output.
+
+    - [Colors](/system/colors)
+    - [Typography](/system/typography)
+    - [Shadows](/system/shadows)
+    - [Spacing](/system/spacing)
+    - [Animations](/system/animations)
+    - [Buttons](/system/buttons)
+  </Card>
+
+  <Card title="Demo Pages" icon="laptop">
+    Fictional vintage radio repair site — base elements and mixins in context.
+
+    - [Home](/demo)
+    - [Repair Guides](/demo/article)
+    - [Technical Reference](/demo/code)
+    - [Parts & Services](/demo/components)
+    - [Contact](/demo/contact)
+  </Card>
+
 	<Card title="Main Site Links" icon="external">
 		Website: [Back Talk](https://docs.backtalk.elliotreed.dev).
 

@@ -1,0 +1,42 @@
+@mixin flow($space: var(--space-stack)) {
+    &>*+* {
+        margin-block-start: $space;
+    }
+}
+
+@mixin stack($space: var(--space-stack)) {
+    display: flex;
+    flex-direction: column;
+    gap: $space;
+}
+
+@mixin scroll-container($direction: x, // x, y, both
+    $behavior: auto, // auto, smooth
+
+) {
+    @if $direction ==x {
+        overflow-x: auto;
+        overflow-y: visible;
+        contain: inline-size;
+    }
+
+    @else if $direction ==y {
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    @else if $direction ==both {
+        overflow: auto;
+    }
+
+    @if $behavior ==smooth {
+        scroll-behavior: smooth;
+
+        @media (prefers-reduced-motion: reduce) {
+            scroll-behavior: auto;
+        }
+    }
+
+    // touch scrolling
+    -webkit-overflow-scrolling: touch;
+}

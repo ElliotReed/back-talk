@@ -1,0 +1,38 @@
+---
+title: Reference
+description: Complete reference for all Backtalk tokens and mixins.
+---
+
+import { CardGrid , LinkCard} from "@astrojs/starlight/components";
+
+Quick reference for everything the system generates and provides.
+
+## Tokens
+
+CSS custom properties generated from config. Always consume semantic tokens
+in components — never scale tokens directly.
+
+<CardGrid>
+  <LinkCard title="Colors" href="/reference/tokens/colors" description="--color-* scale and semantic tokens" />
+  <LinkCard title="Typography" href="/reference/tokens/typography" description="--font-*, --text-*, --leading-*, --tracking-*" />
+  <LinkCard title="Spacing" href="/reference/tokens/spacing" description="--space-* numeric, named, and semantic aliases" />
+  <LinkCard title="Motion" href="/reference/tokens/motion" description="--duration-*, --ease-*, --transition-*" />
+  <LinkCard title="Radius" href="/reference/tokens/radius" description="--radius-* scale" />
+</CardGrid>
+
+## Mixins
+
+Imported via `@use 'mixins' as *` — available in any Sass file.
+
+<CardGrid>
+  <LinkCard title="Shadow" href="/reference/mixins/shadow" description="shadow(), shadow-inset()" />
+  <LinkCard title="Button" href="/reference/mixins/button" description="button-primary, button-ghost, button-secondary, button-danger" />
+  <LinkCard title="Layout" href="/reference/mixins/layout" description="stack(), flow(), scroll-container()" />
+  <LinkCard title="Focus" href="/reference/mixins/focus" description="focus-ring, focus-ring-inset" />
+  <LinkCard title="Border" href="/reference/mixins/border" description="border(), border-ghost()" />
+  <LinkCard title="Padding" href="/reference/mixins/padding" description="padding-box(), box-button(), box-card() and more" />
+  <LinkCard title="Gradient" href="/reference/mixins/gradient" description="gradient()" />
+  <LinkCard title="Scrollbar" href="/reference/mixins/scrollbar" description="scrollbar(), scrollbar-themed()" />
+  <LinkCard title="Respond To" href="/reference/mixins/respond-to" description="respond-to(), respond-until() and breakpoint helpers" />
+  <LinkCard title="Animation" href="/reference/mixins/animation" description="fade-up, scale-in, swing-in and more" />
+</CardGrid>

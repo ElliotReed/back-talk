@@ -4,6 +4,8 @@ import SiteHeader from "../components/demoPages/SiteHeader.astro";
 import "../styles/index.scss";
 
 const { title, description, headerMode } = Astro.props;
+
+const isDev = import.meta.env.DEV; // for test
 ---
 
 <html lang="en">
@@ -11,6 +13,22 @@ const { title, description, headerMode } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
+
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link
+            rel="icon"
+            href="/favicon-16x16.png"
+            type="image/png"
+            sizes="16x16"
+        />
+        <link
+            rel="icon"
+            href="/favicon-32x32.png"
+            type="image/png"
+            sizes="32x32"
+        />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         <!-- description for if these pages ever get indexed -->
         <meta name="description" content={description} />
@@ -31,6 +49,17 @@ const { title, description, headerMode } = Astro.props;
         <style is:inline>
             @layer reset, tokens, base, components, utilities;
         </style>
+        <!-- for mobile safari trouble shooting {
+            isDev && (
+                <>
+                    <script
+                        is:inline
+                        src="https://cdn.jsdelivr.net/npm/eruda"
+                    />
+                    <script is:inline>eruda.init();</script>
+                </>
+            )
+        } -->
     </head>
     <body>
         <SiteHeader mode={headerMode} />

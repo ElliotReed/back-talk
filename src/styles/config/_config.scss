@@ -1,102 +1,52 @@
-// ── Colors ────────────────────────────────────────────────────────────────────
-// add "primary" to set the base color — everything else is generated
-// add "accent" to override the generated accent
-// add any extra color ("tertiary" etc) — each gets a full scale
+@use "functions" as *;
+
+// ── colors ────────────────────────────────────────────────
+// set primary — system derives accent, neutral, and feedback
+// "accent" key overrides generated accent
+// any extra key gets a full 50-950 scale
+
 $color-overrides: (
-    // #FF2D55 — hot pink/red 
-    //  #FF6B1A — orange 
-    //  #FFD60A — yellow 
-    //  #30D158 — green
-    //  #0A84FF — blue 
-    //  #BF5AF2 — purple
-    //  #8B4513 — saddle brown
-    //  #4A7C59 — forest green
-    //  #5B7FA6 — steel blue
-    //  #9B6B9B — dusty purple
-    //  #FF0000 — pure red
-    //  #00FF00 — pure green
-    //  #0000FF — pure blue
-    //  #FFD700 — gold
-    //  #FF69B4 — hot pink
-    //  #40E0D0 — turquoise
-    "primary": #9B6B9B,
-    // "accent":   #FF4B8B,  ← override generated accent
-    // "tertiary": #FF0000,  ← extra color, gets full scale
+    "primary": #1A73FF,
+    // "accent":   #FF4B8B,
+    // "tertiary": #FF0000,
     ) !default;
 
-// drives accent generation only
-// ignored if "accent" is set in $color-overrides
+// drives accent generation — ignored if "accent" set in $colors
+// "complementary" | "analogous" | "split-complementary" | "monochromatic"
 $color-scheme-override: "complementary" !default;
-// "monochromatic"      → same hue, lighter and less saturated
-// "analogous"          → adjacent on color wheel ± 30°
-// "complementary"      → opposite on color wheel + 180°
-// "split-complementary"→ either side of complement + 150°
 
-// ── Typography ────────────────────────────────────────────────────────────────
-// font stacks — add any role to override, unset roles use system defaults
-// roles: "body", "heading", "display", "ui", "mono"
+// ── typography ────────────────────────────────────────────
+// override any role — unset roles use defaults
+// adding a new key generates a new --font-* token
 $font-overrides: (
-    "body": (Inter, system-ui, sans-serif),
-    "heading": (Georgia, "Times New Roman", serif),
-    "display": (Georgia, "Times New Roman", serif),
-    "ui": (Inter, system-ui, sans-serif),
-    "mono": ("Fira Mono", "Courier New", monospace),
     ) !default;
 
-// base font size — default 1rem (16px)
-// affects the entire type scale
-$type-base-override: null !default;
+// replaces defaults entirely — only list weights your font actually loads
+$font-weight-overrides: (
+    ) !default;
 
-// modular scale ratio — default 1.25 (Major Third)
-// "1.067" Minor Second  → very tight, dense
-// "1.125" Major Second  → subtle, body-heavy UIs
-// "1.200" Minor Third   → balanced
-// "1.250" Major Third   → default
-// "1.333" Perfect Fourth → noticeable jumps, editorial
-// "1.618" Golden Ratio  → dramatic, display/marketing
+// null uses default — ratios: 1.125 subtle / 1.25 default / 1.333 expressive
+$type-base-override: null !default;
 $type-ratio-override: null !default;
 
-// ── Spacing ───────────────────────────────────────────────────────────────────
-// base spacing unit — default 0.25rem (4px)
-// all spacing tokens are multiples of this value
+// ── spacing ───────────────────────────────────────────────
 $space-unit-override: null !default;
 
-// padding block/inline ratio — default null (uses handcrafted scale)
-// set a number to override e.g. 1.5, 2, 3
-// "1.5" → tight, dense UI
-// "2"   → balanced (matches handcrafted default)
-// "3"   → wide, pill-like
-$box-ratio-override: null !default;
-
-// ── Radius ────────────────────────────────────────────────────────────────────
-// base border radius in px — default 6px
-// drives the entire radius scale
-// "2px"  → subtle, enterprise
-// "6px"  → balanced, default
-// "12px" → friendly, consumer
+// ── radius ────────────────────────────────────────────────
 $radius-base-override: null !default;
 
-// ── Shadow ────────────────────────────────────────────────────────────────────
-$shadow-offset-base-override: null !default; // 2px
-$shadow-direction-override: null !default; // "left", "right", "none"
-$shadow-hardness-override: null !default; // 1 - 10
+// ── box padding ───────────────────────────────────────────
+$box-ratio-override: null !default;
+
+// ── shadows ───────────────────────────────────────────────
+// direction: where the light source is
+// "none" overhead | "left" from left | "right" from right
+$shadow-offset-base-override: null !default;
+$shadow-direction-override: null !default;
+$shadow-hardness-override: null !default;
 
 // ── breakpoints ───────────────────────────────────────────
-// breakpoint values are in em — respects user font size preferences
-// em values can be set directly or converted from px using px-to-em()
-//
-// override or add breakpoints in _config.scss:
-// $breakpoint-overrides: (
-//   "lg":   62em,              // em directly
-//   "menu": px-to-em(860px),   // or convert from px
-// );
-
+// merges with defaults — only set what changes or add new
+// use px-to-em() to convert from px
 $breakpoint-overrides: (
-    ) !default;
-
-$font-weight-overrides: (
-    "medium": 500,
-    "regular": 400,
-    "semibold": 600,
-    "bold": 700,
     ) !default;

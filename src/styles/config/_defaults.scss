@@ -1,28 +1,10 @@
 @use "functions" as *;
 
-// the colors — each generates its own scale
 $colors: (
     "primary": #1A73FF,
-    // accent is generated from scheme unless overridden
-    // "accent": #FF4B8B,  ← uncomment to override
-    // "tertiary": #FF0000 ← add any extra, generates its own scale
     ) !default;
 
-// scheme drives accent generation only
-// if accent is in $colors, this is ignored
 $color-scheme: "complementary" !default;
-// "monochromatic"
-// "analogous"
-// "complementary"
-// "split-complementary"
-
-
-// Typography defaults
-// body    — long form reading, paragraphs
-// heading — h1-h6, readable at all sizes
-// display — decorative, hero text, large headings
-// ui      — buttons, labels, form elements, navigation
-// mono    — code, pre, kbd, samp
 
 $fonts: (
     "body": (Georgia, "Times New Roman", serif),
@@ -32,32 +14,23 @@ $fonts: (
     "mono": ("Courier New", Courier, monospace),
     ) !default;
 
-// Type scale
+$font-weights: (
+    "regular": 400,
+    "bold": 700,
+    ) !default;
+
 $type-base: 1rem !default;
-$type-ratio: 1.25 !default; // Major Third
+$type-ratio: 1.25 !default;
 
-// Spacing
-$space-unit: 0.25rem !default; // 4px base unit
+$space-unit: 0.25rem !default;
 
-// Radius
 $radius-base: 6px !default;
 
 $box-ratio: 2 !default;
 
-// Shadow
 $shadow-offset-base: 2px !default;
-$shadow-direction: "none" !default; // "left", "right", "none"
-$shadow-hardness: 5 !default; // 1 - 10
-
-// ── breakpoints ───────────────────────────────────────────
-// breakpoint values are in em — respects user font size preferences
-// em values can be set directly or converted from px using px-to-em()
-//
-// override or add breakpoints in _config.scss:
-// $breakpoint-overrides: (
-//   "lg":   62em,              // em directly
-//   "menu": px-to-em(860px),   // or convert from px
-// );
+$shadow-direction: "none" !default;
+$shadow-hardness: 5 !default;
 
 $breakpoints: (
     "xs": px-to-em(360px),
@@ -66,9 +39,4 @@ $breakpoints: (
     "lg": px-to-em(992px),
     "xl": px-to-em(1200px),
     "2xl": px-to-em(1400px),
-    ) !default;
-
-$font-weights: (
-    "regular": 400,
-    "bold": 700,
     ) !default;
