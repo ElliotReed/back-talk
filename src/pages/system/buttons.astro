@@ -1,0 +1,635 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+
+const variants = [
+    {
+        label: "Primary",
+        mixin: "button-primary",
+        description: "Main call to action. Use once per view.",
+    },
+    {
+        label: "Secondary",
+        mixin: "button-secondary",
+        description: "Supporting action. Lower visual weight than primary.",
+    },
+    {
+        label: "Ghost",
+        mixin: "button-ghost",
+        description: "Minimal. Use on surfaces where a border is enough.",
+    },
+    {
+        label: "Danger",
+        mixin: "button-danger",
+        description: "Destructive actions. Confirm before executing.",
+    },
+];
+
+const sizes = [
+    { label: "Small", mixin: "button-sm", size: "sm" },
+    { label: "Default", mixin: "button-primary", size: "md" },
+    { label: "Large", mixin: "button-lg", size: "lg" },
+];
+
+const shapes = [
+    { label: "Default", mixin: "button-primary", class: "btn-default" },
+    { label: "Pill", mixin: "button-primary + button-pill", class: "btn-pill" },
+    { label: "Icon", mixin: "button-primary + button-icon", class: "btn-icon" },
+];
+
+const states = [
+    { label: "Default", state: "" },
+    { label: "Hover", state: "hover" },
+    { label: "Active", state: "active" },
+    { label: "Disabled", state: "disabled" },
+    { label: "Focus", state: "focus" },
+];
+
+const elements = [
+    {
+        label: "<button>",
+        description:
+            "Native button element. Use for actions that do not navigate.",
+        mixin: "button-primary",
+        tag: "button",
+    },
+    {
+        label: "<a>",
+        description: "Link styled as button. Use for actions that navigate.",
+        mixin: "button-primary + :visited reset",
+        tag: "a",
+    },
+];
+---
+
+<DisplayLayout
+    title="Buttons"
+    description="Button mixins — variants, sizes, shapes, states and element usage"
+    headerMode="system"
+>
+    <div class="page">
+        <section class="intro">
+            <h1>Buttons</h1>
+            <p class="lead">
+                Button styles are mixins, not classes — apply them to any
+                element. The same mixin works on <code>&lt;button&gt;</code> and <code
+                    >&lt;a&gt;</code
+                >. Base element styles handle cursor, font, and focus — the
+                mixin handles appearance.
+            </p>
+
+            <div class="usage-note">
+                <h2>Usage</h2>
+                <pre><code>@use "../../styles/mixins" as *;
+
+// on a button element
+.my-button &#123;
+  @include button-primary;
+&#125;
+
+// on a link element — identical mixin
+.my-link &#123;
+  @include button-primary;
+&#125;
+
+// combine variants with sizes and shapes
+.my-button &#123;
+  @include button-ghost;
+  @include button-lg;
+  @include button-pill;
+&#125;</code></pre>
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- variants -->
+        <section>
+            <h2>Variants</h2>
+            <p>
+                Four semantic variants covering the full range of action
+                hierarchy.
+            </p>
+
+            <div class="variant-grid">
+                {
+                    variants.map(({ label, mixin, description }) => (
+                        <div class="variant-card">
+                            <div class="variant-stage">
+                                <button class={`btn btn--${mixin}`}>
+                                    {label}
+                                </button>
+                            </div>
+                            <div class="variant-info">
+                                <p class="variant-label">{label}</p>
+                                <p class="variant-description">{description}</p>
+                                <code class="variant-mixin">
+                                    @include {mixin};
+                                </code>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- states -->
+        <section>
+            <h2>States</h2>
+            <p>All interactive states shown simultaneously for comparison.</p>
+
+            <div class="states-grid">
+                {
+                    variants.map(({ label, mixin }) => (
+                        <div class="states-row">
+                            <span class="states-name">{label}</span>
+                            {states.map(({ label: stateLabel, state }) => (
+                                <div class="state-cell">
+                                    <span class="state-label">
+                                        {stateLabel}
+                                    </span>
+                                    <button
+                                        class={`btn btn--${mixin} ${state ? `btn--${state}` : ""}`}
+                                        disabled={
+                                            state === "disabled"
+                                                ? true
+                                                : undefined
+                                        }
+                                    >
+                                        {label}
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- sizes -->
+        <section>
+            <h2>Sizes</h2>
+            <p>
+                Three sizes driven by <code>box-button($size)</code>. Combine
+                with any variant.
+            </p>
+
+            <div class="sizes-row">
+                {
+                    sizes.map(({ label, mixin, size }) => (
+                        <div class="size-cell">
+                            <button class={`btn btn--primary btn--${size}`}>
+                                {label}
+                            </button>
+                            <code class="size-mixin">@include {mixin};</code>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- shapes -->
+        <section>
+            <h2>Shapes</h2>
+            <p>Shape modifiers compose with any variant.</p>
+
+            <div class="shapes-row">
+                {
+                    shapes.map(({ label, mixin, class: cls }) => (
+                        <div class="shape-cell">
+                            <button class={`btn btn--primary ${cls}`}>
+                                {cls === "btn-icon" ? "★" : label}
+                            </button>
+                            <code class="shape-mixin">@include {mixin};</code>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- element usage -->
+        <section>
+            <h2>Element Usage</h2>
+            <p>
+                The same mixin on different elements. Use <code
+                    >&lt;button&gt;</code
+                > for actions, <code>&lt;a&gt;</code> for navigation. Never use <code
+                    >&lt;a&gt;</code
+                >
+                without an <code>href</code>.
+            </p>
+
+            <div class="element-grid">
+                {
+                    elements.map(({ label, description, mixin, tag }) => (
+                        <div class="element-card">
+                            <div class="element-stage">
+                                {tag === "button" ? (
+                                    <button class="btn btn--primary">
+                                        Button Element
+                                    </button>
+                                ) : (
+                                    <a
+                                        href="#"
+                                        class="btn btn--primary btn--link"
+                                    >
+                                        Link Element
+                                    </a>
+                                )}
+                            </div>
+                            <div class="element-info">
+                                <p class="element-tag">{label}</p>
+                                <p class="element-description">{description}</p>
+                                <code class="element-mixin">
+                                    @include {mixin};
+                                </code>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <hr />
+
+        <!-- dos and donts -->
+        <section>
+            <h2>Do and Don't</h2>
+
+            <div class="guidance-grid">
+                <div class="guidance-card guidance--do">
+                    <h3>Do</h3>
+                    <ul>
+                        <li>
+                            Use <code>&lt;button&gt;</code> for actions that do not
+                            navigate
+                        </li>
+                        <li>
+                            Use <code>&lt;a&gt;</code> with <code>href</code> for
+                            navigation styled as a button
+                        </li>
+                        <li>
+                            Combine size and shape modifiers with variant mixins
+                        </li>
+                        <li>Use one primary button per view</li>
+                        <li>Keep button labels short and action-oriented</li>
+                    </ul>
+                </div>
+
+                <div class="guidance-card guidance--dont">
+                    <h3>Don't</h3>
+                    <ul>
+                        <li>
+                            Don't use <code>&lt;a&gt;</code> without <code
+                                >href</code
+                            >
+                        </li>
+                        <li>
+                            Don't use <code>&lt;div&gt;</code> or <code
+                                >&lt;span&gt;</code
+                            > as buttons
+                        </li>
+                        <li>
+                            Don't use multiple primary buttons in the same view
+                        </li>
+                        <li>
+                            Don't rely on color alone to communicate button
+                            meaning
+                        </li>
+                        <li>
+                            Don't remove focus styles — keyboard users need them
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</DisplayLayout>
+
+<style lang="scss">
+    @use "mixins" as *;
+
+    .page {
+        max-width: 90ch;
+        margin-inline: auto;
+        padding-inline: var(--space-5);
+        padding-block: var(--space-6);
+    }
+
+    .intro {
+        @include stack(var(--space-5));
+    }
+
+    .lead {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        line-height: var(--leading-relaxed);
+    }
+
+    .usage-note {
+        @include border;
+        @include radius-card;
+        padding: var(--space-5);
+        background-color: var(--color-surface);
+
+        h2 {
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wide);
+            color: var(--color-text-muted);
+            margin-block-start: 0;
+            margin-block-end: var(--space-3);
+        }
+
+        pre {
+            margin: 0;
+        }
+    }
+
+    section {
+        padding-block: var(--space-5);
+    }
+
+    // ── buttons ──
+    .btn {
+        @include button-base;
+    }
+
+    .btn--button-primary {
+        @include button-primary;
+    }
+    .btn--button-secondary {
+        @include button-secondary;
+    }
+    .btn--button-ghost {
+        @include button-ghost;
+    }
+    .btn--button-danger {
+        @include button-danger;
+    }
+    .btn--primary {
+        @include button-primary;
+    }
+
+    .btn--sm {
+        @include button-sm;
+    }
+    .btn--md {
+    } // default
+    .btn--lg {
+        @include button-lg;
+    }
+
+    .btn-pill {
+        @include button-pill;
+    }
+    .btn-icon {
+        @include button-icon;
+    }
+    .btn--link {
+        @include button-primary;
+    }
+
+    // simulated states for display
+    .btn--hover {
+        background-color: var(--color-interactive-hover);
+    }
+    .btn--active {
+        transform: scale(0.98);
+    }
+    .btn--focus {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 3px;
+    }
+
+    // ── variants ──
+    .variant-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--space-4);
+        margin-block-start: var(--space-4);
+    }
+
+    .variant-card {
+        @include border;
+        @include radius-card;
+        @include shadow(1);
+        background-color: var(--color-surface);
+        overflow: hidden;
+    }
+
+    .variant-stage {
+        padding: var(--space-6);
+        background-color: var(--color-background);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .variant-info {
+        padding: var(--space-4);
+        @include stack(var(--space-1));
+    }
+
+    .variant-label {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-sm);
+        margin: 0;
+    }
+
+    .variant-description {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        margin: 0;
+        line-height: var(--leading-relaxed);
+    }
+
+    .variant-mixin {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+        display: block;
+    }
+
+    // ── states ──
+    .states-grid {
+        @include stack(var(--space-4));
+        margin-block-start: var(--space-4);
+    }
+
+    .states-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+        padding-block: var(--space-3);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .states-name {
+        font-size: var(--text-sm);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-muted);
+        min-width: 80px;
+    }
+
+    .state-cell {
+        @include stack(var(--space-2));
+        align-items: center;
+    }
+
+    .state-label {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        text-align: center;
+    }
+
+    // ── sizes ──
+    .sizes-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        flex-wrap: wrap;
+        margin-block-start: var(--space-4);
+        padding: var(--space-6);
+        background-color: var(--color-surface);
+        @include border;
+        @include radius-card;
+    }
+
+    .size-cell {
+        @include stack(var(--space-2));
+        align-items: center;
+    }
+
+    .size-mixin {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+    }
+
+    // ── shapes ──
+    .shapes-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        flex-wrap: wrap;
+        margin-block-start: var(--space-4);
+        padding: var(--space-6);
+        background-color: var(--color-surface);
+        @include border;
+        @include radius-card;
+    }
+
+    .shape-cell {
+        @include stack(var(--space-2));
+        align-items: center;
+    }
+
+    .shape-mixin {
+        font-size: var(--text-xs);
+        color: var(--color-interactive);
+        text-align: center;
+    }
+
+    // ── element usage ──
+    .element-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--space-4);
+        margin-block-start: var(--space-4);
+    }
+
+    .element-card {
+        @include border;
+        @include radius-card;
+        overflow: hidden;
+        background-color: var(--color-surface);
+    }
+
+    .element-stage {
+        padding: var(--space-6);
+        background-color: var(--color-background);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .element-info {
+        padding: var(--space-4);
+        @include stack(var(--space-1));
+    }
+
+    .element-tag {
+        font-family: var(--font-mono);
+        font-size: var(--text-sm);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-interactive);
+        margin: 0;
+    }
+
+    .element-description {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        margin: 0;
+        line-height: var(--leading-relaxed);
+    }
+
+    .element-mixin {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        display: block;
+    }
+
+    // ── guidance ──
+    .guidance-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--space-4);
+        margin-block-start: var(--space-4);
+    }
+
+    .guidance-card {
+        @include radius-card;
+        padding: var(--space-5);
+        @include stack(var(--space-3));
+
+        h3 {
+            font-size: var(--text-md);
+            margin: 0;
+        }
+
+        ul {
+            @include stack(var(--space-2));
+            padding-inline-start: var(--space-4);
+        }
+
+        li {
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+        }
+
+        &.guidance--do {
+            background-color: var(--color-success-surface);
+            border-inline-start: 4px solid var(--color-success);
+            h3 {
+                color: var(--color-success-text);
+            }
+        }
+
+        &.guidance--dont {
+            background-color: var(--color-error-surface);
+            border-inline-start: 4px solid var(--color-error);
+            h3 {
+                color: var(--color-error-text);
+            }
+        }
+    }
+</style>

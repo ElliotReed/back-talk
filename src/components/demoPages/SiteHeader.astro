@@ -8,6 +8,8 @@ interface Props {
 const { mode = "demo" } = Astro.props;
 
 const systemLinks = [
+    { href: "/system/animations", label: "Animations" },
+    { href: "/system/buttons", label: "Buttons" },
     { href: "/system/colors", label: "Colors" },
     { href: "/system/shadows", label: "Shadows" },
     { href: "/system/spacing", label: "Spacing" },
@@ -17,9 +19,9 @@ const systemLinks = [
 const demoLinks = [
     { href: "/demo", label: "Home" },
     { href: "/demo/article", label: "Repair Guides" },
-    { href: "/demo/code", label: "Technical Ref" },
     { href: "/demo/components", label: "Parts & Services" },
     { href: "/demo/contact", label: "Contact" },
+    { href: "/demo/code", label: "Technical Ref" },
 ];
 
 const links = mode === "system" ? systemLinks : demoLinks;

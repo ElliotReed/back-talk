@@ -1,7 +1,7 @@
 @use "sass:map";
-@use "../config/resolved";
+@use "../config";
 
-$padding-radius-base: resolved.$radius-base;
+$padding-radius-base: config.$radius-base;
 
 // radius scale — local to this mixin, not exposed as tokens
 $radius-scale: (
@@ -28,7 +28,7 @@ $box-sizes-default: (
 // - ratio is 2 (matches handcrafted design)
 // use calculated when:
 // - any other ratio value
-$use-calculated: resolved.$box-ratio !=null and resolved.$box-ratio !=2;
+$use-calculated: config.$box-ratio !=null and config.$box-ratio !=2;
 
 $box-sizes: null;
 

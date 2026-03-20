@@ -1,0 +1,316 @@
+---
+import DisplayLayout from "../../layouts/DisplayLayout.astro";
+
+const animations = [
+  {
+    mixin: "soft-in",
+    keyframe: "soft-in",
+    label: "Soft In",
+    description: "Simple opacity fade. Default entrance animation.",
+    category: "fade",
+  },
+  {
+    mixin: "fade-up",
+    keyframe: "fade-up",
+    label: "Fade Up",
+    description: "Fades in while translating up from below.",
+    category: "fade",
+  },
+  {
+    mixin: "fade-in-top",
+    keyframe: "fade-in-top",
+    label: "Fade In Top",
+    description: "Fades in while dropping from above.",
+    category: "fade",
+  },
+  {
+    mixin: "fade-in-bottom",
+    keyframe: "fade-in-bottom",
+    label: "Fade In Bottom",
+    description: "Fades in while rising from below.",
+    category: "fade",
+  },
+  {
+    mixin: "fade-in-right",
+    keyframe: "fade-in-right",
+    label: "Fade In Right",
+    description: "Fades in while sliding from the right.",
+    category: "fade",
+  },
+  {
+    mixin: "fade-left",
+    keyframe: "fade-left",
+    label: "Fade Left",
+    description: "Fades in while sliding from the right toward left.",
+    category: "fade",
+  },
+  {
+    mixin: "fade-out-top",
+    keyframe: "fade-out-top",
+    label: "Fade Out Top",
+    description: "Fades out while moving upward. Use for exit animations.",
+    category: "fade",
+  },
+  {
+    mixin: "scale-in-center",
+    keyframe: "scale-in-center",
+    label: "Scale In Center",
+    description: "Scales in from zero. Clean entrance for modals and cards.",
+    category: "scale",
+  },
+  {
+    mixin: "scale-up",
+    keyframe: "scale-up",
+    label: "Scale Up",
+    description: "Scales from 50% with a slight overshoot. Springy entrance.",
+    category: "scale",
+  },
+  {
+    mixin: "puff-in-center",
+    keyframe: "puff-in-center",
+    label: "Puff In Center",
+    description: "Scales in from large with a blur. Dramatic entrance.",
+    category: "scale",
+  },
+  {
+    mixin: "swing-in-top",
+    keyframe: "swing-in-top-fwd",
+    label: "Swing In Top",
+    description: "Rotates in from above on the X axis. Good for dropdowns.",
+    category: "rotate",
+  },
+  {
+    mixin: "jello-horizontal",
+    keyframe: "jello-horizontal",
+    label: "Jello Horizontal",
+    description: "Elastic squash and stretch. Use for attention or error states.",
+    category: "attention",
+  },
+];
+
+const categories = [
+  { id: "fade",      label: "Fade" },
+  { id: "scale",     label: "Scale" },
+  { id: "rotate",    label: "Rotate" },
+  { id: "attention", label: "Attention" },
+];
+---
+
+<DisplayLayout
+  title="Animations"
+  description="Animation keyframes and mixins — usage and live previews"
+  headerMode="system"
+>
+  <div class="page">
+
+    <section class="intro">
+      <h1>Animations</h1>
+      <p class="lead">
+        All animations use motion tokens for duration and easing.
+        Durations zero automatically under
+        <code>prefers-reduced-motion</code> — no per-animation media queries needed.
+      </p>
+      <div class="usage-note">
+        <h2>Usage</h2>
+        <pre><code>@use "mixins" as *;
+
+.my-element &#123;
+  @include fade-up;
+&#125;
+
+// with custom duration
+.my-element &#123;
+  @include fade-up(var(--duration-slow));
+&#125;</code></pre>
+      </div>
+    </section>
+
+    <hr />
+
+    {categories.map((category) => (
+      <section class="category">
+        <h2>{category.label}</h2>
+
+        <div class="animation-grid">
+          {animations
+            .filter((a) => a.category === category.id)
+            .map(({ mixin, keyframe, label, description }) => (
+              <div class="animation-card" data-keyframe={keyframe}>
+                <div class="animation-stage">
+                  <div class="animation-target" data-target>
+                    <span>Aa</span>
+                  </div>
+                </div>
+
+                <div class="animation-info">
+                  <p class="animation-label">{label}</p>
+                  <p class="animation-description">{description}</p>
+                  <code class="animation-mixin">@include {mixin};</code>
+                </div>
+
+                <button class="animation-replay" data-replay>
+                  Replay
+                </button>
+              </div>
+            ))}
+        </div>
+      </section>
+
+      <hr />
+    ))}
+
+  </div>
+</DisplayLayout>
+
+<script>
+  function initAnimations(): void {
+    document.querySelectorAll<HTMLElement>(".animation-card").forEach((card) => {
+      const target = card.querySelector<HTMLElement>("[data-target]");
+      const replay = card.querySelector<HTMLButtonElement>("[data-replay]");
+      const keyframe = card.dataset.keyframe ?? "";
+
+      if (!target || !replay) return;
+
+      // play on load with staggered delay
+      const cards = Array.from(document.querySelectorAll(".animation-card"));
+      const index = cards.indexOf(card);
+      setTimeout(() => {
+        playAnimation(target, keyframe);
+      }, index * 100);
+
+      // replay on button click
+      replay.addEventListener("click", () => {
+        playAnimation(target, keyframe);
+      });
+    });
+  }
+
+  function playAnimation(target: HTMLElement, keyframe: string): void {
+    target.style.animation = "none";
+    target.offsetHeight; // force reflow
+    target.style.animation = `${keyframe} var(--duration-slow) var(--ease-out) both`;
+  }
+
+  initAnimations();
+  document.addEventListener("astro:after-swap", initAnimations);
+</script>
+
+<style lang="scss">
+  @use "mixins" as *;
+
+  .page {
+    max-width: 90ch;
+    margin-inline: auto;
+    padding-inline: var(--space-5);
+    padding-block: var(--space-6);
+  }
+
+  .intro {
+    @include stack(var(--space-5));
+  }
+
+  .lead {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .usage-note {
+    @include border;
+    @include radius-card;
+    padding: var(--space-5);
+    background-color: var(--color-surface);
+
+    h2 {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text-muted);
+      margin-block-start: 0;
+      margin-block-end: var(--space-3);
+    }
+
+    pre {
+      margin: 0;
+    }
+  }
+
+  .category {
+    padding-block: var(--space-5);
+  }
+
+  .animation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-block-start: var(--space-4);
+  }
+
+  .animation-card {
+    @include border;
+    @include radius-card;
+    @include shadow(1);
+    background-color: var(--color-surface);
+    @include stack(var(--space-3));
+    padding: var(--space-4);
+    overflow: hidden;
+  }
+
+  .animation-stage {
+    height: 100px;
+    background-color: var(--color-background);
+    @include radius-card;
+    @include border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .animation-target {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-interactive);
+  }
+
+  .animation-info {
+    @include stack(var(--space-1));
+  }
+
+  .animation-label {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-md);
+    margin: 0;
+  }
+
+  .animation-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .animation-mixin {
+    font-size: var(--text-xs);
+    color: var(--color-interactive);
+    display: block;
+  }
+
+  .animation-replay {
+    @include box-button("sm");
+    @include radius-button;
+    @include focus-ring;
+    background-color: var(--color-interactive-muted);
+    color: var(--color-interactive);
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    align-self: flex-start;
+
+    &:hover {
+      background-color: var(--color-interactive);
+      color: var(--color-neutral-50);
+    }
+  }
+</style>
