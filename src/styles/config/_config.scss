@@ -28,6 +28,8 @@ $font-weight-overrides: (
 // null uses default — ratios: 1.125 subtle / 1.25 default / 1.333 expressive
 $type-base-override: null !default;
 $type-ratio-override: null !default;
+// content area for grid content
+$content-width-override: null !default;
 
 // ── spacing ───────────────────────────────────────────────
 $space-unit-override: null !default;

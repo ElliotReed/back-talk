@@ -41,5 +41,8 @@
         @each $name, $value in config.$font-weights {
             --font-weight-#{$name}: #{$value};
         }
+
+        // for content-grid etc.
+        --content-width: config.$content-width;
     }
 }

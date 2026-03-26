@@ -15,6 +15,7 @@
 $fonts: map.merge(defaults.$fonts, config.$font-overrides);
 $type-base: resolve(config.$type-base-override, defaults.$type-base);
 $type-ratio: resolve(config.$type-ratio-override, defaults.$type-ratio);
+$content-width: resolve(config.$content-width-override, defaults.$tcontent-width);
 
 $colors: map.merge(defaults.$colors, config.$color-overrides);
 $color-scheme: resolve(config.$color-scheme-override, defaults.$color-scheme);

@@ -82,3 +82,58 @@ for horizontal scroll to work correctly in Safari.
 `flow` is for mixed content where flex is not appropriate — margins handle spacing.
 Prose needs neither — base element margins handle it automatically.
 :::
+
+## content-grid
+
+A named-line CSS grid for full-bleed layouts with controlled content width.
+Creates three zones — content, wide, and full — that child elements can
+opt into using `grid-column`:
+```scss
+@include content-grid;
+@include content-grid(var(--space-lg), 80ch, var(--space-md));
+```
+
+| Parameter | Default | Description |
+|---|---|---|
+| `$gutter` | `var(--space-md)` | Minimum edge padding |
+| `$content` | `var(--content-width)` | Max content column width |
+| `$gap` | `var(--space-lg)` | Row gap between children |
+
+### Zones
+```
+[full-start]─────────────────────────────────────[full-end]
+             [wide-start]─────────────[wide-end]
+                      [content-start]─[content-end]
+```
+
+| Zone | Column | Usage |
+|---|---|---|
+| `content` | `content-start / content-end` | Body text, default content |
+| `wide` | `wide-start / wide-end` | Images, callouts, wider blocks |
+| `full` | `full-start / full-end` | Full-bleed heroes, dividers |
+
+### Usage
+```scss
+.page {
+  @include content-grid;
+
+  // all children default to content width
+  & > * {
+    grid-column: content;
+  }
+
+  // opt specific elements into wider zones
+  .hero {
+    grid-column: full;
+  }
+
+  .pullquote {
+    grid-column: wide;
+  }
+}
+```
+
+:::note
+`--content-width` must be defined as a token or custom property. Add it
+to your project tokens or pass a value directly as the `$content` parameter.
+:::
