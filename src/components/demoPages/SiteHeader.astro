@@ -2,159 +2,159 @@
 import ThemeSelect from "../ThemeSelect.astro";
 
 interface Props {
-    mode?: "system" | "demo";
+  mode?: "system" | "demo";
 }
 
 const { mode = "demo" } = Astro.props;
 
 const systemLinks = [
-    { href: "/system/animations", label: "Animations" },
-    { href: "/system/buttons", label: "Buttons" },
-    { href: "/system/colors", label: "Colors" },
-    { href: "/system/shadows", label: "Shadows" },
-    { href: "/system/spacing", label: "Spacing" },
-    { href: "/system/typography", label: "Typography" },
+  { href: "/system/animations", label: "Animations" },
+  { href: "/system/buttons", label: "Buttons" },
+  { href: "/system/colors", label: "Colors" },
+  { href: "/system/shadows", label: "Shadows" },
+  { href: "/system/spacing", label: "Spacing" },
+  { href: "/system/typography", label: "Typography" },
 ];
 
 const demoLinks = [
-    { href: "/demo", label: "Home" },
-    { href: "/demo/article", label: "Repair Guides" },
-    { href: "/demo/components", label: "Parts & Services" },
-    { href: "/demo/contact", label: "Contact" },
-    { href: "/demo/code", label: "Technical Ref" },
+  { href: "/demo", label: "Home" },
+  { href: "/demo/article", label: "Repair Guides" },
+  { href: "/demo/components", label: "Parts & Services" },
+  { href: "/demo/contact", label: "Contact" },
+  { href: "/demo/code", label: "Technical Ref" },
 ];
 
 const links = mode === "system" ? systemLinks : demoLinks;
 const crossLink =
-    mode === "system"
-        ? { href: "/demo", label: "View Demo Site" }
-        : { href: "/system/colors", label: "View System" };
+  mode === "system"
+    ? { href: "/demo", label: "View Demo Site" }
+    : { href: "/system/colors", label: "View System" };
 
 const currentPath = Astro.url.pathname;
 ---
 
 <header>
-    <a href={mode === "system" ? "/system/colors" : "/demo"} class="logo">
-        <span class="logo-name">Wireless Wonder</span>
-        <span class="logo-tagline">Vintage Radio Repair &amp; Restoration</span>
+  <a href={mode === "system" ? "/system/colors" : "/demo"} class="logo">
+    <span class="logo-name">Wireless Wonder</span>
+    <span class="logo-tagline">Vintage Radio Repair &amp; Restoration</span>
+  </a>
+
+  <nav aria-label="primary">
+    <ul role="list">
+      {
+        links.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={currentPath === href ? "page" : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a href={crossLink.href} class="cross-link">
+      {crossLink.label}
     </a>
+    <a href="/reference" class="cross-link">Docs</a>
+  </nav>
 
-    <nav aria-label="primary">
-        <ul role="list">
-            {
-                links.map(({ href, label }) => (
-                    <li>
-                        <a
-                            href={href}
-                            aria-current={
-                                currentPath === href ? "page" : undefined
-                            }
-                        >
-                            {label}
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-
-        <a href={crossLink.href} class="cross-link">
-            {crossLink.label}
-        </a>
-        <a href="/reference" class="cross-link">Docs</a>
-    </nav>
-
-    <ThemeSelect />
+  <ThemeSelect />
 </header>
 
 <style lang="scss">
-    @use "mixins" as *;
+  @use "mixins" as *;
 
-    @layer components {
-        header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            @include padding-box("sm");
-            color: var(--color-header-text);
-            // @include gradient(var(--color-primary-500));
-            background: var(--color-header-background);
-            border-bottom: 1px solid var(--color-header-border);
-            @include shadow(1);
-        }
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-1);
-            font-family: var(--font-heading);
-            text-decoration: none;
-        }
-
-        .logo-name {
-            color: var(--color-primary-100);
-            font-size: var(--text-lg);
-            font-weight: 700;
-        }
-
-        .logo-tagline {
-            color: var(--color-header-text);
-            font-size: var(--text-xs);
-            opacity: 0.75;
-        }
-
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: var(--space-6);
-
-            ul {
-                display: flex;
-                flex-wrap: wrap;
-                margin: 0;
-                padding: 0;
-                gap: var(--space-1);
-                list-style: none;
-
-                li {
-                    margin: 0;
-                    @include radius("sm");
-                }
-            }
-
-            a {
-                @include radius("sm");
-                @include padding-box("xs");
-                text-decoration: none;
-                color: var(--color-header-text);
-                transition: background var(--transition-fast);
-
-                @include focus-ring;
-
-                &:hover {
-                    color: var(--color-interactive);
-                    background-color: var(--color-interactive-muted);
-                }
-
-                &[aria-current="page"] {
-                    font-weight: 600;
-                    color: var(--color-interactive);
-                    background-color: var(--color-interactive-muted);
-                }
-            }
-        }
-
-        .cross-link {
-            font-size: var(--text-sm);
-            @include border(var(--color-header-border));
-            @include radius("sm");
-            opacity: 0.75;
-
-            &:hover {
-                border-color: var(--color-interactive);
-                opacity: 1;
-            }
-        }
+  @layer components {
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding-inline: var(--space-sm);
+      color: var(--color-header-text);
+      background: var(--color-header-background);
+      @include shadow(1);
+      & > * {
+        margin-block: var(--space-sm);
+      }
     }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      font-family: var(--font-heading);
+      text-decoration: none;
+    }
+
+    .logo-name {
+      color: var(--color-primary-100);
+      font-size: var(--text-lg);
+      font-weight: 700;
+    }
+
+    .logo-tagline {
+      color: var(--color-header-text);
+      font-size: var(--text-xs);
+      opacity: 0.75;
+    }
+
+    nav {
+      font-family: var(--font-ui);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-6);
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        gap: var(--space-1);
+        list-style: none;
+
+        li {
+          margin: 0;
+          @include radius("sm");
+        }
+      }
+
+      a {
+        @include radius("sm");
+        @include padding-box("xs");
+        text-decoration: none;
+        color: var(--color-header-text);
+        transition: background var(--transition-fast);
+
+        @include focus-ring;
+
+        &:hover {
+          color: var(--color-interactive);
+          background-color: var(--color-interactive-muted);
+        }
+
+        &[aria-current="page"] {
+          font-weight: 600;
+          color: var(--color-interactive);
+          background-color: var(--color-interactive-muted);
+        }
+      }
+    }
+
+    .cross-link {
+      font-size: var(--text-sm);
+      @include border(var(--color-header-border));
+      @include radius("sm");
+      opacity: 0.75;
+
+      &:hover {
+        border-color: var(--color-interactive);
+        opacity: 1;
+      }
+    }
+  }
 </style>

@@ -5,41 +5,41 @@
 
 // ── hardness mapping ─────────────────────────────────────
 @function hardness-value($level) {
-    $map: (
-        1: 0.3,
-        2: 0.5,
-        3: 0.7,
-        4: 0.9,
-        5: 1.0,
-        6: 1.3,
-        7: 1.6,
-        8: 1.9,
-        9: 2.2,
-        10: 2.5,
-    );
+  $map: (
+    1: 0.3,
+    2: 0.5,
+    3: 0.7,
+    4: 0.9,
+    5: 1,
+    6: 1.3,
+    7: 1.6,
+    8: 1.9,
+    9: 2.2,
+    10: 2.5,
+  );
 
-@if not map.has-key($map, $level) {
+  @if not map.has-key($map, $level) {
     @warn "shadow-hardness must be 1-10, got #{$level}";
-    @return 1.0;
-}
+    @return 1;
+  }
 
-@return map.get($map, $level);
+  @return map.get($map, $level);
 }
 
 // ── direction mapping ────────────────────────────────────
 @function direction-value($direction) {
-    $map: (
-        "none": 0,
-        "right": -1,
-        "left": 1,
-    );
+  $map: (
+    "none": 0,
+    "right": -1,
+    "left": 1,
+  );
 
-@if not map.has-key($map, $direction) {
+  @if not map.has-key($map, $direction) {
     @warn "shadow-direction must be none, left, or right — got #{$direction}";
     @return 0px;
-}
+  }
 
-@return map.get($map, $direction);
+  @return map.get($map, $direction);
 }
 
 // ── resolved values ───────────────────────────────────────
@@ -50,95 +50,128 @@ $scaled-base: $offset-base * $hardness;
 
 // ── base alpha ────────────────────────────────────────────
 $alpha-base: 0.1;
-$verticle-offset-multiplier: 2;
-
-// ── depth ratios ──────────────────────────────────────────
-$top-offset-ratios: 0.6 1.0 1.4 1.7 2.0;
-$top-alpha-ratios: 1.5 1.55 1.6 1.65 1.7;
-
-$bottom-offset-ratios: 0.5 0.75 1.0 1.25 1.5;
-$bottom-alpha-ratios: 1.7 1.75 1.8 1.85 1.9;
+// $verticle-offset-multiplier: 2;
+$verticle-offset-multiplier: 1;
 
 // ── shadow functions ──────────────────────────────────────
-@function top-shadow($depth) {
-    $x: direction-value(config.$shadow-direction) * list.nth($top-offset-ratios, $depth) * $scaled-base;
-    $offset: list.nth($top-offset-ratios, $depth) * $scaled-base * $verticle-offset-multiplier;
-    $spread: -$offset * 0.25;
 
-    $blur: null;
-    $alpha: null;
+@function layer-shadow($depth) {
+  $shadows: ();
 
-    @if config.$shadow-hardness ==10 {
-        $blur: 0px;
-        $alpha: 1;
-    }
+  $base-x: $direction * $offset-base * $depth;
+  $base-offset: $offset-base * $depth * $verticle-offset-multiplier;
 
-    @else {
-        $blur: list.nth($top-offset-ratios, $depth) * $offset-base * math.div(1, $hardness);
-        $alpha: math.min(list.nth($top-alpha-ratios, $depth) * $alpha-base * $hardness, 0.95);
-    }
+  $hardness-normalized: math.div(config.$shadow-hardness, 10);
 
-    @return $x $offset $blur $spread rgba(0, 0, 0, $alpha);
-}
+  @if config.$shadow-hardness == 10 {
+    // depth 1 starts at 0.7, depth 5 reaches 0.95
+    $alpha: math.clamp(0.7, math.pow(math.div($depth, 5), 0.3) * 0.95, 0.95);
+    @return #{$base-x} #{$base-offset} 0px 0px rgba(0, 0, 0, $alpha);
+  }
 
-@function bottom-shadow($depth) {
-    $x: direction-value(config.$shadow-direction) * list.nth($bottom-offset-ratios, $depth) * $scaled-base;
-    $offset: list.nth($bottom-offset-ratios, $depth) * $scaled-base* $verticle-offset-multiplier;
+  // number of layers reduces as hardness increases
+  // hardness 1 → 5 layers, hardness 9 → 1 layer
+  $layers: math.round(math.clamp(1, 6 - (config.$shadow-hardness * 0.5), 5));
 
-    $blur: null;
-    $alpha: null;
+  // alpha increases with hardness — total alpha not per layer
+  $total-alpha: math.clamp(
+    0.2,
+    $hardness-normalized * 0.8 + $depth * 0.05,
+    0.9
+  );
+  $alpha-per-layer: math.div($total-alpha, $layers);
 
-    @if config.$shadow-hardness ==10 {
-        $blur: 0px;
-        $alpha: 1;
-    }
+  // blur decreases with hardness
+  $blur-multiplier: math.clamp(0, 1 - $hardness-normalized, 1);
 
-    @else {
-        $blur: list.nth($bottom-offset-ratios, $depth) * $offset-base * math.div(1, $hardness) * 1.5;
-        $alpha: math.min(list.nth($bottom-alpha-ratios, $depth) * $alpha-base * $hardness, 0.95);
-    }
+  @for $i from 1 through $layers {
+    $multiplier: math.pow(2, $i - 1);
 
-    @return $x $offset $blur 0px rgba(0, 0, 0, $alpha);
+    // offset grows but stays proportional to depth
+    $x: $base-x * math.div($multiplier, math.pow(2, $layers - 1));
+    $offset: $base-offset * math.div($multiplier, math.pow(2, $layers - 1));
+    $blur: $offset * $blur-multiplier * 1.5;
+
+    $shadows: list.append(
+      $shadows,
+      #{$x} #{$offset} #{$blur} 0px rgba(0, 0, 0, $alpha-per-layer),
+      comma
+    );
+  }
+
+  @return $shadows;
 }
 
 // ── mixins ────────────────────────────────────────────────
 @mixin shadow($depth: 2) {
-    @if $depth < 1 or $depth >5 {
-        @warn "shadow() depth must be 1-5, got #{$depth}";
-        box-shadow: none;
-    }
-
-    @else {
-        box-shadow: top-shadow($depth), bottom-shadow($depth);
-    }
+  @if $depth < 1 or $depth >5 {
+    @warn "shadow() depth must be 1-5, got #{$depth}";
+    box-shadow: none;
+  } @else {
+    box-shadow: layer-shadow($depth);
+  }
 }
 
 @mixin shadow-inset($depth: 2) {
-    @if $depth < 1 or $depth >5 {
-        @warn "shadow-inset() depth must be 1-5, got #{$depth}";
-        box-shadow: none;
+  @if $depth < 1 or $depth > 5 {
+    @warn "shadow-inset() depth must be 1-5, got #{$depth}";
+    box-shadow: none;
+  } @else {
+    // inset scaled down — outer shadow values are too dramatic inside
+    $scale: 0.4;
+    $base-x: $direction * $offset-base * $depth * $scale;
+    $base-offset: $offset-base * $depth * $verticle-offset-multiplier * $scale;
+
+    $hardness-normalized: math.div(config.$shadow-hardness, 10);
+
+    @if config.$shadow-hardness == 10 {
+      $alpha: math.clamp(0.7, math.pow(math.div($depth, 5), 0.3) * 0.95, 0.95);
+      box-shadow: inset
+        #{$base-x}
+        #{$base-offset}
+        0px
+        0px
+        rgba(0, 0, 0, $alpha);
+    } @else {
+      $layers: math.round(
+        math.clamp(1, 6 - (config.$shadow-hardness * 0.5), 5)
+      );
+      $total-alpha: math.clamp(
+        0.2,
+        $hardness-normalized * 0.8 + $depth * 0.05,
+        0.9
+      );
+      $alpha-per-layer: math.div($total-alpha, $layers);
+      $blur-multiplier: math.clamp(0, 1 - $hardness-normalized, 1);
+
+      $shadows: ();
+
+      @for $i from 1 through $layers {
+        $multiplier: math.pow(2, $i - 1);
+        $x: $base-x * math.div($multiplier, math.pow(2, $layers - 1));
+        $offset: $base-offset * math.div($multiplier, math.pow(2, $layers - 1));
+        $blur: $offset * $blur-multiplier * 1.5;
+
+        $shadows: list.append(
+          $shadows,
+          inset #{$x} #{$offset} #{$blur} 0px rgba(0, 0, 0, $alpha-per-layer),
+          comma
+        );
+      }
+
+      box-shadow: $shadows;
     }
+  }
+}
 
-    @else {
-        $ratio: list.nth($top-offset-ratios, $depth);
-        $offset: $ratio * $scaled-base* $verticle-offset-multiplier;
-        $x: direction-value(config.$shadow-direction) * $ratio * $scaled-base ;
+// sink — inverse of elevate
+// pressed into the surface, scales down slightly
+@mixin sink($level: 1) {
+  @include shadow-inset($level);
+  scale: 1 - math.pow($level, 1.5) * 0.004;
+}
 
-        $blur: null;
-        $alpha: null;
-
-        @if config.$shadow-hardness ==10 {
-            $blur: 0px;
-            $alpha: 1;
-        }
-
-        @else {
-            $blur: $offset * math.div(1, $hardness);
-            $alpha: math.min(list.nth($top-alpha-ratios, $depth) * $alpha-base * $hardness, 0.95);
-        }
-
-        $spread: -$offset * $hardness * 0.25;
-
-        box-shadow: inset $x $offset $blur $spread rgba(0, 0, 0, $alpha);
-    }
+@mixin elevate($level: 1) {
+  @include shadow($level);
+  scale: 1 + math.pow($level * 0.015, 0.8);
 }

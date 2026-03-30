@@ -1,14 +1,14 @@
 @use "sass:map";
-@use "../config/resolved";
+@use "../config";
 @use "accent";
 @use "neutral";
 @use "feedback";
 
-$accent-map: accent.generate(resolved.$colors, resolved.$color-scheme);
-$neutral-map: neutral.generate(resolved.$colors);
-$feedback-map: feedback.generate(resolved.$colors);
+$accent-map: accent.generate(config.$colors, config.$color-scheme);
+$neutral-map: neutral.generate(config.$colors);
+$feedback-map: feedback.generate(config.$colors);
 
-$colors: map.merge(resolved.$colors,
+$colors: map.merge(config.$colors,
         map.merge($accent-map,
             map.merge($neutral-map,
                 $feedback-map)));

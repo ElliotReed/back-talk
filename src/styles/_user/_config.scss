@@ -1,4 +1,4 @@
-@use "functions" as *;
+@use "../config/functions" as *;
 
 // ── colors ────────────────────────────────────────────────
 // set primary — system derives accent, neutral, and feedback
@@ -6,10 +6,10 @@
 // any extra key gets a full 50-950 scale
 
 $color-overrides: (
-    "primary": #1A73FF,
-    // "accent":   #FF4B8B,
-    // "tertiary": #FF0000,
-    ) !default;
+  "primary": #2c2eaf,
+  // "accent":   #FF4B8B,
+   // "tertiary": #FF0000,
+) !default;
 
 // drives accent generation — ignored if "accent" set in $colors
 // "complementary" | "analogous" | "split-complementary" | "monochromatic"
@@ -18,12 +18,10 @@ $color-scheme-override: "complementary" !default;
 // ── typography ────────────────────────────────────────────
 // override any role — unset roles use defaults
 // adding a new key generates a new --font-* token
-$font-overrides: (
-    ) !default;
+$font-overrides: () !default;
 
 // replaces defaults entirely — only list weights your font actually loads
-$font-weight-overrides: (
-    ) !default;
+$font-weight-overrides: () !default;
 
 // null uses default — ratios: 1.125 subtle / 1.25 default / 1.333 expressive
 $type-base-override: null !default;
@@ -43,12 +41,11 @@ $box-ratio-override: null !default;
 // ── shadows ───────────────────────────────────────────────
 // direction: where the light source is
 // "none" overhead | "left" from left | "right" from right
+$shadow-direction-override: "left" !default;
 $shadow-offset-base-override: null !default;
-$shadow-direction-override: null !default;
 $shadow-hardness-override: null !default;
 
 // ── breakpoints ───────────────────────────────────────────
 // merges with defaults — only set what changes or add new
 // use px-to-em() to convert from px
-$breakpoint-overrides: (
-    ) !default;
+$breakpoint-overrides: () !default;

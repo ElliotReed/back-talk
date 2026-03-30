@@ -1,8 +1,7 @@
 @use "sass:map";
 @use "sass:color";
+@use "sass:math";
 
-// hue rotation per scheme
-// returns degrees to add to primary hue
 @function scheme-rotation($scheme) {
     @if $scheme =="monochromatic" {
         @return 0;
@@ -24,19 +23,12 @@
     @return 180;
 }
 
-// derive accent from primary + scheme
-// returns map with just "accent" key
-// returns empty map if accent already exists
 @function generate($colors, $scheme) {
-
-    // accent already set by project — nothing to do
     @if map.has-key($colors, "accent") {
         @return ();
     }
 
     $primary: map.get($colors, "primary");
-
-    // extract oklch channels
     $lightness: color.channel($primary, "lightness", $space: oklch);
     $chroma: color.channel($primary, "chroma", $space: oklch);
     $hue: color.channel($primary, "hue", $space: oklch);
@@ -44,16 +36,19 @@
     $accent: null;
 
     @if $scheme =="monochromatic" {
-        // option 3 — lighter, less saturated, same hue
-        $accent: oklch(($lightness * 1.35) ($chroma * 0.4) $hue);
+        // lighter, less saturated, same hue
+        $accent: oklch(math.clamp(0%, $lightness * 1.35, 100%) ($chroma * 0.4) $hue );
     }
 
     @else {
         $rotation: scheme-rotation($scheme);
-        $accent: oklch($lightness $chroma (
-                $hue + $rotation)
-        );
-}
+        $new-hue: $hue + $rotation;
 
-@return ("accent": $accent);
+        // slight lightness and chroma variation
+        // makes accent feel like a companion not a clone
+        // complementary hues can feel very different at same lightness
+        $accent: oklch(math.clamp(0%, $lightness * 0.95, 100%) ($chroma * 1.05) $new-hue );
+    }
+
+    @return ("accent": $accent);
 }

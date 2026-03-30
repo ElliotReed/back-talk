@@ -12,15 +12,29 @@ your-project/
     styles/       ← paste here
 ```
 
+## Updating Backtalk
+
+Copy all system folders into `styles/` — **skip the `user/` folder**.
+Your config and token overrides live there and must not be overwritten.
+
 No npm install. No build step. Just Sass 1.55.0 or higher.
 
 ## Configuration
 
-Edit `config/_config.scss` — the only file you need to touch:
+Edit `_user_/*` — the only files you need to touch:
+
+`_config`
+
 ```scss
 $colors: (
   "primary": #1A73FF,
 ) !default;
+```
+
+`_token-overrides`
+
+```scss
+--background-color: var(--new-color)
 ```
 
 The system derives everything else from that. See [Configuration](/guides/configuration)
