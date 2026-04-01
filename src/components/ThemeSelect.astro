@@ -1,108 +1,184 @@
 ---
 import { Icon } from "astro-icon/components";
-import Select from "./common/Select.astro";
 
-const themeOptions = [
-    { value: "auto", label: "Auto" },
-    { value: "light", label: "Light" },
-    { value: "dark", label: "Dark" },
-];
+interface Props {
+  animate?: boolean;
+  duration?: "slow" | "normal" | "fast";
+}
+
+const { animate = false, duration = "slow" } = Astro.props;
 ---
 
-<div class="theme-selector">
-    <span class="theme-icon" data-icon="auto">
-        <Icon name="lucide:computer" />
-    </span>
-    <span class="theme-icon" data-icon="light">
-        <Icon name="lucide:sun" />
-    </span>
-    <span class="theme-icon" data-icon="dark">
-        <Icon name="lucide:moon" />
-    </span>
-
-    <Select id="theme-select" options={themeOptions} initialValue="Auto" />
-</div>
+<button
+  type="button"
+  class="theme-toggle"
+  id="theme-toggle"
+  data-animate={animate ? "true" : "false"}
+  data-duration={duration}
+>
+  <Icon name="lucide:sun" class="sun-icon" />
+  <Icon name="lucide:moon" class="moon-icon" />
+  <span class="visually-hidden" id="theme-text">Switch to light theme</span>
+</button>
 
 <script>
-    type Theme = "auto" | "dark" | "light";
+  type Theme = "dark" | "light";
+  type DurationProps = "slow" | "normal" | "fast";
 
-    const html = document.documentElement;
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const html = document.documentElement;
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
 
-    function updateIcon(theme: Theme) {
-        document.querySelectorAll(".theme-icon").forEach((icon) => {
-            const el = icon as HTMLElement;
-            el.style.display =
-                el.dataset.icon === theme ? "inline-flex" : "none";
-        });
+  function getDuration(): number {
+    const toggle = document.getElementById("theme-toggle");
+    const type = (toggle?.dataset.duration ?? "slow") as DurationProps;
+    const duration = parseFloat(
+      getComputedStyle(html).getPropertyValue(`--duration-${type}`),
+    );
+    return isNaN(duration) ? 400 : duration;
+  }
+
+  function shouldAnimate(): boolean {
+    const toggle = document.getElementById("theme-toggle");
+    return toggle?.dataset.animate === "true";
+  }
+
+  // ── storage ──────────────────────────────────────────────
+  function getStoredTheme(): Theme | null {
+    return localStorage.getItem("theme") as Theme | null;
+  }
+
+  function storeTheme(theme: Theme): void {
+    localStorage.setItem("theme", theme);
+  }
+
+  // ── theme ─────────────────────────────────────────────────
+  function getInitialTheme(): Theme {
+    return getStoredTheme() ?? (media.matches ? "dark" : "light");
+  }
+
+  function applyTheme(theme: Theme): void {
+    html.setAttribute("data-theme", theme);
+    updateAria(theme);
+  }
+
+  function toggleTheme(): Theme {
+    const current = html.getAttribute("data-theme") as Theme;
+    return current === "dark" ? "light" : "dark";
+  }
+
+  // ── aria ──────────────────────────────────────────────────
+  function updateAria(theme: Theme): void {
+    const themeText = document.getElementById("theme-text");
+    if (!themeText) return;
+    themeText.textContent =
+      theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+  }
+
+  // ── view transition ───────────────────────────────────────
+  function transitionTheme(trigger: HTMLElement): void {
+    const rect = trigger.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
+    const next = toggleTheme();
+
+    if (!shouldAnimate() || !document.startViewTransition) {
+      applyTheme(next);
+      storeTheme(next);
+      return;
     }
 
-    function getStoredTheme() {
-        return localStorage.getItem("theme") as Theme | null;
-    }
+    const duration = getDuration();
 
-    function storeTheme(theme: Theme) {
-        localStorage.setItem("theme", theme);
-    }
+    html.classList.add("theme-transitioning");
 
-    function clearStoredTheme() {
-        localStorage.removeItem("theme");
-    }
-
-    function applyTheme(theme: Theme) {
-        if (theme === "auto") {
-            html.setAttribute("data-theme", media.matches ? "dark" : "light");
-        } else {
-            html.setAttribute("data-theme", theme);
-        }
-        updateIcon(theme);
-    }
-
-    function getInitialTheme(): Theme {
-        return getStoredTheme() ?? "auto";
-    }
-
-    function init() {
-        const theme = getInitialTheme();
-        applyTheme(theme);
-    }
-
-    init();
-    document.addEventListener("astro:after-swap", init);
-
-    // listen for the custom event from Select component
-    document.addEventListener("select:change", (e: Event) => {
-        const { value, id } = (e as CustomEvent).detail;
-        if (id !== "theme-select") return; // ignore other selects
-
-        const theme = value as Theme;
-        if (theme === "auto") {
-            clearStoredTheme();
-        } else {
-            storeTheme(theme);
-        }
-        applyTheme(theme);
+    const transition = document.startViewTransition(() => {
+      applyTheme(next);
+      storeTheme(next);
     });
 
-    media.addEventListener("change", (e) => {
-        if (!getStoredTheme()) {
-            applyTheme("auto");
-        }
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${radius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
     });
+
+    transition.finished.then(() => {
+      html.classList.remove("theme-transitioning");
+    });
+  }
+
+  // ── init ──────────────────────────────────────────────────
+  function init(): void {
+    applyTheme(getInitialTheme());
+
+    const toggle = document.getElementById("theme-toggle");
+    toggle?.addEventListener("click", () => {
+      transitionTheme(toggle as HTMLElement);
+    });
+  }
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+
+  // follow OS if no stored preference
+  media.addEventListener("change", (e) => {
+    if (!getStoredTheme()) {
+      applyTheme(e.matches ? "dark" : "light");
+    }
+  });
 </script>
 
 <style lang="scss">
-    @use "mixins" as *;
+  @use "mixins" as *;
 
-    .theme-selector {
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-    }
+  :global(::view-transition-old(root)) {
+    animation: none;
+  }
 
-    .theme-icon {
-        display: none;
-        align-items: center;
-        color: var(--color-header-text);
-    }
+  :global(::view-transition-new(root)) {
+    animation: none;
+  }
+
+  :global(.theme-transitioning *) {
+    transition: none !important;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    padding: var(--space-sm);
+    display: grid;
+    place-content: center;
+  }
+
+  .sun-icon {
+    display: none;
+  }
+  .moon-icon {
+    display: none;
+  }
+
+  :global([data-theme="light"]) .sun-icon {
+    display: block;
+  }
+  :global([data-theme="dark"]) .moon-icon {
+    display: block;
+  }
 </style>
