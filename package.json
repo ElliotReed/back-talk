@@ -14,11 +14,11 @@
     "dependencies": {
         "@astrojs/starlight": "^0.37.7",
         "@fontsource/inter": "^5.2.8",
-        "@iconify-json/lucide": "^1.2.96",
         "astro": "^5.18.0",
         "sharp": "^0.34.5"
     },
     "devDependencies": {
+        "@iconify-json/lucide": "^1.2.96",
         "astro-icon": "^1.1.5",
         "sass": "^1.97.3"
     }
