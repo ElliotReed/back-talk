@@ -61,100 +61,98 @@ const currentPath = Astro.url.pathname;
     <a href="/reference" class="cross-link">Docs</a>
   </nav>
 
-  <ThemeSelect />
+  <ThemeSelect animate />
 </header>
 
 <style lang="scss">
   @use "mixins" as *;
 
-  @layer components {
-    header {
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: var(--space-md);
+    color: var(--color-header-text);
+    background: var(--color-header-background);
+    @include shadow(1);
+    & > * {
+      margin-block: var(--space-md);
+    }
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    font-family: var(--font-heading);
+    text-decoration: none;
+  }
+
+  .logo-name {
+    color: var(--color-interactive);
+    font-size: var(--text-lg);
+    font-weight: 700;
+  }
+
+  .logo-tagline {
+    color: var(--color-header-text);
+    font-size: var(--text-xs);
+    opacity: 0.75;
+  }
+
+  nav {
+    font-family: var(--font-ui);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+
+    ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding-inline: var(--space-sm);
-      color: var(--color-header-text);
-      background: var(--color-header-background);
-      @include shadow(1);
-      & > * {
-        margin-block: var(--space-sm);
-      }
-    }
-
-    .logo {
-      display: flex;
-      flex-direction: column;
+      margin: 0;
+      padding: 0;
       gap: var(--space-1);
-      font-family: var(--font-heading);
-      text-decoration: none;
-    }
+      list-style: none;
 
-    .logo-name {
-      color: var(--color-primary-100);
-      font-size: var(--text-lg);
-      font-weight: 700;
-    }
-
-    .logo-tagline {
-      color: var(--color-header-text);
-      font-size: var(--text-xs);
-      opacity: 0.75;
-    }
-
-    nav {
-      font-family: var(--font-ui);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-6);
-
-      ul {
-        display: flex;
-        flex-wrap: wrap;
+      li {
         margin: 0;
-        padding: 0;
-        gap: var(--space-1);
-        list-style: none;
-
-        li {
-          margin: 0;
-          @include radius("sm");
-        }
-      }
-
-      a {
-        @include radius("sm");
-        @include padding-box("xs");
-        text-decoration: none;
-        color: var(--color-header-text);
-        transition: background var(--transition-fast);
-
-        @include focus-ring;
-
-        &:hover {
-          color: var(--color-interactive);
-          background-color: var(--color-interactive-muted);
-        }
-
-        &[aria-current="page"] {
-          font-weight: 600;
-          color: var(--color-interactive);
-          background-color: var(--color-interactive-muted);
-        }
+        @include radius;
       }
     }
 
-    .cross-link {
-      font-size: var(--text-sm);
-      @include border(var(--color-header-border));
-      @include radius("sm");
-      opacity: 0.75;
+    a {
+      @include radius;
+      @include padding-box("sm");
+      text-decoration: none;
+      color: var(--color-header-text);
+      transition: background var(--transition-fast);
+
+      @include focus-ring;
 
       &:hover {
-        border-color: var(--color-interactive);
-        opacity: 1;
+        color: var(--color-interactive);
+        background-color: var(--color-interactive-muted);
       }
+
+      &[aria-current="page"] {
+        font-weight: 600;
+        color: var(--color-interactive);
+        background-color: var(--color-interactive-muted);
+      }
+    }
+  }
+
+  .cross-link {
+    font-size: var(--text-sm);
+    @include border(var(--color-header-border));
+    @include radius;
+    opacity: 0.75;
+
+    &:hover {
+      border-color: var(--color-interactive);
+      opacity: 1;
     }
   }
 </style>
