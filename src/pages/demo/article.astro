@@ -3,403 +3,374 @@ import DisplayLayout from "../../layouts/DisplayLayout.astro";
 ---
 
 <DisplayLayout
-    title="Recapping a Philco 39-25 — A Complete Guide"
-    description="A step-by-step guide to recapping a Philco 39-25 tombstone radio"
-    headerMode="demo"
+  title="Recapping a Philco 39-25 — A Complete Guide"
+  description="A step-by-step guide to recapping a Philco 39-25 tombstone radio"
+  headerMode="demo"
 >
-    <article>
-        <header class="article-header">
-            <p class="article-category">Repair Guides</p>
-            <h1>Recapping a Philco 39-25</h1>
-            <p class="article-subtitle">
-                A complete guide to replacing the capacitors in one of the most
-                common pre-war tombstone sets — and why it matters more than you
-                might think.
-            </p>
-            <p class="article-meta">
-                <span>By <strong>Arthur Bennet</strong></span>
-                <span
-                    >Published <time datetime="2024-03-15">15 March 2024</time
-                    ></span
-                >
-                <span
-                    >Updated <time datetime="2024-09-01">1 September 2024</time
-                    ></span
-                >
-            </p>
-        </header>
+  <article>
+    <header class="article-header">
+      <p class="article-category">Repair Guides</p>
+      <h1>Recapping a Philco 39-25</h1>
+      <p class="article-subtitle">
+        A complete guide to replacing the capacitors in one of the most common
+        pre-war tombstone sets — and why it matters more than you might think.
+      </p>
+      <p class="article-meta">
+        <span>By <strong>Arthur Bennet</strong></span>
+        <span>Published <time datetime="2024-03-15">15 March 2024</time></span>
+        <span>Updated <time datetime="2024-09-01">1 September 2024</time></span>
+      </p>
+    </header>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Why Recap at All?</h2>
-            <p>
-                The Philco 39-25 left the factory in 1939 with a full complement
-                of wax paper and electrolytic capacitors. At the time, these
-                were perfectly adequate components. Eighty-five years later,
-                they are not. Wax paper capacitors absorb moisture and become
-                leaky. Electrolytics dry out and lose capacitance. A set that
-                appears to play may be operating well below its design
-                specification — or may be on the verge of taking something more
-                expensive with it.
-            </p>
-            <p>
-                Recapping is not optional on a set of this age. It is <strong
-                    >the first thing you do</strong
-                >, before alignment, before any other diagnosis, before you
-                spend an afternoon chasing a fault that a ten-pence capacitor
-                would have cured.
-            </p>
+    <section>
+      <h2>Why Recap at All?</h2>
+      <p>
+        The Philco 39-25 left the factory in 1939 with a full complement of wax
+        paper and electrolytic capacitors. At the time, these were perfectly
+        adequate components. Eighty-five years later, they are not. Wax paper
+        capacitors absorb moisture and become leaky. Electrolytics dry out and
+        lose capacitance. A set that appears to play may be operating well below
+        its design specification — or may be on the verge of taking something
+        more expensive with it.
+      </p>
+      <p>
+        Recapping is not optional on a set of this age. It is <strong
+          >the first thing you do</strong
+        >, before alignment, before any other diagnosis, before you spend an
+        afternoon chasing a fault that a ten-pence capacitor would have cured.
+      </p>
 
-            <blockquote>
-                <p>
-                    A recap is not a repair. It is maintenance. You would not
-                    drive a car on sixty-year-old brake fluid. Do not play a
-                    sixty-year-old radio on sixty-year-old capacitors.
-                </p>
-                <cite>— Practical Wireless Restoration, 3rd edition</cite>
-            </blockquote>
-        </section>
+      <blockquote>
+        <p>
+          A recap is not a repair. It is maintenance. You would not drive a car
+          on sixty-year-old brake fluid. Do not play a sixty-year-old radio on
+          sixty-year-old capacitors.
+        </p>
+        <cite>— Practical Wireless Restoration, 3rd edition</cite>
+      </blockquote>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Before You Begin</h2>
+    <section>
+      <h2>Before You Begin</h2>
 
-            <h3>Safety First</h3>
-            <p>
-                The 39-25 is an <abbr
-                    title="Alternating Current / Direct Current">AC/DC</abbr
-                > set, which means the chassis is <mark
-                    >directly connected to the mains with no isolating
-                    transformer</mark
-                >. This is not a set for beginners to work on live. Always
-                discharge the main filter capacitors before touching anything,
-                and always use an isolation transformer when powering the set on
-                the bench.
-            </p>
+      <h3>Safety First</h3>
+      <p>
+        The 39-25 is an <abbr title="Alternating Current / Direct Current"
+          >AC/DC</abbr
+        > set, which means the chassis is <mark
+          >directly connected to the mains with no isolating transformer</mark
+        >. This is not a set for beginners to work on live. Always discharge the
+        main filter capacitors before touching anything, and always use an
+        isolation transformer when powering the set on the bench.
+      </p>
 
-            <h3>What You Will Need</h3>
-            <ul>
-                <li>
-                    Isolation transformer, minimum <abbr title="Volt-Amperes"
-                        >VA</abbr
-                    > rating 100W
-                </li>
-                <li>Digital multimeter with capacitance range</li>
-                <li>Temperature-controlled soldering iron, 350°C tip</li>
-                <li>Solder sucker or desoldering braid</li>
-                <li>Long-nose pliers and flush cutters</li>
-                <li>Capacitor kit — see parts list below</li>
-                <li>
-                    <kbd>ESR</kbd> meter for testing old electrolytics in-circuit
-                </li>
-            </ul>
+      <h3>What You Will Need</h3>
+      <ul>
+        <li>
+          Isolation transformer, minimum <abbr title="Volt-Amperes">VA</abbr> rating
+          100W
+        </li>
+        <li>Digital multimeter with capacitance range</li>
+        <li>Temperature-controlled soldering iron, 350°C tip</li>
+        <li>Solder sucker or desoldering braid</li>
+        <li>Long-nose pliers and flush cutters</li>
+        <li>Capacitor kit — see parts list below</li>
+        <li>
+          <kbd>ESR</kbd> meter for testing old electrolytics in-circuit
+        </li>
+      </ul>
 
-            <h3>Sourcing Parts</h3>
-            <p>
-                The 39-25 uses a mix of wax paper signal capacitors and
-                electrolytic power supply capacitors. Original wax paper types
-                are <del>worth saving</del> not worth attempting to reform — replace
-                them all. For electrolytics, measure the original value and voltage
-                rating, and fit a modern equivalent rated at <ins
-                    >at least 20% above</ins
-                > the original working voltage.
-            </p>
-        </section>
+      <h3>Sourcing Parts</h3>
+      <p>
+        The 39-25 uses a mix of wax paper signal capacitors and electrolytic
+        power supply capacitors. Original wax paper types are <del
+          >worth saving</del
+        > not worth attempting to reform — replace them all. For electrolytics, measure
+        the original value and voltage rating, and fit a modern equivalent rated at
+        <ins>at least 20% above</ins> the original working voltage.
+      </p>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>The Parts List</h2>
-            <p>
-                The following table lists every capacitor in the 39-25 by
-                circuit reference, original value, original voltage rating, and
-                recommended modern replacement. Values marked <strong
-                    >critical</strong
-                > must be matched exactly — substitutions here affect alignment.
-            </p>
+    <section>
+      <h2>The Parts List</h2>
+      <p>
+        The following table lists every capacitor in the 39-25 by circuit
+        reference, original value, original voltage rating, and recommended
+        modern replacement. Values marked <strong>critical</strong> must be matched
+        exactly — substitutions here affect alignment.
+      </p>
 
-            <div class="table-wrapper">
-                <table>
-                    <caption>Philco 39-25 Capacitor Replacement List</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Ref</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Original Value</th>
-                            <th scope="col"
-                                >Original <abbr title="Working Voltage">WV</abbr
-                                ></th
-                            >
-                            <th scope="col">Replacement</th>
-                            <th scope="col">Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>C1</code></td>
-                            <td>Wax paper</td>
-                            <td>0.1 µF</td>
-                            <td>400V</td>
-                            <td>Polyester film 0.1 µF 630V</td>
-                            <td>Critical — tone circuit</td>
-                        </tr>
-                        <tr>
-                            <td><code>C2</code></td>
-                            <td>Wax paper</td>
-                            <td>0.05 µF</td>
-                            <td>400V</td>
-                            <td>Polyester film 47nF 630V</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><code>C3</code></td>
-                            <td>Electrolytic</td>
-                            <td>8 µF</td>
-                            <td>450V</td>
-                            <td>Electrolytic 10 µF 500V</td>
-                            <td>Critical — main filter</td>
-                        </tr>
-                        <tr>
-                            <td><code>C4</code></td>
-                            <td>Electrolytic</td>
-                            <td>8 µF</td>
-                            <td>450V</td>
-                            <td>Electrolytic 10 µF 500V</td>
-                            <td>Critical — main filter</td>
-                        </tr>
-                        <tr>
-                            <td><code>C5</code></td>
-                            <td>Wax paper</td>
-                            <td>0.02 µF</td>
-                            <td>200V</td>
-                            <td>Polyester film 22nF 400V</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><code>C6</code></td>
-                            <td>Mica</td>
-                            <td>100 pF</td>
-                            <td>500V</td>
-                            <td>Silver mica 100 pF 500V</td>
-                            <td>Do not substitute</td>
-                        </tr>
-                        <tr>
-                            <td><code>C7</code></td>
-                            <td>Electrolytic</td>
-                            <td>25 µF</td>
-                            <td>25V</td>
-                            <td>Electrolytic 47 µF 50V</td>
-                            <td>Bias bypass</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="6"
-                                ><small
-                                    >Values sourced from original Philco service
-                                    data, 1939. Verify against your specific
-                                    chassis before ordering.</small
-                                ></td
-                            >
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </section>
+      <div class="table-wrapper">
+        <table>
+          <caption>Philco 39-25 Capacitor Replacement List</caption>
+          <thead>
+            <tr>
+              <th scope="col">Ref</th>
+              <th scope="col">Type</th>
+              <th scope="col">Original Value</th>
+              <th scope="col"
+                >Original <abbr title="Working Voltage">WV</abbr></th
+              >
+              <th scope="col">Replacement</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>C1</code></td>
+              <td>Wax paper</td>
+              <td>0.1 µF</td>
+              <td>400V</td>
+              <td>Polyester film 0.1 µF 630V</td>
+              <td>Critical — tone circuit</td>
+            </tr>
+            <tr>
+              <td><code>C2</code></td>
+              <td>Wax paper</td>
+              <td>0.05 µF</td>
+              <td>400V</td>
+              <td>Polyester film 47nF 630V</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><code>C3</code></td>
+              <td>Electrolytic</td>
+              <td>8 µF</td>
+              <td>450V</td>
+              <td>Electrolytic 10 µF 500V</td>
+              <td>Critical — main filter</td>
+            </tr>
+            <tr>
+              <td><code>C4</code></td>
+              <td>Electrolytic</td>
+              <td>8 µF</td>
+              <td>450V</td>
+              <td>Electrolytic 10 µF 500V</td>
+              <td>Critical — main filter</td>
+            </tr>
+            <tr>
+              <td><code>C5</code></td>
+              <td>Wax paper</td>
+              <td>0.02 µF</td>
+              <td>200V</td>
+              <td>Polyester film 22nF 400V</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><code>C6</code></td>
+              <td>Mica</td>
+              <td>100 pF</td>
+              <td>500V</td>
+              <td>Silver mica 100 pF 500V</td>
+              <td>Do not substitute</td>
+            </tr>
+            <tr>
+              <td><code>C7</code></td>
+              <td>Electrolytic</td>
+              <td>25 µF</td>
+              <td>25V</td>
+              <td>Electrolytic 47 µF 50V</td>
+              <td>Bias bypass</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6"
+                ><small
+                  >Values sourced from original Philco service data, 1939.
+                  Verify against your specific chassis before ordering.</small
+                ></td
+              >
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>The Procedure</h2>
+    <section>
+      <h2>The Procedure</h2>
 
-            <h3>Step 1 — Document Everything</h3>
-            <p>
-                Before removing a single component, photograph the chassis from
-                every angle. Pay particular attention to lead dress — the
-                routing of component leads — as this affects both safety and <abbr
-                    title="Radio Frequency">RF</abbr
-                > performance. A photograph taken now will save considerable head-scratching
-                later.
-            </p>
+      <h3>Step 1 — Document Everything</h3>
+      <p>
+        Before removing a single component, photograph the chassis from every
+        angle. Pay particular attention to lead dress — the routing of component
+        leads — as this affects both safety and <abbr title="Radio Frequency"
+          >RF</abbr
+        > performance. A photograph taken now will save considerable head-scratching
+        later.
+      </p>
 
-            <h3>Step 2 — Remove the Valves</h3>
-            <p>
-                Pull all valves before applying heat anywhere near the chassis.
-                Valve bases are phenolic and will crack if overheated. Label
-                each valve with its socket position using masking tape. The
-                39-25 uses the following complement:
-            </p>
+      <h3>Step 2 — Remove the Valves</h3>
+      <p>
+        Pull all valves before applying heat anywhere near the chassis. Valve
+        bases are phenolic and will crack if overheated. Label each valve with
+        its socket position using masking tape. The 39-25 uses the following
+        complement:
+      </p>
 
-            <ul>
-                <li><code>V1</code> — 6A8 converter</li>
-                <li>
-                    <code>V2</code> — 6K7 <abbr title="Intermediate Frequency"
-                        >IF</abbr
-                    > amplifier
-                </li>
-                <li>
-                    <code>V3</code> — 6Q7 detector and <abbr
-                        title="Automatic Volume Control">AVC</abbr
-                    >
-                </li>
-                <li><code>V4</code> — 25L6 output</li>
-                <li><code>V5</code> — 25Z6 rectifier</li>
-            </ul>
+      <ul>
+        <li><code>V1</code> — 6A8 converter</li>
+        <li>
+          <code>V2</code> — 6K7 <abbr title="Intermediate Frequency">IF</abbr> amplifier
+        </li>
+        <li>
+          <code>V3</code> — 6Q7 detector and <abbr
+            title="Automatic Volume Control">AVC</abbr
+          >
+        </li>
+        <li><code>V4</code> — 25L6 output</li>
+        <li><code>V5</code> — 25Z6 rectifier</li>
+      </ul>
 
-            <h3>Step 3 — Replace Capacitors</h3>
-            <p>
-                Work systematically from one end of the chassis to the other.
-                Replace one capacitor at a time — remove the old component,
-                clean the pads, fit the new one. Never remove more than one
-                component at a time until you are confident you can identify
-                every connection from your photographs and the service data.
-            </p>
+      <h3>Step 3 — Replace Capacitors</h3>
+      <p>
+        Work systematically from one end of the chassis to the other. Replace
+        one capacitor at a time — remove the old component, clean the pads, fit
+        the new one. Never remove more than one component at a time until you
+        are confident you can identify every connection from your photographs
+        and the service data.
+      </p>
 
-            <p>
-                For wax paper types, note the orientation of the original
-                component. One end of a wax paper capacitor is marked with a
-                band indicating the <em>outer foil</em> — this end should connect
-                to the lower-impedance point in the circuit, typically chassis or
-                the anode side of a valve. Modern film capacitors are not polarised,
-                but matching the original orientation is good practice.
-            </p>
+      <p>
+        For wax paper types, note the orientation of the original component. One
+        end of a wax paper capacitor is marked with a band indicating the <em
+          >outer foil</em
+        > — this end should connect to the lower-impedance point in the circuit, typically
+        chassis or the anode side of a valve. Modern film capacitors are not polarised,
+        but matching the original orientation is good practice.
+      </p>
 
-            <h3>Step 4 — First Power-On</h3>
-            <p>
-                Before powering on, check your work against the parts list.
-                Then:
-            </p>
+      <h3>Step 4 — First Power-On</h3>
+      <p>Before powering on, check your work against the parts list. Then:</p>
 
-            <ol>
-                <li>
-                    Connect the chassis to the isolation transformer — <strong
-                        >do not connect to the mains directly</strong
-                    >
-                </li>
-                <li>Set the transformer to 50% output voltage</li>
-                <li>Power on and monitor current draw for 60 seconds</li>
-                <li>
-                    If current is stable, bring voltage to 100% over two minutes
-                </li>
-                <li>
-                    Check all <abbr title="High Tension">HT</abbr> rail voltages against
-                    service data
-                </li>
-                <li>
-                    Re-fit valves one at a time, checking for shorts after each
-                </li>
-            </ol>
+      <ol>
+        <li>
+          Connect the chassis to the isolation transformer — <strong
+            >do not connect to the mains directly</strong
+          >
+        </li>
+        <li>Set the transformer to 50% output voltage</li>
+        <li>Power on and monitor current draw for 60 seconds</li>
+        <li>If current is stable, bring voltage to 100% over two minutes</li>
+        <li>
+          Check all <abbr title="High Tension">HT</abbr> rail voltages against service
+          data
+        </li>
+        <li>Re-fit valves one at a time, checking for shorts after each</li>
+      </ol>
 
-            <figure>
-                <figcaption>
-                    Typical HT rail voltages for a healthy 39-25 after recap.
-                    Variations of more than 15% from these values indicate a
-                    further fault.
-                </figcaption>
-            </figure>
-        </section>
+      <figure>
+        <figcaption>
+          Typical HT rail voltages for a healthy 39-25 after recap. Variations
+          of more than 15% from these values indicate a further fault.
+        </figcaption>
+      </figure>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Common Faults After Recapping</h2>
+    <section>
+      <h2>Common Faults After Recapping</h2>
 
-            <h3>No HT Voltage</h3>
-            <p>
-                Check <code>C3</code> and <code>C4</code> orientation — electrolytics
-                fitted backwards will fail immediately and may vent. Check the rectifier
-                valve <code>V5</code> is seated correctly.
-            </p>
+      <h3>No HT Voltage</h3>
+      <p>
+        Check <code>C3</code> and <code>C4</code> orientation — electrolytics fitted
+        backwards will fail immediately and may vent. Check the rectifier valve <code
+          >V5</code
+        > is seated correctly.
+      </p>
 
-            <h3>Hum on Audio</h3>
-            <p>
-                Residual hum after recap usually indicates one of the main
-                filter capacitors (<code>C3</code> or <code>C4</code>) is open
-                circuit. Measure capacitance out of circuit — a healthy 10 µF
-                electrolytic should read within 20% of marked value.
-            </p>
+      <h3>Hum on Audio</h3>
+      <p>
+        Residual hum after recap usually indicates one of the main filter
+        capacitors (<code>C3</code> or <code>C4</code>) is open circuit. Measure
+        capacitance out of circuit — a healthy 10 µF electrolytic should read
+        within 20% of marked value.
+      </p>
 
-            <h3>Weak or Distorted Audio</h3>
-            <p>
-                Check <code>C7</code>, the cathode bypass on the output valve. A
-                failed cathode bypass capacitor causes significant loss of gain
-                and increased distortion. This is the single most common fault
-                on 39-25 sets that have been <q>recapped before</q> by someone who
-                missed it.
-            </p>
+      <h3>Weak or Distorted Audio</h3>
+      <p>
+        Check <code>C7</code>, the cathode bypass on the output valve. A failed
+        cathode bypass capacitor causes significant loss of gain and increased
+        distortion. This is the single most common fault on 39-25 sets that have
+        been <q>recapped before</q> by someone who missed it.
+      </p>
 
-            <h3>Intermittent Reception</h3>
-            <p>
-                If reception is intermittent or sensitive to vibration, suspect
-                the <abbr title="Intermediate Frequency">IF</abbr> transformers rather
-                than the capacitors. The 39-25 IF cans are known for developing internal
-                dry joints with age. This is a separate job — see our guide to <a
-                    href="#">IF transformer repair</a
-                >.
-            </p>
-        </section>
+      <h3>Intermittent Reception</h3>
+      <p>
+        If reception is intermittent or sensitive to vibration, suspect the <abbr
+          title="Intermediate Frequency">IF</abbr
+        > transformers rather than the capacitors. The 39-25 IF cans are known for
+        developing internal dry joints with age. This is a separate job — see our
+        guide to <a href="#">IF transformer repair</a>.
+      </p>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>A Final Note</h2>
-            <p>
-                Recapping is satisfying work. There is something deeply pleasing
-                about returning a piece of engineering from the 1930s to
-                reliable service. Take your time, work methodically, and do not
-                cut corners on the high-voltage components.
-            </p>
-            <p>
-                If you get stuck, our <a href="/demo/contact"
-                    >workshop is open for enquiries</a
-                >. We are always happy to talk through a difficult chassis.
-            </p>
+    <section>
+      <h2>A Final Note</h2>
+      <p>
+        Recapping is satisfying work. There is something deeply pleasing about
+        returning a piece of engineering from the 1930s to reliable service.
+        Take your time, work methodically, and do not cut corners on the
+        high-voltage components.
+      </p>
+      <p>
+        If you get stuck, our <a href="/demo/contact"
+          >workshop is open for enquiries</a
+        >. We are always happy to talk through a difficult chassis.
+      </p>
 
-            <address>
-                Wireless Wonder<br />
-                14 Valve Street<br />
-                Edinburgh, EH1 2RF<br />
-                <a href="tel:+441316001234">0131 600 1234</a>
-            </address>
-        </section>
-    </article>
+      <address>
+        Wireless Wonder<br />
+        14 Valve Street<br />
+        Edinburgh, EH1 2RF<br />
+        <a href="tel:+441316001234">0131 600 1234</a>
+      </address>
+    </section>
+  </article>
 </DisplayLayout>
 
 <style lang="scss">
-    @use "mixins" as *;
+  @use "mixins";
 
-    article {
-        max-width: 72ch;
-        margin-inline: auto;
-        padding-inline: var(--space-5);
-        padding-block: var(--space-6);
-    }
+  article {
+    @include mixins.content-grid;
+    padding-block: var(--space-6);
+  }
 
-    .article-category {
-        font-size: var(--text-sm);
-        font-weight: var(--font-weight-bold);
-        text-transform: uppercase;
-        letter-spacing: var(--tracking-wide);
-        color: var(--color-interactive);
-    }
+  .article-category {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-interactive);
+  }
 
-    .article-subtitle {
-        font-size: var(--text-lg);
-        color: var(--color-text-muted);
-        line-height: var(--leading-relaxed);
-    }
+  .article-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
 
-    .article-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-4);
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-    }
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
 
-    .table-wrapper {
-        @include scroll-container;
-    }
+  .table-wrapper {
+    @include mixins.scroll-container;
+  }
 </style>
