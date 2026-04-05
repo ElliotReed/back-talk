@@ -2,6 +2,7 @@
 import SiteHeader from "../components/demoPages/SiteHeader.astro";
 
 import "../styles/index.scss";
+import "../styles/_user/global.css";
 
 const { title, description, headerMode } = Astro.props;
 
@@ -9,47 +10,37 @@ const isDev = import.meta.env.DEV; // for test
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
 
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link
-            rel="icon"
-            href="/favicon-16x16.png"
-            type="image/png"
-            sizes="16x16"
-        />
-        <link
-            rel="icon"
-            href="/favicon-32x32.png"
-            type="image/png"
-            sizes="32x32"
-        />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-        <!-- description for if these pages ever get indexed -->
-        <meta name="description" content={description} />
+    <!-- description for if these pages ever get indexed -->
+    <meta name="description" content={description} />
 
-        <!-- prevent indexing — these are dev/demo pages not public content -->
-        <meta name="robots" content="noindex, nofollow" />
+    <!-- prevent indexing — these are dev/demo pages not public content -->
+    <meta name="robots" content="noindex, nofollow" />
 
-        <!-- colour scheme — tells browser before CSS loads, prevents flash -->
-        <meta name="color-scheme" content="light dark" />
+    <!-- colour scheme — tells browser before CSS loads, prevents flash -->
+    <meta name="color-scheme" content="light dark" />
 
-        <!-- fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap"
-            rel="stylesheet"
-        />
-        <style is:inline>
-            @layer reset, tokens, base, components, utilities;
-        </style>
-        <!-- for mobile safari trouble shooting {
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:inline>
+      @layer reset, tokens, base, components, utilities;
+    </style>
+    <!-- for mobile safari trouble shooting {
             isDev && (
                 <>
                     <script
@@ -60,10 +51,10 @@ const isDev = import.meta.env.DEV; // for test
                 </>
             )
         } -->
-    </head>
-    <body>
-        <SiteHeader mode={headerMode} />
-        <slot />
-        <footer>backtalk demo page</footer>
-    </body>
+  </head>
+  <body>
+    <SiteHeader mode={headerMode} />
+    <slot />
+    <footer>backtalk demo page</footer>
+  </body>
 </html>
