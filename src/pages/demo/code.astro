@@ -1,264 +1,256 @@
 ---
-import DisplayLayout from "../../layouts/DisplayLayout.astro";
+import DisplayLayout from "~/layouts/DisplayLayout.astro";
 ---
 
 <DisplayLayout
-    title="Technical Reference"
-    description="Circuit formulae, test procedures, and diagnostic commands for vintage radio repair"
-    headerMode="demo"
+  title="Technical Reference"
+  description="Circuit formulae, test procedures, and diagnostic commands for vintage radio repair"
+  headerMode="demo"
 >
-    <article>
-        <header class="article-header">
-            <p class="article-category">Technical Reference</p>
-            <h1>Formulae, Procedures &amp; Diagnostics</h1>
-            <p class="article-subtitle">
-                A working reference for the bench — covering the calculations,
-                terminal procedures, and keyboard shortcuts used in day-to-day
-                restoration work.
-            </p>
-        </header>
+  <article class="content-grid">
+    <header class="article-header">
+      <p class="article-category">Technical Reference</p>
+      <h1>Formulae, Procedures &amp; Diagnostics</h1>
+      <p class="article-subtitle">
+        A working reference for the bench — covering the calculations, terminal
+        procedures, and keyboard shortcuts used in day-to-day restoration work.
+      </p>
+    </header>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Essential Formulae</h2>
-            <p>
-                The following formulae cover the calculations most frequently
-                needed when diagnosing and restoring vintage sets. All values
-                use
-                <abbr title="International System of Units">SI</abbr> units unless
-                noted.
-            </p>
+    <section>
+      <h2>Essential Formulae</h2>
+      <p>
+        The following formulae cover the calculations most frequently needed
+        when diagnosing and restoring vintage sets. All values use
+        <abbr title="International System of Units">SI</abbr> units unless noted.
+      </p>
 
-            <h3>Ohm's Law</h3>
-            <p>
-                The relationship between voltage <var>V</var>, current <var
-                    >I</var
-                >, and resistance <var>R</var>:
-            </p>
-            <pre><code>V = I × R
-I = V ÷ R
+      <h3>Ohm's Law</h3>
+      <p>
+        The relationship between voltage <var>V</var>, current <var>I</var>, and
+        resistance <var>R</var>:
+      </p>
+
+      <pre><code>I = V ÷ R
+I × R
 R = V ÷ I</code></pre>
 
-            <p>
-                Where <var>V</var> is in volts, <var>I</var> in amperes, and
-                <var>R</var> in ohms. For a 250V <abbr title="High Tension"
-                    >HT</abbr
-                >
-                rail with a 47kΩ bleeder resistor, current draw is
-                <var>I</var> = 250 ÷ 47,000 = 5.3mA.
-            </p>
+      <p>
+        Where <var>V</var> is in volts, <var>I</var> in amperes, and
+        <var>R</var> in ohms. For a 250V <abbr title="High Tension">HT</abbr>
+        rail with a 47kΩ bleeder resistor, current draw is
+        <var>I</var> = 250 ÷ 47,000 = 5.3mA.
+      </p>
 
-            <h3>Capacitive Reactance</h3>
-            <p>
-                Reactance <var>X<sub>C</sub></var> of a capacitor at frequency
-                <var>f</var> with capacitance <var>C</var>:
-            </p>
-            <pre><code>X꜀ = 1 ÷ (2π × f × C)</code></pre>
+      <h3>Capacitive Reactance</h3>
+      <p>
+        Reactance <var>X<sub>C</sub></var> of a capacitor at frequency
+        <var>f</var> with capacitance <var>C</var>:
+      </p>
 
-            <p>
-                A 0.1µF capacitor at 455kHz — the standard
-                <abbr title="Intermediate Frequency">IF</abbr> — has a reactance of
-                approximately 3.5Ω. Values much higher than this in a signal path
-                indicate a failing component.
-            </p>
+      <pre><code>X꜀ = 1 ÷ (2π × f × C)</code></pre>
 
-            <h3>Resonant Frequency</h3>
-            <p>
-                The resonant frequency <var>f<sub>r</sub></var> of a tuned circuit
-                with inductance <var>L</var> and capacitance <var>C</var>:
-            </p>
-            <pre><code>f꜀ = 1 ÷ (2π × √(L × C))</code></pre>
+      <p>
+        A 0.1µF capacitor at 455kHz — the standard
+        <abbr title="Intermediate Frequency">IF</abbr> — has a reactance of approximately
+        3.5Ω. Values much higher than this in a signal path indicate a failing component.
+      </p>
 
-            <p>
-                H<sub>2</sub>O content in the atmosphere affects coil inductance
-                at high frequencies — a relevant consideration when aligning
-                sets in humid conditions. Temperature coefficients are noted as
-                ppm/°C<sup>−1</sup>.
-            </p>
-        </section>
+      <h3>Resonant Frequency</h3>
+      <p>
+        The resonant frequency <var>f<sub>r</sub></var> of a tuned circuit with inductance
+        <var>L</var> and capacitance <var>C</var>:
+      </p>
 
-        <hr />
+      <pre><code>f꜀ = 1 ÷ (2π × √(L × C))</code></pre>
+    </section>
 
-        <section>
-            <h2>Diagnostic Procedures</h2>
-            <p>
-                The following procedures are run from the workshop diagnostic
-                terminal. All commands assume the test rig is connected and the
-                chassis is isolated from the mains.
-            </p>
+    <p>
+      H<sub>2</sub>O content in the atmosphere affects coil inductance at high
+      frequencies — a relevant consideration when aligning sets in humid
+      conditions. Temperature coefficients are noted as ppm/°C<sup>−1</sup>.
+    </p>
+  </article>
 
-            <h3>Signal Injection Test</h3>
-            <p>
-                To inject a test signal at the <abbr
-                    title="Intermediate Frequency">IF</abbr
-                >
-                stage and measure output at the speaker terminals:
-            </p>
+  <hr />
 
-            <pre><code>$ connect --stage IF --freq 455kHz
+  <section class="content-grid">
+    <h2>Diagnostic Procedures</h2>
+    <p>
+      The following procedures are run from the workshop diagnostic terminal.
+      All commands assume the test rig is connected and the chassis is isolated
+      from the mains.
+    </p>
+
+    <h3>Signal Injection Test</h3>
+    <p>
+      To inject a test signal at the <abbr
+        title="
+        Intermediate
+        Frequency">IF</abbr
+      >
+      stage and measure output at the speaker terminals:
+    </p>
+
+    <pre><code>$ connect --stage IF --freq 455kHz
 $ inject --signal sine --level -20dBm
 $ measure --point speaker --unit mV</code></pre>
 
-            <p>
-                Expected output from a healthy 39-25 is in the range
-                <samp>850mV — 1200mV</samp>. A reading below <samp>400mV</samp>
-                indicates gain loss in the output stage. A reading of <samp
-                    >0mV</samp
-                >
-                with signal present at the grid confirms a failed output valve.
-            </p>
+    <p>
+      Expected output from a healthy 39-25 is in the range
+      <samp>850mV — 1200mV</samp>. A reading below <samp>400mV</samp>
+      indicates gain loss in the output stage. A reading of <samp>0mV</samp>
+      with signal present at the grid confirms a failed output valve.
+    </p>
 
-            <h3>Capacitor ESR Sweep</h3>
-            <p>
-                Connect the <abbr title="Equivalent Series Resistance">ESR</abbr
-                > meter to each capacitor in sequence. The sweep command logs all
-                readings:
-            </p>
+    <h3>Capacitor ESR Sweep</h3>
+    <p>
+      Connect the <abbr title="Equivalent Series Resistance">ESR</abbr> meter to each
+      capacitor in sequence. The sweep command logs all readings:
+    </p>
 
-            <pre><code>$ esr-sweep --chassis 39-25 --log results.csv
+    <pre><code>$ esr-sweep --chassis 39-25 --log results.csv
 Scanning C1...  ESR: 0.8Ω   ✓
 Scanning C2...  ESR: 1.2Ω   ✓
 Scanning C3...  ESR: 48.3Ω  ✗ FAIL
 Scanning C4...  ESR: 2.1Ω   ✓
 Scanning C7...  ESR: 31.7Ω  ✗ FAIL</code></pre>
 
-            <p>
-                The sweep output above is typical of an unrecapped set.
-                <samp>C3</samp> and <samp>C7</samp> show <abbr
-                    title="Equivalent Series Resistance">ESR</abbr
-                >
-                values well above the acceptable threshold of <samp>5Ω</samp> for
-                electrolytics of this value.
-            </p>
+    <p>
+      The sweep output above is typical of an unrecapped set.
+      <samp>C3</samp> and <samp>C7</samp> show <abbr
+        title="Equivalent Series Resistance">ESR</abbr
+      >
+      values well above the acceptable threshold of <samp>5Ω</samp> for electrolytics
+      of this value.
+    </p>
 
-            <h3>Alignment Sequence</h3>
-            <p>
-                Run the alignment sequence only after all capacitors have been
-                replaced and <abbr title="High Tension">HT</abbr> voltages confirmed
-                correct. The sequence must be run in order — do not skip stages.
-            </p>
+    <h3>Alignment Sequence</h3>
+    <p>
+      Run the alignment sequence only after all capacitors have been replaced
+      and <abbr title="High Tension">HT</abbr> voltages confirmed correct. The sequence
+      must be run in order — do not skip stages.
+    </p>
 
-            <pre><code>$ align --stage detector
+    <pre><code>$ align --stage detector
 $ align --stage IF-2
 $ align --stage IF-1
 $ align --stage RF
 $ align --verify --tolerance 2%</code></pre>
 
-            <p>
-                If <samp>--verify</samp> reports tolerance failures, repeat the affected
-                stage and re-verify. Three consecutive failures on the same stage
-                indicate a faulty <abbr title="Intermediate Frequency">IF</abbr> transformer.
-            </p>
-        </section>
+    <p>
+      If <samp>--verify</samp> reports tolerance failures, repeat the affected stage
+      and re-verify. Three consecutive failures on the same stage indicate a faulty
+      <abbr title="Intermediate Frequency">IF</abbr> transformer.
+    </p>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Keyboard Reference</h2>
-            <p>
-                The diagnostic terminal supports the following keyboard
-                shortcuts. All shortcuts are active when the terminal window has
-                focus.
-            </p>
+    <section class="content-grid">
+      <h2>Keyboard Reference</h2>
+      <p>
+        The diagnostic terminal supports the following keyboard shortcuts. All
+        shortcuts are active when the terminal window has focus.
+      </p>
 
-            <table>
-                <caption>Diagnostic Terminal Keyboard Shortcuts</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Shortcut</th>
-                        <th scope="col">Action</th>
-                        <th scope="col">Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><kbd>Ctrl</kbd> + <kbd>R</kbd></td>
-                        <td>Run last command</td>
-                        <td>Repeats previous measurement</td>
-                    </tr>
-                    <tr>
-                        <td><kbd>Ctrl</kbd> + <kbd>L</kbd></td>
-                        <td>Clear terminal</td>
-                        <td>Does not affect active session</td>
-                    </tr>
-                    <tr>
-                        <td><kbd>Ctrl</kbd> + <kbd>S</kbd></td>
-                        <td>Save session log</td>
-                        <td
-                            >Writes to <code
-                                >logs/session-&#123;date&#125;.csv</code
-                            ></td
-                        >
-                    </tr>
-                    <tr>
-                        <td><kbd>Ctrl</kbd> + <kbd>C</kbd></td>
-                        <td>Abort current command</td>
-                        <td>Safe to use mid-sweep</td>
-                    </tr>
-                    <tr>
-                        <td><kbd>F1</kbd></td>
-                        <td>Help</td>
-                        <td>Lists all available commands</td>
-                    </tr>
-                    <tr>
-                        <td><kbd>F5</kbd></td>
-                        <td>Refresh readings</td>
-                        <td>Re-polls all connected instruments</td>
-                    </tr>
-                    <tr>
-                        <td><kbd>↑</kbd> / <kbd>↓</kbd></td>
-                        <td>Command history</td>
-                        <td>Navigate previous commands</td>
-                    </tr>
-                    <tr>
-                        <td><kbd>Tab</kbd></td>
-                        <td>Autocomplete</td>
-                        <td>Completes command names and flags</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+      <div class="table-wrapper">
+        <table>
+          <caption>Diagnostic Terminal Keyboard Shortcuts</caption>
+          <thead>
+            <tr>
+              <th scope="col">Shortcut</th>
+              <th scope="col">Action</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd>Ctrl</kbd> + <kbd>R</kbd></td>
+              <td>Run last command</td>
+              <td>Repeats previous measurement</td>
+            </tr>
+            <tr>
+              <td><kbd>Ctrl</kbd> + <kbd>L</kbd></td>
+              <td>Clear terminal</td>
+              <td>Does not affect active session</td>
+            </tr>
+            <tr>
+              <td><kbd>Ctrl</kbd> + <kbd>S</kbd></td>
+              <td>Save session log</td>
+              <td>Writes to <code>logs/session-&#123;date&#125;.csv</code></td>
+            </tr>
+            <tr>
+              <td><kbd>Ctrl</kbd> + <kbd>C</kbd></td>
+              <td>Abort current command</td>
+              <td>Safe to use mid-sweep</td>
+            </tr>
+            <tr>
+              <td><kbd>F1</kbd></td>
+              <td>Help</td>
+              <td>Lists all available commands</td>
+            </tr>
+            <tr>
+              <td><kbd>F5</kbd></td>
+              <td>Refresh readings</td>
+              <td>Re-polls all connected instruments</td>
+            </tr>
+            <tr>
+              <td><kbd>↑</kbd> / <kbd>↓</kbd></td>
+              <td>Command history</td>
+              <td>Navigate previous commands</td>
+            </tr>
+            <tr>
+              <td><kbd>Tab</kbd></td>
+              <td>Autocomplete</td>
+              <td>Completes command names and flags</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Component Marking Conventions</h2>
-            <p>
-                Vintage components use colour band coding. The resistor value
-                formula for a four-band component is:
-            </p>
+    <section class="content-grid">
+      <h2>Component Marking Conventions</h2>
+      <p>
+        Vintage components use colour band coding. The resistor value formula
+        for a four-band component is:
+      </p>
 
-            <pre><code>value = (band1 × 10 + band2) × 10^band3 ± band4%</code></pre>
+      <pre><code>value = (band1 × 10 + band2) × 10^band3 ± band4%</code></pre>
 
-            <p>
-                For a resistor marked brown<sup>1</sup>, black<sup>0</sup>,
-                orange<sup>3</sup>, gold<sup>±5%</sup>:
-            </p>
+      <p>
+        For a resistor marked brown<sup>1</sup>, black<sup>0</sup>, orange<sup
+          >3</sup
+        >, gold<sup>±5%</sup>:
+      </p>
 
-            <pre><code>value = (1 × 10 + 0) × 10³ ± 5%
+      <pre><code>value = (1 × 10 + 0) × 10³ ± 5%
       = 10 × 1000 ± 5%
       = 10,000Ω ± 5%
       = 10kΩ ± 5%</code></pre>
 
-            <p>
-                Capacitor markings use a similar three-digit code where the
-                third digit is the multiplier in powers of 10, giving a value in
-                pF. A cap marked <code>104</code> is 10 × 10<sup>4</sup>pF =
-                100,000pF = 100nF = 0.1µF.
-            </p>
-        </section>
+      <p>
+        Capacitor markings use a similar three-digit code where the third digit
+        is the multiplier in powers of 10, giving a value in pF. A cap marked <code
+          >104</code
+        > is 10 × 10<sup>4</sup>pF = 100,000pF = 100nF = 0.1µF.
+      </p>
+    </section>
 
-        <hr />
+    <hr />
 
-        <section>
-            <h2>Session Output Examples</h2>
-            <p>
-                The following shows typical terminal output from a complete
-                diagnostic session on a newly arrived set:
-            </p>
+    <section class="content-grid">
+      <h2>Session Output Examples</h2>
+      <p>
+        The following shows typical terminal output from a complete diagnostic
+        session on a newly arrived set:
+      </p>
 
-            <pre><code>Wireless Wonder Diagnostic Terminal v2.4
+      <pre><code>Wireless Wonder Diagnostic Terminal v2.4
 Connected: Philco 39-25 [chassis #WW-2024-0847]
 HT voltage: 245V (nominal 250V) ✓
 Heater chain: 118V (nominal 117V) ✓
@@ -273,41 +265,45 @@ Recommendation: full recap before alignment.
 
 Session saved to logs/session-2024-11-14.csv</code></pre>
 
-            <p>
-                Output like <samp>52.4Ω ✗</samp> on a main filter capacitor is consistent
-                with a dry electrolytic. The set should not be run further until the
-                failed components are replaced — continued use risks damage to the
-                output transformer.
-            </p>
-        </section>
-    </article>
+      <p>
+        Output like <samp>52.4Ω ✗</samp> on a main filter capacitor is consistent
+        with a dry electrolytic. The set should not be run further until the failed
+        components are replaced — continued use risks damage to the output transformer.
+      </p>
+    </section>
+  </section>
 </DisplayLayout>
 
 <style lang="scss">
-    @use "mixins" as *;
+  @use "mixins";
 
-    article {
-        max-width: 72ch;
-        margin-inline: auto;
-        padding-inline: var(--space-5);
-        padding-block: var(--space-6);
-    }
+  .content-grid {
+    @include mixins.content-grid;
+  }
 
-    .article-category {
-        font-size: var(--text-sm);
-        font-weight: var(--font-weight-bold);
-        text-transform: uppercase;
-        letter-spacing: var(--tracking-wide);
-        color: var(--color-interactive);
-    }
+  article {
+    padding-block: var(--space-6);
+  }
 
-    .article-subtitle {
-        font-size: var(--text-lg);
-        color: var(--color-text-muted);
-        line-height: var(--leading-relaxed);
-    }
+  .article-category {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-interactive);
+  }
 
-    .article-header {
-        padding-block-end: var(--space-4);
-    }
+  .article-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .article-header {
+    padding-block-end: var(--space-4);
+  }
+
+  .table-wrapper {
+    @include mixins.scroll-container;
+  }
 </style>
