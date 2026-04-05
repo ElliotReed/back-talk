@@ -1,0 +1,13 @@
+@layer starlight, my-overrides;
+
+@layer my-overrides {
+  :root,
+  ::backdrop {
+    --sl-color-text-accent: #cd6799;
+  }
+
+  :root[data-theme="light"],
+  [data-theme="light"] ::backdrop {
+    --sl-color-text-accent: #cd6799;
+  }
+}
