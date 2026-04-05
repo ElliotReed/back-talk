@@ -9,14 +9,20 @@ export default defineConfig({
     integrations: [
         icon(),
         starlight({
-            title: "Backtalk",
+            customCss: ["./starlight-overrides.css"],
+            expressiveCode: {
+                themes: ["dracula", "rose-pine-dawn"],
+            },
             head: [
-                { tag: 'link', attrs: { rel: 'icon', href: '/favicon.ico', sizes: '32x32' } },
-                { tag: 'link', attrs: { rel: 'icon', href: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' } },
-                { tag: 'link', attrs: { rel: 'icon', href: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' } },
-                { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
-                { tag: 'link', attrs: { rel: 'manifest', href: '/site.webmanifest' } },
+                { tag: "link", attrs: { rel: "icon", href: "/favicon.ico", sizes: "32x32" } },
+                { tag: "link", attrs: { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" } },
+                { tag: "link", attrs: { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" } },
+                { tag: "link", attrs: { rel: "apple-touch-icon", href: "/apple-touch-icon.png" } },
+                { tag: "link", attrs: { rel: "manifest", href: "/site.webmanifest" } },
             ],
+            logo: {
+                src: "./src/assets/backtalk-logo.svg",
+            },
             social: [{ icon: "github", label: "GitHub", href: "https://github.com/withastro/starlight" }],
             sidebar: [
                 { label: "Overview", link: "/overview" },
@@ -59,13 +65,22 @@ export default defineConfig({
                 },
                 { label: "About This Site", autogenerate: { directory: "site" } },
             ],
+            title: "Backtalk",
         }),
     ],
+    markdown: {
+        shikiConfig: {
+            themes: {
+                light: "rose-pine-dawn",
+                dark: "dracula",
+            }
+        }
+    },
     site: "https://docs.backtalk.elliotreed.dev",
     vite: {
         resolve: {
             alias: {
-                "~": path.resolve("./src"),
+                "~": path.resolve(import.meta.dirname, "src"),
             },
         },
         css: {
@@ -77,7 +92,7 @@ export default defineConfig({
         },
         server: {
             allowedHosts: ["backtalk.local"],
-            // These settings don't matter, the npm dev script sets these values via flags
+            // These settings don"t matter, the npm dev script sets these values via flags
             host: "backtalk.local",
             port: 5001,
         },
